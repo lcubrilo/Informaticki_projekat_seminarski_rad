@@ -1,47 +1,115 @@
-<iframe src="./naslovna_stranica.html" style="width: 100%; height: 100%; border: none;">
-</iframe>
-<h2 id="sadržaj">Sadržaj <!-- omit in toc --></h2>
+<!DOCTYPE html>
+        <html>
+        <head>
+            <title></title>
+            <link rel="stylesheet" type="text/css" href="../build_utils/styles.css">
+        </head>
+        <body>
+            <div style="text-align: center;">
+    <br><br><br>
+    <div style="font-size: 24px;">Prirodno-matematički Fakultet</div>
+    <div style="font-size: 16px;">Univerzitet u Novom Sadu</div>
+    
+    <br><br><br><br><br><br>
+    
+    <div style="font-size: 36px; text-align: center;">IoT praćenje i merenje vazduha</div><br>
+    <div style="font-size: 32px; text-align: center;">Predmet: Informatički projekat</div>
+    
+    <br><br><br><br><br><br><br><br><br>
+    
+    <div style="display: flex; justify-content: space-between;">
+      <div style="text-align: left;">
+        Profesor:<br>
+        Vladimir Kurbalija
+      </div>
+      <div style="text-align: right;">
+        Student:<br>
+        Luka Čubrilo<br>
+        Broj indeksa: 21/20
+      </div>
+    </div>
+    <br><br><br>
+    <div style="text-align: center;">Novi Sad, Septembar 2023.</div>
+  
+    <br><br><br>
+    ---
+    <div style="page-break-before: always;"></div>
+  </div>
+<h1 id="sadržaj">Sadržaj <!-- omit in toc --></h1>
 <ul>
-<li><a href="#uvod">Uvod</a></li>
-<li><a href="#embedded-programiranje">Embedded programiranje</a></li>
-<li><a href="#internet-of-things">Internet of Things</a></li>
-<li><a href="#organizacija-rada">Organizacija rada</a>
+<li><a href="#1-uvod">I Uvod</a></li>
+<li><a href="#2-teorijski-okvir">II Teorijski okvir</a>
 <ul>
-<li><a href="#sastanci---tehnički-deo">Sastanci - tehnički deo</a></li>
-<li><a href="#sastanci---netehnički-deo">Sastanci - netehnički
+<li><a href="#21-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">1.
+Osnovni termini i oblast u kojoj se praksa radi</a>
+<ul>
+<li><a href="#211-embedded-programiranje">1.1. Embedded
+programiranje</a></li>
+<li><a href="#212-internet-of-things">1.2. Internet of Things</a></li>
+<li><a href="#213-cloud-computing---računarstvo-u-oblaku--todo">1.3.
+Cloud computing - računarstvo u oblaku //TODO</a></li>
+</ul></li>
+<li><a href="#22-organizacija-rada">2. Organizacija rada</a>
+<ul>
+<li><a href="#221-struktura-ljudi">2.1. Struktura ljudi</a></li>
+<li><a href="#222-sastanci---tehnički-deo">2.2. Sastanci - tehnički
 deo</a></li>
-<li><a href="#struktura-ljudi">Struktura ljudi</a></li>
+<li><a href="#223-sastanci---netehnički-deo">2.3. Sastanci - netehnički
+deo</a></li>
 </ul></li>
-<li><a href="#struktura-projekta">Struktura projekta</a></li>
-<li><a href="#rad-na-platformi">Rad na platformi</a></li>
-<li><a href="#alati">Alati</a></li>
-<li><a href="#konkretan-zadatak-opis-i-implementacija">Konkretan
-zadatak, opis i implementacija</a>
+<li><a href="#23-ključni-korišćeni-alati">3. Ključni korišćeni alati</a>
 <ul>
-<li><a href="#oblasti-koje-pokriva-zadatak">Oblasti koje pokriva
-zadatak</a></li>
-<li><a href="#koncepti-koji-se-koriste">Koncepti koji se
-koriste</a></li>
-<li><a href="#podešavanje-okruženja">Podešavanje okruženja</a></li>
-<li><a href="#postavka-zadatak">Postavka zadatak</a>
+<li><a href="#231-arduino-ekosistem">3.1. Arduino ekosistem</a></li>
+<li><a href="#232-qt-framework-todo">3.2. Qt Framework //TODO</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#3-sadržaj-projekta-todo">III Sadržaj projekta //TODO</a>
 <ul>
-<li><a href="#use-case">Use Case</a></li>
-</ul></li>
-<li><a href="#dijagram-entiteta">Dijagram entiteta</a></li>
-<li><a href="#poslovni-zahtevi">Poslovni Zahtevi</a>
+<li><a href="#31-šira-slika-projekta-todo">1. Šira slika projekta
+//TODO</a>
 <ul>
-<li><a href="#automatizacija-zahteva-za-održavanje">Automatizacija
-zahteva za održavanje</a></li>
-<li><a href="#sinhronizacija-sa-eksternim-servisom">Sinhronizacija sa
-eksternim servisom</a></li>
+<li><a href="#311-primer-primene-davanje-konteksta-todo">1.1. Primer
+primene, davanje konteksta //TODO</a></li>
+<li><a
+href="#312-korišćeni-alati-upitno-da-li-treba-uz-ključne-todo">1.2.
+Korišćeni alati (upitno da li treba uz ključne) //TODO</a></li>
 </ul></li>
-<li><a href="#konkretno-rešenje-zadatka">Konkretno rešenje
-zadatka</a></li>
+<li><a href="#32-struktura-projekta---hardware">2. Struktura projekta -
+hardware</a>
+<ul>
+<li><a href="#321-arduino-razvojna-ploča-i-firmware">2.1. Arduino
+razvojna ploča i firmware</a>
+<ul>
+<li><a href="#3211-arduino-uno">2.1.1. Arduino Uno</a></li>
+<li><a href="#3212-shields-i-clicks">2.1.2. Shields i clicks</a></li>
 </ul></li>
-<li><a href="#zaključak">Zaključak</a></li>
-<li><a href="#literatura">Literatura</a></li>
+<li><a href="#322-raspberry-pi-kao-posrednik-todo">2.2. Raspberry Pi kao
+posrednik //TODO</a></li>
+<li><a href="#323-hardver-cloud-platforme-todo">2.3. “Hardver” cloud
+platforme? //TODO</a></li>
+<li><a href="#324-hardver-krajnjeg-korisnika-todo">2.4. Hardver krajnjeg
+korisnika //TODO</a></li>
+</ul></li>
+<li><a href="#33-struktura-projekta---sofware-todo">3. Struktura
+projekta - sofware //TODO</a>
+<ul>
+<li><a href="#331-arduino-firmware">3.1. Arduino firmware</a></li>
+<li><a href="#332-raspberry-pi-cloud-client-todo">3.2. Raspberry Pi
+Cloud Client //TODO</a></li>
+<li><a href="#333-wolkabout-cloud-platforma-todo">3.3. WolkAbout Cloud
+platforma //TODO</a></li>
+<li><a href="#334-pc-ili-android-data-visualizer-todo">3.4. PC (ili
+Android) Data Visualizer //TODO</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#4-zaključak-todo">IV Zaključak //TODO</a></li>
+<li><a href="#5-literatura">V Literatura</a></li>
 </ul>
-<h2 id="uvod">Uvod</h2>
+<hr />
+<div style="page-break-before: always;">
+
+</div>
+<h1 id="i-uvod">I Uvod</h1>
 <p>Praksu sam obavio u kompaniji <a
 href="execom.eu"><strong>Execom</strong></a>, koju je u međuvremenu
 kupio <a href=""><strong>HTEC</strong></a>. U pitanju je
@@ -70,7 +138,10 @@ koda.</p>
 <p>Takođe korišćen je i <strong>Qt Framework</strong> za
 <em>crossplatform GUI</em> aplikaciju, koji je u potpunosti
 objektno-orijentisan.</p>
-<h2 id="embedded-programiranje">Embedded programiranje</h2>
+<h1 id="ii-teorijski-okvir">II Teorijski okvir</h1>
+<h2 id="osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">2.1. Osnovni
+termini i oblast u kojoj se praksa radi</h2>
+<h3 id="embedded-programiranje">2.1.1. Embedded programiranje</h3>
 <p><strong>Embedded softver</strong> (od engl. <em>embed</em>,
 “usaditi”) je računarski softver, napisan da kontroliše mašine ili
 uređaje koji se obično ne smatraju računarima u punom smislu te reči,
@@ -94,7 +165,7 @@ kilobajta memorije. Međutim, embedded softver može postati vrlo
 sofisticiran u aplikacijama kao što su ruteri, optički mrežni elementi,
 avioni, rakete i sistemi za kontrolu procesa.<a href="#fn4"
 class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<h2 id="internet-of-things">Internet of Things</h2>
+<h3 id="internet-of-things">2.1.2. Internet of Things</h3>
 <p><strong>Internet of Things</strong> (IoT) odnosi se na mrežu fizičkih
 uređaja, vozila, aparata i drugih fizičkih objekata koji su opremljeni
 senzorima i/ili aktuatorima (motorima), softverom i mrežnom povezanošću
@@ -137,24 +208,16 @@ mogu se analizirati u realnom vremenu kako bi se identifikovali obrasci,
 trendovi i anomalije koji mogu pomoći preduzećima da optimizuju svoje
 operacije i poboljšaju svoju profitabilnost.<a href="#fn9"
 class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
-<h2 id="organizacija-rada">Organizacija rada</h2>
-<h3 id="sastanci---tehnički-deo">Sastanci - tehnički deo</h3>
-<p>U kompaniji Execom korišćena je <strong>Agile</strong> metodologija,
-konkretnije <strong>Scrum</strong>. To je podrazumevalo kratke sastanke
-svako (radno) jutro tzv <em>daily</em>, kao i nešto duže sumacije do
-sada postignutog na nedeljnom nivou, tzv <em>weekly</em>, krajem
-sedmice. <a href="#fn10" class="footnote-ref" id="fnref10"
-role="doc-noteref"><sup>10</sup></a></p>
-<h3 id="sastanci---netehnički-deo">Sastanci - netehnički deo</h3>
-<p>Pored toga, za praktikante je postojala još jedna forma nedeljnih
-sastanaka sa jednim ili više HR (<em>human resources</em>) menadžera,
-sredinom radne sedmice, sa kojima se pratio i “ne-tehnički” deo prakse -
-utisci i zadovoljstvo praktikanta, uklapanje sa drugim članovima tima.
-Iako se on činio neformalnim, HR menadžerke su beležile teze o čemu se
-govorilo i povezivale su to sa utiscima mentora.</p>
-<h3 id="struktura-ljudi">Struktura ljudi</h3>
-<p>U odnosu na mojih prvih mesec dana u Execomu, gde sam prve sedmice
-imao jednog mentora (koji je kasnije uključio još jednog mentora za
+<h3 id="cloud-computing---računarstvo-u-oblaku-todo">2.1.3. Cloud
+computing - računarstvo u oblaku //TODO</h3>
+<h2 id="organizacija-rada">2.2. Organizacija rada</h2>
+<p>Rad u timu je bio izuzetno kvalitetno organizovan u skladu sa vodećim
+principima u industriji. Takođe je važno napomenuti da ne samo da su
+uspešno implementirani, nego da su i međuljudski odnosi bili na visokom
+nivou. Bilo je tolerancije i razumevanja, što je značajno pomoglo
+prevazilaženju bilo kojih tehničkih problema. ### 2.2.1. Struktura ljudi
+U odnosu na mojih prvih mesec dana u Execomu, gde sam prve sedmice imao
+jednog mentora (koji je kasnije uključio još jednog mentora za
 svakodnevnu komunikaciju i razjašnjavanje/rešavanje problema), u drugih
 mesec dana sam imao sreću raditi sa čak dvojicom mentora i vođom tima
 (koji je rukovodio projektom, vodio mentore i pomagao kad se oni
@@ -163,35 +226,204 @@ susretnu sa poteškoćama).</p>
 veoma obiman za mesec dana rada, veći broj mentora je bio od presudnog
 značaja za uspešno obavljanje svih zamišljenih radnih zaduženja na
 projektu.</p>
-<h2 id="struktura-projekta">Struktura projekta</h2>
-<p>Projekat je uključivao tri zasebne hardverske komponente, svaku sa
-pratećim softverom koji je bilo potrebno isprogramirati. Tu je bila i
-četvrta komponenta, odnosno <em>cloud platforma</em> kompanije
-WolkAbout.</p>
+<p>Budući da je svaki deo predstavljao gotovo skroz nezavistan komad
+softvera, ukoliko bi došlo do prepreke na jednom, mogao sam to
+iskomunicirati sa mentorima i jednostavno preći na drugi dok oni to
+rešavaju. Ovim sistemom smo svi bili veoma zadovoljni i nismo imali
+“praznog hoda”. ### 2.2.2. Sastanci - tehnički deo U kompaniji Execom
+korišćena je <strong>Agile</strong> metodologija, konkretnije
+<strong>Scrum</strong>. Ključan koncept su tzv <em>sprintovi</em>,
+odnosno period od 1-3 sedmice za koji se odredio spisak taskova koji
+moraju da se obave, kao i ko će šta da radi. Nakon što je sprint
+završen, radi se retrospektiva i proverava sa klijentom da li je
+zadovoljan. Ključ je u ciklusima rada i povratne informacije koji se
+brzu smenjuju. Time se sprečava situacija u kojoj tim dugo vremena radi
+na nečemu što zapravo korisniku ne treba.</p>
+<p>To podrazumeva specifičnu dinamiku sastanaka, koji uključuju sve
+članove tima, uključujući product managera, scrum mastera i klijenta<a
+href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a>: 1. <strong><em>daily
+(meeting)</em></strong> (takođe <em>stand meeting</em>) - kratke
+sastanke svako (radno) jutro - svaki član tima objasni šta je radio
+juče, šta će danas - feedback na to od strane šefa 2. <strong><em>weekly
+(meeting)</em></strong> - uglavnom krajem sedmice - nešto duže sumacije
+do sada postignutog na nedeljnom nivou - nekad i tehničku demonstraciju
+(često neuglancanu) radi jasnije komunikacije šta je postignuto i da li
+odgovara potrebama klijenta</p>
+<p>U slučaju moje prakse, klijenta nije bilo, mada bi se klijentom mogli
+smatrati svi mi članovi tima.</p>
+<h3 id="sastanci---netehnički-deo">2.2.3. Sastanci - netehnički deo</h3>
+<p>Pored toga, za praktikante je postojala još jedna forma nedeljnih
+sastanaka sa jednim ili više HR (<em>human resources</em>) menadžera,
+sredinom radne sedmice, sa kojima se pratio i “ne-tehnički” deo prakse -
+utisci i zadovoljstvo praktikanta, uklapanje sa drugim članovima tima.
+Iako se on činio neformalnim, HR menadžerke su beležile teze o čemu se
+govorilo i povezivale su to sa utiscima mentora.</p>
+<h2 id="ključni-korišćeni-alati">2.3. Ključni korišćeni alati</h2>
+<h3 id="arduino-ekosistem">2.3.1. Arduino ekosistem</h3>
+<table>
+<tr>
+<td style="border: none; padding: 0;">
+<strong>Arduino</strong> je italijanska <em>Open Source</em> kompanija i
+zajednica korisnika koja dizajnira i proizvodi mikrokontrolere i setove
+za izradu mikrokontrolera za izgradnju digitalnih uređaja.<a
+href="#fn11" class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a> Arduino ploče su komercijalno
+dostupne na zvaničnoj web stranici ili preko ovlašćenih distributera.
+Pored toga, postoje i njihovi klonovi (gotovo identičnog dizajna i
+strukture) velikog broja altenartivnih proizvođača (uglavnom iz Kine) i
+jednog bogatog i širokog ekosistema, kako harverski tako i softverski.
+</td>
+<td style="border: none; padding: 0;">
 <figure>
-<img src="../image.png" alt="Šema strukture projekta" style="width: 100%;">
+<img src="../image-2.png" alt="Logo kompanije Arduino" style="width: 100%;">
 <figcaption style="text-align:center;">
-Slika 1: Šema strukture projekta
+Slika 1: Logo kompanije Arduino
 </figcaption>
 </figure>
-<h2 id="rad-na-platformi">Rad na platformi</h2>
-<h2 id="alati">Alati</h2>
-<h2 id="konkretan-zadatak-opis-i-implementacija">Konkretan zadatak, opis
-i implementacija</h2>
-<h3 id="oblasti-koje-pokriva-zadatak">Oblasti koje pokriva zadatak</h3>
-<h3 id="koncepti-koji-se-koriste">Koncepti koji se koriste</h3>
-<h3 id="podešavanje-okruženja">Podešavanje okruženja</h3>
-<h3 id="postavka-zadatak">Postavka zadatak</h3>
-<h4 id="use-case">Use Case</h4>
-<h3 id="dijagram-entiteta">Dijagram entiteta</h3>
-<h3 id="poslovni-zahtevi">Poslovni Zahtevi</h3>
-<h4 id="automatizacija-zahteva-za-održavanje">Automatizacija zahteva za
-održavanje</h4>
-<h4 id="sinhronizacija-sa-eksternim-servisom">Sinhronizacija sa
-eksternim servisom</h4>
-<h3 id="konkretno-rešenje-zadatka">Konkretno rešenje zadatka</h3>
-<h2 id="zaključak">Zaključak</h2>
-<h2 id="literatura">Literatura</h2>
+</td>
+</tr>
+</table>
+<p>Razlog zašto je to moguće jeste u tome što su njihovi hardverski
+proizvodi su licencirani pod <strong>CC BY-SA licencom</strong>, dok je
+softver licenciran pod <strong>GNU Lesser General Public License
+(LGPL)</strong> ili <strong>GNU General Public License (GPL)</strong>,
+što omogućava bilo kome proizvodnju Arduino ploča i distribuciju
+softvera.</p>
+<p>Dizajni Arduino ploča koriste različite mikroprocesore i kontrolere.
+Ploče su opremljene setovima digitalnih i analognih ulazno/izlaznih
+(I/O) pinova koji mogu biti povezani sa raznim ekspanzionim pločama
+(<strong><em>shieldovi</em></strong>) ili pločama za prototipiranje
+(<strong><em>breadboards</em></strong>) i drugim električnim kolima.</p>
+<p>Ploče imaju serijske komunikacione interfejse, tj na većini modela
+USB, koji se takođe koriste za učitavanje programa (firmwarea).
+Mikrokontroleri mogu biti programirani koristeći programerske jezike C i
+C++ (Embedded C), koristeći standardni API koji je poznat kao
+<strong>Arduino programski jezik</strong>, inspirisan jezikom Processing
+i koristi se sa modifikovanom verzijom Processing IDE-a. Pored
+korišćenja tradicionalnih alatki za kompilaciju, Arduino projekat pruža
+integrisano razvojno okruženje (<strong><em>IDE</em></strong>) i
+komandnu liniju razvijenu u Go-u.</p>
+<p>Arduino projekat je započet 2005. godine kao alat za studente na
+Institutu za interakcijski dizajn Ivrea, Italija, sa ciljem da pruži
+jeftin i jednostavan način za početnike i profesionalce da stvaraju
+uređaje koji interaguju sa svojom okolinom koristeći senzore i
+aktuatore. Uobičajeni primeri takvih uređaja namenjeni su početnicima i
+hobistima, uključujući jednostavne robote, termostate i detektore
+pokreta.</p>
+<p>Zbog toga su njihovi proizvodi izabrani za firmware (odnosno
+hardverski “najniži” sloj projekta, najbliži metalu), jer olakšavaju
+značajne glavobolje sa kojima se početnici susreću pri ulasku u IoT ili
+robotiku. ### 2.3.2. Qt Framework //TODO # III Sadržaj projekta //TODO
+## 3.1. Šira slika projekta //TODO ### 3.1.1. Primer primene, davanje
+konteksta //TODO ### 3.1.2. Korišćeni alati (upitno da li treba uz
+ključne) //TODO ## 3.2. Struktura projekta - hardware Projekat je
+uključivao tri zasebne hardverske komponente, svaku sa pratećim
+softverom koji je bilo potrebno isprogramirati. Tu je bila i četvrta
+komponenta, odnosno <em>cloud platforma</em> kompanije WolkAbout.</p>
+<p>Sagledaćemo prvo redom šta je svaka od ovih hardverskih komponenti, a
+zatim ćemo istim redom proći kroz njihov prateći softver koji je
+razvijan na praksi.</p>
+<figure>
+<img src="../image.png" alt="Šema strukture projekta: tri hardverske komponente označene sivom bojom, uz njihove uzajamne veze prikazane na slici" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 2: Šema strukture projekta: tri hardverske komponente označene
+sivom bojom, uz njihove uzajamne veze prikazane na slici
+</figcaption>
+</figure>
+<h3 id="arduino-razvojna-ploča-i-firmware">3.2.1. Arduino razvojna ploča
+i firmware</h3>
+<h4 id="arduino-uno">3.2.1.1. Arduino Uno</h4>
+<p><strong>Arduino Uno</strong> je Open Source mikrokontrolerska ploča
+bazirana na Microchip ATmega328P, prvi put predstavljena 2010. godine.
+Ploča ima 14 digitalnih i 6 analognih I/O pinova i može se napajati
+putem USB kabla ili eksternog izvora napona između 7 i 20V.</p>
+<figure>
+<img src="../image-1.png" alt="Fotografija Arduino Uno razvojne ploče" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 3: Fotografija Arduino Uno razvojne ploče
+</figcaption>
+</figure>
+<p>Uno koristi isti mikrokontroler kao Arduino Nano, a ima iste
+konektore kao Arduino Leonardo. Programira se pomoću Arduino IDE preko
+USB tipa A kabla. Raspored i proizvodni fajlovi su dostupni pod Creative
+Commons licencom.</p>
+<p>Reč “Uno” je izabrana da označi značajnu preradu u Arduino seriji i
+ova ploča je naslednik izdanja Duemilanove. Za komunikaciju koristi
+STK500 protokol, ali se razlikuje od prethodnih modela jer ne koristi
+FTDI USB-na-UART čip, već Atmega16U2 kao USB-na-serijski konverter.</p>
+<h4 id="shields-i-clicks">3.2.1.2. Shields i clicks</h4>
+<p>Koristili smo jedan od mnogobrojnih dostupnih <em>shieldova</em> da
+bismo olakšali konekcije sa drugim uređajima (izbegaavamo lemljenje žica
+ili mukotrpno gledanje tzv <em>pinout</em> šema konekcija/pinova).</p>
+<figure>
+<img src="../image-4.png" alt="Fotografija *Click shield* u primeni sa jednim click slotom popunjenim, a drugim praznim" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 4: Fotografija <em>Click shield</em> u primeni sa jednim click
+slotom popunjenim, a drugim praznim
+</figcaption>
+</figure>
+<p>Izabrali smo <strong>Click shield</strong>, čija je glavna svha da
+omogućuje <em>click</em>-ove, odnosno male pločice sa individualnim
+senzorima koje imaju standardno oblikovan i dimenzioniran raspored
+pinova, koji (slično shieldu) jednostavno ulaze u uređaj bez upotrebe
+žica.</p>
+<p>Koristili smo 2 “klika” domaćeg preduzeća MikroEletronika:<br />
+1. Detektor temperature, vlage i pritiska vazduha. Takođe je bio
+prisutan i senzor zapaljivih organskih jedinjenja koji nismo koristili.
+(<strong><em>Environment click</em></strong>) 2. <strong>Bluetooth 4.0
+(Low Energy)</strong> odašiljač informacija.</p>
+<table>
+<tr>
+<td style="border: none; padding: 0;">
+<figure>
+<img src="../image-5.png" alt="Fotografija environment click" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 5: Fotografija environment click
+</figcaption>
+</figure>
+</td>
+<td style="border: none; padding: 0;">
+<figure>
+<img src="../image-6.png" alt="Fotografija BLE click" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 6: Fotografija BLE click
+</figcaption>
+</figure>
+</td>
+</tr>
+</table>
+<h3 id="raspberry-pi-kao-posrednik-todo">3.2.2. Raspberry Pi kao
+posrednik //TODO</h3>
+<h3 id="hardver-cloud-platforme-todo">3.2.3. “Hardver” cloud platforme?
+//TODO</h3>
+<h3 id="hardver-krajnjeg-korisnika-todo">3.2.4. Hardver krajnjeg
+korisnika //TODO</h3>
+<h2 id="struktura-projekta---sofware-todo">3.3. Struktura projekta -
+sofware //TODO</h2>
+<h3 id="arduino-firmware">3.3.1. Arduino firmware</h3>
+<p>Jednostavno povezivanje bilo kojeg eksternog uređaja, kao što su ovi
+klikovi, kako hardverski a tako i softverski je ključna odlika Arduino
+ekosistema. Da bismo iz firmwarea Arduino razvojne ploče slali komande u
+komponente, potrebno je jednostavno instalirati softverske
+pakete/ekstenzije namenjene za rad sa tim eksternim uređajem. Razlog
+zašto toliki dijapazon eksternih uređaja ima svoje paekte, leži u tome
+da je ceo ekosistem Open Source, te da mu bilo ko može doprinositi.</p>
+<p>Za senzore vazduha koristio sam C biblioteke razvijene od kompanije
+Adafruit, koja je dosta zastupljena i prepoznata u ovoj branši, i to: 1.
+<strong>Adafruit_BME680.h</strong> - specijalizovan za Bosch-ov detektor
+BME680 korišćen na ovom <em>environment click</em>-u. 2.
+<strong>Adafruit_Sensor.h</strong> - osnovna biblioteka za sve vrste
+senzora, na koju se specijalizovane biblioteke oslanjaju.</p>
+<p>Pored toga korišćene su još dve biblioteke za ove senzore (bme680.h,
+bme680_defs.h) u razvojnom procesu, ali u krajnjoj verziji nisu imale
+značajan uticaj.</p>
+<p>Za Bluetooth komunikaciju niske energije (BLE - Bluetooth Low Energy)
+korišćena je biblioteka <strong>BLEPerihperal.h</strong> ### 3.3.2.
+Raspberry Pi Cloud Client //TODO ### 3.3.3. WolkAbout Cloud platforma
+//TODO ### 3.3.4. PC (ili Android) Data Visualizer //TODO</p>
+<h1 id="iv-zaključak-todo">IV Zaključak //TODO</h1>
+<h1 id="v-literatura">V Literatura</h1>
 <aside id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
@@ -238,5 +470,13 @@ role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p><a href="https://scrumguides.org/scrum-guide.html">“The
 2020 Scrum Guide”, J. Sutherland &amp; K. Schwaber</a><a href="#fnref10"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a
+href="https://web.archive.org/web/20180403132515/http://www.princeton.edu/~ffab/media___downloads_files/IntroArduinoBook.pdf">“Introduction
+to Arduino, A. Smith, 2011</a><a href="#fnref11" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 </ol>
 </aside>
+
+        </body>
+        </html>
+    

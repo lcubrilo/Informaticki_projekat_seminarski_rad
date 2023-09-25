@@ -1,23 +1,23 @@
 import sys
-import os
+import re
 
-def replace_iframes(input_file):
-    try:
-        with open(src_file, "r", encoding="utf-8") as f:
-            replacement_content = f.read()
-        print(f"Successfully read {src_file}. Replacing iframe content.")
-    except FileNotFoundError:
-        print(f"Error: File {src_file} referenced in 'src' not found.")
-        return
+def extract_body_content(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    start_idx = content.find('<body>')
+    end_idx = content.find('</body>')
+    if start_idx != -1 and end_idx != -1:
+        return content[start_idx + 6:end_idx].strip()
+    else:
+        return content.strip()
 
+def replace_iframes(content):
     start = 0  # Position to start searching for '<iframe' and '</iframe>'
     
     while True:
         iframe_start = content.find('<iframe', start)
         
-        # Break if no more '<iframe' found
-        if iframe_start == -1:
-            break
+        if iframe_start == -1: break
 
         iframe_end = content.find('</iframe>', iframe_start)
 
@@ -27,7 +27,7 @@ def replace_iframes(input_file):
             break
         
         # Find 'src' attribute within found '<iframe...>'
-        src_start = content.find('src="./', iframe_start) + 5  # We look for 'src="./' specifically to match your case
+        src_start = content.find('src="./', iframe_start) + 5
 
         if src_start == 4:  # src_start will be 4 if 'src="./' was not found
             print(f"Warning: No 'src' attribute found for <iframe> at position {iframe_start}.")
@@ -36,25 +36,47 @@ def replace_iframes(input_file):
         src_end = content.find('"', src_start)
         src_file = content[src_start:src_end]
 
-        # Modify the src_file here to add another dot, given that the file location has changed
-        modified_src_file = "." + src_file
+        # Read the src_file content to replace iframe
+        replacement_content = extract_body_content(src_file)
 
-        # Replace the original 'src' with the modified one in the content
-        content = content[:src_start] + modified_src_file + content[src_end:]
+        # Replace the iframe with the content from src_file
+        content = content[:iframe_start] + replacement_content + content[iframe_end + 9:]
 
         # Update start position for next search
-        start = iframe_end + 9  # Update to end of </iframe>
+        start = iframe_end + 9
+    
+    return content
+
+
+
+if __name__ == "__main__":
+    #import pdb; print(sys.argv); pdb.set_trace()
+
+    if len(sys.argv) != 2:
+        input_file = "C:\\Users\\Admin\\Documents\\git_clones\\Informaticki_projekat_seminarski_rad\\.outputs\\seminarski_2.html"
+    else:
+        input_file = sys.argv[1]
+    
+    with open(input_file, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    content = replace_iframes(content)
+
+    # Wrapping the entire content with proper HTML structure
+    final_content = f"""<!DOCTYPE html>
+        <html>
+        <head>
+            <title></title>
+            <link rel="stylesheet" type="text/css" href="../build_utils/styles.css">
+        </head>
+        <body>
+            {content}
+        </body>
+        </html>
+    """
 
     try:
         with open(input_file, "w", encoding="utf-8") as f:
-            f.write(content)
+            f.write(final_content)
     except Exception as e:
         print(f"Error writing to {input_file}: {e}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python convert_iframes.py <input_html_file>")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    replace_iframes(input_file)

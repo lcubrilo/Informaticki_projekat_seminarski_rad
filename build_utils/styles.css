@@ -62,20 +62,3 @@ body {
   background-color: #f9f9f9;
   color: #333;
 }
-
-/* Gradients and Shadows for Titles */
-h1 {
-  background: linear-gradient(to right, red, yellow);
-  text-shadow: 2px 2px 4px #000000;
-}
-
-/* Custom Bullet Points */
-ul {
-  list-style-image: url('icon.png');
-}
-
-/* Fancy Borders for Paragraphs */
-p {
-  border: 4px double black;
-  padding: 20px;
-}

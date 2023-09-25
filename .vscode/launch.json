@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "C:\\Users\\Admin\\Documents\\git_clones\\Informaticki_projekat_seminarski_rad\\.outputs\\seminarski_2.html",
+                "C:\\Users\\Admin\\Documents\\git_clones\\Informaticki_projekat_seminarski_rad\\.outputs\\seminarski_2.html"
+            ],
+            "console": "internalConsole",
+            "justMyCode": true,
+            "stopOnEntry": true
+        }
+    ]
+}

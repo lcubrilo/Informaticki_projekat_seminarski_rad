@@ -1,5 +1,6 @@
 import sys
 import os
+from romanize_headings import romanize_top_level_heading
 
 def find_image_syntax(line):
     start_pos = line.find("![")
@@ -34,11 +35,12 @@ def convert_images(input_file, output_folder):
         start_pos, end_pos, image_data = find_image_syntax(line)
         if image_data:
             alt_text, img_link = image_data
+            if not img_link.startswith("http"): img_link = "../" + img_link
             figure_count += 1
 
             new_line = \
             f'<figure> \n\
-                <img src=".{img_link}" alt="{alt_text}" style="width: 100%;"> \n\
+                <img src="{img_link}" alt="{alt_text}" style="width: 100%;"> \n\
                 <figcaption style="text-align:center;"> \n\
                     Slika {figure_count}: {alt_text} \n\
                 </figcaption> \n\
@@ -48,11 +50,9 @@ def convert_images(input_file, output_folder):
         else:
             new_lines.append(line)
 
-    output_file = os.path.join(output_folder, os.path.basename(input_file).replace('.md', '_2.md'))
+    return new_lines
 
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.writelines(new_lines)
-
+              
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python convert_images.py <input_markdown_file> <output_folder>")
@@ -61,4 +61,10 @@ if __name__ == "__main__":
     input_file = sys.argv[1]
     output_folder = sys.argv[2]
     
-    convert_images(input_file, output_folder)
+    new_lines = convert_images(input_file, output_folder)
+    new_lines = romanize_top_level_heading(new_lines)
+
+    output_file = os.path.join(output_folder, os.path.basename(input_file).replace('.md', '_2.md'))
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.writelines(new_lines)
