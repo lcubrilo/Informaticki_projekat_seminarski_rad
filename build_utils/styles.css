@@ -1,0 +1,81 @@
+/* --------- Print-Friendly Styles --------- */
+
+/* Page Breaks */
+h1, h2 {
+  break-before: always;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  break-after: avoid;
+}
+
+ol, p {
+  break-inside: avoid;
+  break-after: auto;
+}
+
+li {
+  break-after: avoid;
+}
+
+
+/* --------- Conservative Options --------- */
+
+/* Typography */
+body {
+  font-family: 'Georgia', serif;
+}
+
+/* Margins */
+body {
+  margin: 1in;
+}
+
+/* Header/Footer Styles */
+header, footer {
+  font-size: 12px;
+  color: grey;
+}
+
+/* Table Styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Link Styling */
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+/* --------- Advanced Options --------- */
+
+/* Color Themes for Digital Reading */
+body {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Gradients and Shadows for Titles */
+h1 {
+  background: linear-gradient(to right, red, yellow);
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/* Custom Bullet Points */
+ul {
+  list-style-image: url('icon.png');
+}
+
+/* Fancy Borders for Paragraphs */
+p {
+  border: 4px double black;
+  padding: 20px;
+}

@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compile .md to .pdf",
+        "type": "shell",
+        "command": "echo",
+        "args": [
+          "Run the following command in your terminal: \n .\\build_utils\\build_pdf.bat ${fileBasename} ${workspaceFolder}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+  

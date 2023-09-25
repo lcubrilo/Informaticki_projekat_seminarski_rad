@@ -1,0 +1,242 @@
+<iframe src="./naslovna_stranica.html" style="width: 100%; height: 100%; border: none;">
+</iframe>
+<h2 id="sadržaj">Sadržaj <!-- omit in toc --></h2>
+<ul>
+<li><a href="#uvod">Uvod</a></li>
+<li><a href="#embedded-programiranje">Embedded programiranje</a></li>
+<li><a href="#internet-of-things">Internet of Things</a></li>
+<li><a href="#organizacija-rada">Organizacija rada</a>
+<ul>
+<li><a href="#sastanci---tehnički-deo">Sastanci - tehnički deo</a></li>
+<li><a href="#sastanci---netehnički-deo">Sastanci - netehnički
+deo</a></li>
+<li><a href="#struktura-ljudi">Struktura ljudi</a></li>
+</ul></li>
+<li><a href="#struktura-projekta">Struktura projekta</a></li>
+<li><a href="#rad-na-platformi">Rad na platformi</a></li>
+<li><a href="#alati">Alati</a></li>
+<li><a href="#konkretan-zadatak-opis-i-implementacija">Konkretan
+zadatak, opis i implementacija</a>
+<ul>
+<li><a href="#oblasti-koje-pokriva-zadatak">Oblasti koje pokriva
+zadatak</a></li>
+<li><a href="#koncepti-koji-se-koriste">Koncepti koji se
+koriste</a></li>
+<li><a href="#podešavanje-okruženja">Podešavanje okruženja</a></li>
+<li><a href="#postavka-zadatak">Postavka zadatak</a>
+<ul>
+<li><a href="#use-case">Use Case</a></li>
+</ul></li>
+<li><a href="#dijagram-entiteta">Dijagram entiteta</a></li>
+<li><a href="#poslovni-zahtevi">Poslovni Zahtevi</a>
+<ul>
+<li><a href="#automatizacija-zahteva-za-održavanje">Automatizacija
+zahteva za održavanje</a></li>
+<li><a href="#sinhronizacija-sa-eksternim-servisom">Sinhronizacija sa
+eksternim servisom</a></li>
+</ul></li>
+<li><a href="#konkretno-rešenje-zadatka">Konkretno rešenje
+zadatka</a></li>
+</ul></li>
+<li><a href="#zaključak">Zaključak</a></li>
+<li><a href="#literatura">Literatura</a></li>
+</ul>
+<h2 id="uvod">Uvod</h2>
+<p>Praksu sam obavio u kompaniji <a
+href="execom.eu"><strong>Execom</strong></a>, koju je u međuvremenu
+kupio <a href=""><strong>HTEC</strong></a>. U pitanju je
+<em>outsourcing</em> kompanija koja ima niz timova, svaki od kojih radi
+na uglavnom jednom projektu za eksternog klijenta. Timovi se bave
+različitim tehnologijama, u zavisnosti od potreba klijenta.</p>
+<p>Kao i svaka <em>outsourcing</em> kompanija, nema svoje interne
+projekte, već ih isključivo uslužno pravi za druge. Važno je napomenuti
+da je njihov nekadašnji interni projekat prerastao u tzv. <em>spin
+off</em> kompaniju <a href=""><strong>WolkAbout</strong></a>, čije cloud
+tehnologije smo koristili na projektu koji sam izradio.</p>
+<p>Tim u koji sam primljen bavi se sa <strong>IoT</strong> (<em>Internet
+of Things</em>) i <strong>Embedded</strong> tehnologijama i u tom
+momentu je radio sa dva različita klijenta na proizvodima koji su njima
+bili potrebni, o čijim detaljima ne mogu govoriti zbog NDA
+(Non-disclosure agreement) koji sam potpisao.</p>
+<p>Srećom, projekat na kojem sam radio je smišljen od nule isključivo u
+edukativne, odnosno svrhe moje prakse, te o njemu mogu govoriti.
+Projekat je open-source i njegov kod je javno dostupan na mom ličnom
+GitHub profilu.</p>
+<p>Budući da ove oblasti (a posebno embedded) zahtevaju visok nivo
+performansi, izabran je programski jezik <strong>C++</strong>. Njegova
+prednost u odnosu na <strong>C</strong> jeste prisustvo
+Objektno-orijentisane paradigme, koja nam je olakšala organizaciju
+koda.</p>
+<p>Takođe korišćen je i <strong>Qt Framework</strong> za
+<em>crossplatform GUI</em> aplikaciju, koji je u potpunosti
+objektno-orijentisan.</p>
+<h2 id="embedded-programiranje">Embedded programiranje</h2>
+<p><strong>Embedded softver</strong> (od engl. <em>embed</em>,
+“usaditi”) je računarski softver, napisan da kontroliše mašine ili
+uređaje koji se obično ne smatraju računarima u punom smislu te reči,
+poznatim kao embedded sistemi. Tipično su specijalizovani za određenu
+hardversku platformu na kojoj rade i imaju vremenska i memorijska
+ograničenja.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> Ovaj termin se ponekad koristi
+naizmenično sa <strong>firmware</strong>-om.<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Hardver na kojem se nalazi embedded softver, zbog prostornih
+ograničenja ili energetskih ograničenja, je generalno manji i ne
+preterano moćan, zbog čega je efikasnost softvera izuzetno važna.</p>
+<p>Primeri gde se ovakav sofver koristi: 1. elektroniku automobila 2.
+modemi 3. “mozak” robota 4. kućni aparati (posebno “pametni”) 5. igračke
+6. sigurnosni sistemi 7. automatizovani sistemi proizvodnje.<a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></p>
+<p>Ovaj softver može biti vrlo jednostavan, kao što su sistemi za
+kontrolu osvetljenja koji rade na 8-bitnom mikrokontroleru sa nekoliko
+kilobajta memorije. Međutim, embedded softver može postati vrlo
+sofisticiran u aplikacijama kao što su ruteri, optički mrežni elementi,
+avioni, rakete i sistemi za kontrolu procesa.<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<h2 id="internet-of-things">Internet of Things</h2>
+<p><strong>Internet of Things</strong> (IoT) odnosi se na mrežu fizičkih
+uređaja, vozila, aparata i drugih fizičkih objekata koji su opremljeni
+senzorima i/ili aktuatorima (motorima), softverom i mrežnom povezanošću
+koji im omogućavaju prikupljanje i deljenje podataka. Ovi uređaji —
+poznati i kao “<strong>pametni objekti</strong>” — mogu varirati od
+jednostavnih “pametnih kuća” uređaja poput pametnih termostata, do
+nosivih uređaja kao što su pametni satovi i odeća sa RFID tehnologijom,
+do složenih industrijskih mašina i transportnih sistema. Tehnolozi čak
+zamišljaju čitave “pametne gradove” zasnovane na IoT tehnologijama.<a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a></p>
+<p>Drugim rečima, IoT je sve ono što nekolicinu embedded uređaja, pomoću
+računarskih mreža (bežične i žičane veze) uvezuje u jedan širi,
+inteligentan sistem. Posebna vrednost je u tome što slab embedded
+računar, može osnažiti resursima pravog računara sa kojim komunicira
+(lokalni računar). To je ono što ovakvom sistemu omogućuje autonomno
+reagovanje na uslove i obavljanje zadataka. Ova lokalna mreža uređaja
+može da se poveže sa internetom, a odatle sa pametnim telefonima ili
+stonim računarima na bilo kom kraju sveta.<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>To znači da IoT sistemi mogu raditi praktično bilo šta, poput: 1.
+praćenja ekoloških uslova na farmama 2. upravljanja saobraćajnim
+modelima pomoću pametnih automobila i drugih pametnih saobraćajnih
+uređaja 3. kontrole mašina i procesa u fabrikama 4. praćenja stanja
+pacijenta i pružanja adekvatne doze medikamenta 5. do praćenja inventara
+i pošiljki u skladištima.</p>
+<p>Potencijalne primene IoT-a su ogromne i raznolike, a njegov uticaj se
+već oseća u svim granama industrije. Kako broj uređaja povezanih sa
+internetom nastavlja da raste, IoT će verovatno igrati sve važniju ulogu
+u oblikovanju našeg sveta i transformaciji načina na koji živimo, radimo
+i međusobno komuniciramo.<a href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> IoT takođe podstiče gomilanje
+podataka koji se mogu koristiti u treniranju modela veštačke
+inteligencije. <a href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a></p>
+<p>U najčešćim primenama u većim preduzećima, IoT uređaji se koriste za
+praćenje širokog spektra parametara kao što su temperatura, vlažnost,
+kvalitet vazduha, potrošnja energije i performanse mašina. Ovi podaci
+mogu se analizirati u realnom vremenu kako bi se identifikovali obrasci,
+trendovi i anomalije koji mogu pomoći preduzećima da optimizuju svoje
+operacije i poboljšaju svoju profitabilnost.<a href="#fn9"
+class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<h2 id="organizacija-rada">Organizacija rada</h2>
+<h3 id="sastanci---tehnički-deo">Sastanci - tehnički deo</h3>
+<p>U kompaniji Execom korišćena je <strong>Agile</strong> metodologija,
+konkretnije <strong>Scrum</strong>. To je podrazumevalo kratke sastanke
+svako (radno) jutro tzv <em>daily</em>, kao i nešto duže sumacije do
+sada postignutog na nedeljnom nivou, tzv <em>weekly</em>, krajem
+sedmice. <a href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a></p>
+<h3 id="sastanci---netehnički-deo">Sastanci - netehnički deo</h3>
+<p>Pored toga, za praktikante je postojala još jedna forma nedeljnih
+sastanaka sa jednim ili više HR (<em>human resources</em>) menadžera,
+sredinom radne sedmice, sa kojima se pratio i “ne-tehnički” deo prakse -
+utisci i zadovoljstvo praktikanta, uklapanje sa drugim članovima tima.
+Iako se on činio neformalnim, HR menadžerke su beležile teze o čemu se
+govorilo i povezivale su to sa utiscima mentora.</p>
+<h3 id="struktura-ljudi">Struktura ljudi</h3>
+<p>U odnosu na mojih prvih mesec dana u Execomu, gde sam prve sedmice
+imao jednog mentora (koji je kasnije uključio još jednog mentora za
+svakodnevnu komunikaciju i razjašnjavanje/rešavanje problema), u drugih
+mesec dana sam imao sreću raditi sa čak dvojicom mentora i vođom tima
+(koji je rukovodio projektom, vodio mentore i pomagao kad se oni
+susretnu sa poteškoćama).</p>
+<p>Budući da se drugi projekat sastojao iz više delova, te da je bio
+veoma obiman za mesec dana rada, veći broj mentora je bio od presudnog
+značaja za uspešno obavljanje svih zamišljenih radnih zaduženja na
+projektu.</p>
+<h2 id="struktura-projekta">Struktura projekta</h2>
+<p>Projekat je uključivao tri zasebne hardverske komponente, svaku sa
+pratećim softverom koji je bilo potrebno isprogramirati. Tu je bila i
+četvrta komponenta, odnosno <em>cloud platforma</em> kompanije
+WolkAbout.</p>
+<figure>
+<img src="../image.png" alt="Šema strukture projekta" style="width: 100%;">
+<figcaption style="text-align:center;">
+Slika 1: Šema strukture projekta
+</figcaption>
+</figure>
+<h2 id="rad-na-platformi">Rad na platformi</h2>
+<h2 id="alati">Alati</h2>
+<h2 id="konkretan-zadatak-opis-i-implementacija">Konkretan zadatak, opis
+i implementacija</h2>
+<h3 id="oblasti-koje-pokriva-zadatak">Oblasti koje pokriva zadatak</h3>
+<h3 id="koncepti-koji-se-koriste">Koncepti koji se koriste</h3>
+<h3 id="podešavanje-okruženja">Podešavanje okruženja</h3>
+<h3 id="postavka-zadatak">Postavka zadatak</h3>
+<h4 id="use-case">Use Case</h4>
+<h3 id="dijagram-entiteta">Dijagram entiteta</h3>
+<h3 id="poslovni-zahtevi">Poslovni Zahtevi</h3>
+<h4 id="automatizacija-zahteva-za-održavanje">Automatizacija zahteva za
+održavanje</h4>
+<h4 id="sinhronizacija-sa-eksternim-servisom">Sinhronizacija sa
+eksternim servisom</h4>
+<h3 id="konkretno-rešenje-zadatka">Konkretno rešenje zadatka</h3>
+<h2 id="zaključak">Zaključak</h2>
+<h2 id="literatura">Literatura</h2>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="http://www.stroustrup.com/abstraction-and-machine.pdf">“Abstraction
+and the C++ machine model”, B. Stroustrup, 2005</a><a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+href="https://www.ndss-symposium.org/wp-content/uploads/2017/09/towards-automated-dynamic-analysis-linux-based-embedded-firmware.pdf">“Towards
+Automated Dynamic Analysis for Linux-based Embedded Firmware”, D. Chen
+et al, 2016</a><a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a
+href="https://web.archive.org/web/20131029203328/http://www.computer.org/portal/web/certification/Embedded-Systems">“Embedded
+Systems Methods and Technologies”, R. Oshana, 2012</a><a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a
+href="https://ptolemy.berkeley.edu/publications/papers/02/embsoft/embsoftwre.pdf">“Embedded
+Software”, E. Lee, 2001</a><a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a
+href="https://www.ibm.com/topics/internet-of-things">“What is the
+internet of things?”, IBM</a><a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a
+href="https://ieeexplore.ieee.org/abstract/document/6669062">“An
+Internet of Things (IoT) architecture for embedded appliances”, T.
+Yashiro et al, 2013</a><a href="#fnref6" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a
+href="https://www.ibm.com/topics/internet-of-things">“What is the
+internet of things?”, IBM</a><a href="#fnref7" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a
+href="https://www.sciencedirect.com/science/article/abs/pii/S1569190X20300083">“IoT,
+cloud, big data and AI in interdisciplinary domains”, Y. Chen,
+2020</a><a href="#fnref8" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a
+href="https://www.ibm.com/topics/internet-of-things">“What is the
+internet of things?”, IBM</a><a href="#fnref9" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><a href="https://scrumguides.org/scrum-guide.html">“The
+2020 Scrum Guide”, J. Sutherland &amp; K. Schwaber</a><a href="#fnref10"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
