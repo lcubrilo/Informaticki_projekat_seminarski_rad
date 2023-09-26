@@ -5,7 +5,7 @@
 @import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
 
 html {
-  font-size: 18px;
+  font-size: 14px;
   max-width: 100%;
 }
 
@@ -75,4 +75,39 @@ a:hover,
 a:focus,
 a:active {
   color: #2980b9;
+}
+
+/* --------- Print-Friendly Styles --------- */
+
+@page {
+  size: A4;
+}
+
+@page:right{
+  @bottom-right {
+    content: counter(page);
+  }
+}
+
+@page:left{
+  @bottom-left {
+    content: counter(page);
+  }
+}
+
+h1, h2 {
+  break-before: always;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  break-after: avoid;
+}
+
+ol, p, table, figure {
+  break-inside: avoid;
+  break-after: auto;
+}
+
+li {
+  break-after: avoid;
 }

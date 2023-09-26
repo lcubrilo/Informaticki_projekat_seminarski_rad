@@ -43,7 +43,7 @@ for /f %%a in ('gum choose %css_list% "Use default styles.css"') do set "chosen_
 if "%chosen_css%"=="" set "chosen_css=styles.css"
 
 :: Add LaTeX-esque image captions to all imgs
-python build_utils\convert_images.py "%project_path%\%filename%" "%output_folder%"
+::python build_utils\convert_images.py "%project_path%\%filename%" "%output_folder%"
 
 echo off
 pandoc "%output_folder%\%basename_mod%.md" --css="%css_folder%\%chosen_css%" -o "%output_folder%\%basename_mod%.html" >nul 2>&1

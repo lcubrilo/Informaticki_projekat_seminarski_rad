@@ -1,52 +1,62 @@
 <iframe src="./naslovna_stranica.html" style="width: 100%; height: 100%; border: none;"></iframe>
 
 # Sadržaj <!-- omit in toc -->
-- [I  Uvod](#1-uvod)
-- [II  Teorijski okvir](#2-teorijski-okvir)
-  - [1. Osnovni termini i oblast u kojoj se praksa radi](#21-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi)
-    - [1.1. Embedded programiranje](#211-embedded-programiranje)
-    - [1.2. Internet of Things](#212-internet-of-things)
-    - [1.3. Cloud computing - računarstvo u oblaku](#213-cloud-computing---računarstvo-u-oblaku)
-  - [2. Organizacija rada i tok prakse](#22-organizacija-rada-i-tok-prakse)
-    - [2.1. Onboarding //](#221-onboarding-)
-    - [2.2. Struktura ljudi](#222-struktura-ljudi)
-    - [2.3. Sastanci - tehnički deo](#223-sastanci---tehnički-deo)
-    - [2.4. Sastanci - netehnički deo](#224-sastanci---netehnički-deo)
-    - [2.5. Finalna prezentacija](#225-finalna-prezentacija)
-  - [3. Ključni korišćeni alati](#23-ključni-korišćeni-alati)
-    - [3.1. Arduino ekosistem](#231-arduino-ekosistem)
-    - [3.2. Qt Framework](#232-qt-framework)
-- [III  Sadržaj projekta](#3-sadržaj-projekta)
-  - [1. Šira slika projekta](#31-šira-slika-projekta)
-    - [1.1. Primer primene, davanje konteksta (*use case*)](#311-primer-primene-davanje-konteksta-use-case)
-    - [Primena 1 - spoljno praćenje vremenskih prilika, prognoza](#primena-1---spoljno-praćenje-vremenskih-prilika-prognoza)
-    - [Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa](#primena-2---unutrašnje-praćenje-i-regulacija-osetljivih-procesa)
-    - [1.4. Korišćeni alati (upitno da li treba uz ključne) //TODO](#314-korišćeni-alati-upitno-da-li-treba-uz-ključne-todo)
-  - [2. Struktura projekta](#32-struktura-projekta)
-    - [2.1. Hardware](#321-hardware)
-    - [2.2. Sofware](#322-sofware)
-  - [3. Arduino - prvi korak, detekcija](#33-arduino---prvi-korak-detekcija)
-    - [3.1. Hardware - Arduino Uno](#331-hardware---arduino-uno)
-    - [3.2. Hardware - Shields i clicks](#332-hardware---shields-i-clicks)
-    - [3.3. Software - Arduino firmware](#333-software---arduino-firmware)
-  - [4. Raspberry Pi - posrednik](#34-raspberry-pi---posrednik)
-    - [4.1. Hardware - Raspberry Pi](#341-hardware---raspberry-pi)
-    - [4.2. Software - Raspberry Pi Cloud Client](#342-software---raspberry-pi-cloud-client)
-  - [5. WolkAbout Cloud Platforma](#35-wolkabout-cloud-platforma)
-    - [5.1. "Hardware" Cloud platforme?](#351-hardware-cloud-platforme)
-    - [5.2. Software - konfigurisanje, povezivanje, monitoring](#352-software---konfigurisanje-povezivanje-monitoring)
-  - [6. Krajnji korisnik](#36-krajnji-korisnik)
-    - [6.1. Hardware - Windows, Linux, ...](#361-hardware---windows-linux-)
-    - [6.2. Software - Cross-platform GUI Data Visualizer //TODO](#362-software---cross-platform-gui-data-visualizer-todo)
-      - [MainWindow klasa](#mainwindow-klasa)
-      - [Funkcije za komunikaciju](#funkcije-za-komunikaciju)
-      - [JSON Parsing](#json-parsing)
-      - [Grafički interfejs](#grafički-interfejs)
-      - [Korisnička priča](#korisnička-priča)
-- [IV  Zaključak](#4-zaključak)
-- [V  Literatura](#5-literatura)
+<div style="font-size:10 px">
 
----
+  <div style="font-size:14 px">
+  - [I  Uvod](#i--uvod)
+  </div>
+
+  <div style="font-size:14 px">
+  - [II  Teorijski okvir](#ii--teorijski-okvir)
+  </div>
+    - [2.1. Osnovni termini i oblast u kojoj se praksa radi](#21-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi)
+      - [2.1.1. Embedded programiranje](#211-embedded-programiranje)
+      - [2.1.2. Internet of Things](#212-internet-of-things)
+      - [2.1.3. Cloud computing - računarstvo u oblaku](#213-cloud-computing---računarstvo-u-oblaku)
+    - [2.2. Organizacija rada i tok prakse](#22-organizacija-rada-i-tok-prakse)
+      - [2.2.1. Onboarding //](#221-onboarding-)
+      - [2.2.2. Struktura ljudi](#222-struktura-ljudi)
+      - [2.2.3. Sastanci - tehnički deo](#223-sastanci---tehnički-deo)
+      - [2.2.4. Sastanci - netehnički deo](#224-sastanci---netehnički-deo)
+      - [2.2.5. Finalna prezentacija](#225-finalna-prezentacija)
+    - [2.3. Ključni korišćeni alati](#23-ključni-korišćeni-alati)
+      - [2.3.1. Arduino ekosistem](#231-arduino-ekosistem)
+      - [2.3.2. Qt Framework](#232-qt-framework)
+  
+  <div style="font-size:14 px">
+  - [III  Sadržaj projekta](#iii--sadržaj-projekta)
+  </div>
+    - [3.1. Šira slika projekta](#31-šira-slika-projekta)
+      - [3.1.1. Primer primene, davanje konteksta (*use case*)](#311-primer-primene-davanje-konteksta-use-case)
+      - [3.1.2. Primena 1 - spoljno praćenje vremenskih prilika, prognoza](#312-primena-1---spoljno-praćenje-vremenskih-prilika-prognoza)
+      - [3.1.3. Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa](#313-primena-2---unutrašnje-praćenje-i-regulacija-osetljivih-procesa)
+    - [3.2. Struktura projekta](#32-struktura-projekta)
+      - [3.2.1. Hardware](#321-hardware)
+      - [3.2.2. Sofware](#322-sofware)
+    - [3.3. Arduino - prvi korak, detekcija](#33-arduino---prvi-korak-detekcija)
+      - [3.3.1. Hardware - Arduino Uno](#331-hardware---arduino-uno)
+      - [3.3.2. Hardware - Shields i clicks](#332-hardware---shields-i-clicks)
+      - [3.3.3. Software - Arduino firmware](#333-software---arduino-firmware)
+    - [3.4. Raspberry Pi - posrednik](#34-raspberry-pi---posrednik)
+      - [3.4.1. Hardware - Raspberry Pi](#341-hardware---raspberry-pi)
+      - [3.4.2. Software - Raspberry Pi Cloud Client](#342-software---raspberry-pi-cloud-client)
+    - [3.5. WolkAbout Cloud Platforma - centrala informacija](#35-wolkabout-cloud-platforma---centrala-informacija)
+      - [3.5.1. "Hardware" Cloud platforme?](#351-hardware-cloud-platforme)
+      - [3.5.2. Software - konfigurisanje, povezivanje, monitoring](#352-software---konfigurisanje-povezivanje-monitoring)
+    - [3.6. Krajnji korisnik](#36-krajnji-korisnik)
+      - [3.6.1. Hardware - Windows, Linux, ...](#361-hardware---windows-linux-)
+      - [3.6.2. Software - Cross-platform GUI Data Visualizer](#362-software---cross-platform-gui-data-visualizer)
+
+  <div style="font-size:14 px">
+  -[IV  Zaključak](#iv--zaključak)
+  </div>
+
+  <div style="font-size:14 px">
+  -[V  Literatura](#v--literatura)
+  </div>
+
+  </div>
 <div style="page-break-before: always;"></div>
 
 # I  Uvod
@@ -164,7 +174,7 @@ Pre početka ove prakse imao sam ograničenu svest o alatima koje ću na kraju k
 Ono što bih posebno istakao kao pozitivno iznenađenje jeste otvorenost mentora i rukovodioca projekta da se neke odluke oko alata ili projektovanja implementacije izmene, u skladu sa mojim interesovanjima ili ranijim znanjima - sve je bilo otvoreno za diskusiju i nije bilo glupih pitanja.
 ### 2.3.1. Arduino ekosistem
 <table><tr>
-<td style="border: none; padding: 0;width:55%"">
+<td style="border: none; padding: 0;">
   
   **Arduino** je italijanska *Open Source* kompanija i zajednica korisnika koja dizajnira i proizvodi mikrokontrolere i setove za izradu mikrokontrolera za izgradnju digitalnih uređaja.[^9] Arduino ploče su komercijalno dostupne na zvaničnoj web stranici ili preko ovlašćenih distributera.  Pored toga, postoje i njihovi klonovi (gotovo identičnog dizajna i strukture) velikog broja altenartivnih proizvođača (uglavnom iz Kine) i jednog bogatog i širokog ekosistema, kako harverski tako i softverski.
 </td>
@@ -221,7 +231,7 @@ Ono što je predstavljalo problem pri komuniciranju ovog projekta drugim ljudima
 
 Svaki opis njega je nužno prelazio u opisivanje tehničkih pojedinosti. Da bih taj problem prevazišao, za finalnu prezentaciju rezultata sam naveo par potencijalnih primera kako se on može koristiti.
 ### 3.1.1. Primer primene, davanje konteksta (*use case*)
-### Primena 1 - spoljno praćenje vremenskih prilika, prognoza
+### 3.1.2. Primena 1 - spoljno praćenje vremenskih prilika, prognoza
 Postoji više hipotetičkih razloga zašto bi se neko nalazio u situaciji da se ne može osloniti na meteorološke stanice u blizini:
 1. Nalazi se na izolovanom, slabo naseljenom području, tako da je najbliža meteorološka stanica prilično udaljena
 2. Nalazi se na području koje ima posebnu mikroklimu, na primer kotlina, vrh brda i sl; tj u džepu drugačijem od okolnih vremenskih prilika
@@ -239,7 +249,7 @@ Postojeći sistem bi se lako mogao primeniti u ove svrhe. Sledeći logični kora
 
 Ova primena bi bila relativno jednostavna, jer nije nužno potrebno imati više od po jednog aktera u sistemu.
   
-### Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa
+### 3.1.3. Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa
 Ukoliko se neko bavi skladištenjem osetljivih materija ili praćenjem osetljivih procesa:
 1. Skladištenje hrane, nestabilnih hemikalija itd
 2. Fermentacija, *dry aging*, dimljenje ili usoljavanje mesa, kuvanje i bilo koji drugi proces gde je bezbednost hrane važna, a u riziku
@@ -267,20 +277,6 @@ Postojeći sistem bi se relativno lako mogao primeniti u ove svrhe. Ono što bi 
 Ovakve primene su nešto kompleksnije, ne samo jer zahtevaju ozbiljnije teorijsko znanje za oblast primene, već zato što bi najverovatnije zahtevalo više Arduino ploča (na primer po jednu u svakom silosu žita; ili po jednu na svakih 15 metara u velikoj sušari mesa) i više Raspberry Pi računara (svaki kao lokalni sakupljač podataka, unutar Bluetooth dometa od senzora). Komunikacija među uređajima je uvek predmet problematike i tačka spoticanja, tako da što je veći broj uređaja istovremeno - tu su problemi sa koordinisanjem tih zahteva, interferencija i verovatno potreba za većim dometom. 
 
 Takva primena bi u potpunosti kvalitetno iskoristila potencijale ovakve arhitekture projekta (u suprotnom bi se dosta toga moglo staviti u jedan uređaj).
-### 3.1.4. Korišćeni alati (upitno da li treba uz ključne) //TODO
-- [2. Struktura projekta - hardware](#32-struktura-projekta---hardware)
-- [3. Struktura projekta - sofware](#33-struktura-projekta---sofware)
-  - [2.1. Arduino razvojna ploča i firmware](#321-arduino-razvojna-ploča-i-firmware)
-    - [2.1.1. Arduino Uno](#3211-arduino-uno)
-    - [2.1.2. Shields i clicks](#3212-shields-i-clicks)
-  - [3.1. Arduino firmware](#331-arduino-firmware)
-  - [2.2. Raspberry Pi kao posrednik](#322-raspberry-pi-kao-posrednik)
-  - [2.3. "Hardver" cloud platforme?](#323-hardver-cloud-platforme)
-  - [3.2. Raspberry Pi Cloud Client](#332-raspberry-pi-cloud-client)
-  - [3.3. WolkAbout Cloud platforma](#333-wolkabout-cloud-platforma)
-  - [2.4. Hardver krajnjeg korisnika](#324-hardver-krajnjeg-korisnika)
-  - [3.4. PC (ili Android) Data Visualizer //TODO](#334-pc-ili-android-data-visualizer-todo)
-
 
 ## 3.2. Struktura projekta
 ### 3.2.1. Hardware
@@ -402,7 +398,7 @@ Funkcije za Obaveštenja
    - Ako povezivanje ne uspe, veza sa WolkAbout platformom se prekida i program se završava.
 3. Glavna Petlja: Kontinuirano se obrađuju asinhroni događaji sa BLE uređaja i program spava na kratko između iteracija.
 
-## 3.5. WolkAbout Cloud Platforma
+## 3.5. WolkAbout Cloud Platforma - centrala informacija
 ### 3.5.1. "Hardware" Cloud platforme?
 Kao što je pomenuto u [1.3. Cloud computing - računarstvo u oblaku](#213-cloud-computing---računarstvo-u-oblaku) glavna vrednost je upravo u tome da se developer ne mora baviti hardverskim pojedinostima, već isključivo apstrakcijom i softverom.
 
@@ -417,7 +413,7 @@ Kao što je pomenuto u odeljku [3.2. Qt Framework](#232-qt-framework), glavna pr
 
 
 ### 3.6.2. Software - Cross-platform GUI Data Visualizer //TODO
-#### MainWindow klasa
+#### 3.6.2.1. MainWindow klasa
 
 Glavna klasa u kojoj je smeštena većina logike je `MainWindow`. Ova klasa upravlja svim elementima korisničkog interfejsa 
 i komunikacijom sa IoT platformom.
@@ -434,7 +430,7 @@ private slots:
 };
 ```
 
-#### Funkcije za komunikaciju
+#### 3.6.2.2. Funkcije za komunikaciju
 
 - `getSensors()`: Ova funkcija koristi cURL za slanje GET http zahteva WolkAbout platformi kako bi se dobili podaci sa senzora.
 
@@ -452,7 +448,7 @@ if(curl) {
 
 - `getDevices()`: Slična kao `getSensors()`, ali koristi se za dobijanje informacija o dostupnim uređajima.
 
-#### JSON Parsing
+#### 3.6.2.3. JSON Parsing
 
 Za parsiranje JSON odgovora koristi se ručno napisana logika. 
 
@@ -462,7 +458,7 @@ QJsonObject obj = doc.object();
 QJsonArray sensorsArray = obj["sensors"].toArray();
 ```
 
-#### Grafički interfejs
+#### 3.6.2.4. Grafički interfejs
 
 Grafički interfejs je kreiran koristeći Qt Designer, a elementi su povezani sa `MainWindow` klasom. Podaci o interfejsu se nalaze u fajlu ekstenzije `.ui`, u jeziku QML.
 
@@ -483,7 +479,7 @@ Grafički interfejs izgleda ovako:
               </figure> 
 
 
-#### Korisnička priča
+#### 3.6.2.5. Korisnička priča
 Sa leve strane se unose email i password za povezivanje sa WolkAbout-ovom platformom čiji API koristimo. Klikom na log-in se pokušava uspostaviti konekcija, a ukoliko uspe otključava se leva polovina ekrana.
 
 Moguće je osvežavati listu uređaja (tj Arduino senzora), i putem padajuće liste birati koji od uređaja gledamo. Svaki uređaj ima svoj nadimak koji se može podešavati na web stranici WolkAbouta.
@@ -512,7 +508,7 @@ Iako sam bio takmičar iz programiranja, i bavio se njime godinama, bio sam sves
 <div style="page-break-before: always;"></div>
 
 # V  Literatura
-
+<div style="font-size: 13px;">
 [^1]: ["Abstraction and the C++ machine model",  B. Stroustrup, 2005](http://www.stroustrup.com/abstraction-and-machine.pdf)  
 
 [^2]: ["Embedded Systems Methods and Technologies", R. Oshana, 2012](https://web.archive.org/web/20131029203328/http://www.computer.org/portal/web/certification/Embedded-Systems)  
@@ -542,3 +538,4 @@ Iako sam bio takmičar iz programiranja, i bavio se njime godinama, bio sam sves
 [^14]: ["Proactivity during organizational entry: The role of desire for control.", S. Ashford et al, 1996](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0021-9010.81.2.199)
 
 [^15]: ["Social Support and Adjustment to Work: A Longitudinal Study", C. Fisher, 1985](https://journals.sagepub.com/doi/10.1177/014920638501100304)
+</div>
