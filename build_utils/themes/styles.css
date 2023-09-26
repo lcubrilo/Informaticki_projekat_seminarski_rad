@@ -1,6 +1,21 @@
 /* --------- Print-Friendly Styles --------- */
 
-/* Page Breaks */
+@page {
+  size: A4;
+}
+
+@page:right{
+  @bottom-right {
+    content: counter(page);
+  }
+}
+
+@page:left{
+  @bottom-left {
+    content: counter(page);
+  }
+}
+
 h1, h2 {
   break-before: always;
 }
@@ -9,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
   break-after: avoid;
 }
 
-ol, p {
+ol, p, table, figure {
   break-inside: avoid;
   break-after: auto;
 }
@@ -19,11 +34,12 @@ li {
 }
 
 
+
 /* --------- Conservative Options --------- */
 
 /* Typography */
 body {
-  font-family: 'Georgia', serif;
+  font-family: 'Book Antiqua', serif;
 }
 
 /* Margins */
@@ -59,6 +75,6 @@ a {
 
 /* Color Themes for Digital Reading */
 body {
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #101c3b;
+  color: #91a67c;
 }

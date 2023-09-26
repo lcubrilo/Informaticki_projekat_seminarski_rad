@@ -1,18 +1,25 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Compile .md to .pdf",
-        "type": "shell",
-        "command": "echo",
-        "args": [
-          "Run the following command in your terminal: \n .\\build_utils\\build_pdf.bat ${fileBasename} ${workspaceFolder}"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Print Commands",
+      "type": "shell",
+      "command": "./build_utils/print_commands.sh",
+      "args": [
+        "${fileDirname}",
+        "${fileBasename}",
+        "${workspaceFolder}"
+      ],
+      "options": {
+        "shell": {
+          "executable": "wsl.exe",
+          "args": ["-e"]
         }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
       }
-    ]
-  }
-  
+    }
+  ]
+}

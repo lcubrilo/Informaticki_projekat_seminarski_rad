@@ -35,13 +35,13 @@ def convert_images(input_file, output_folder):
         start_pos, end_pos, image_data = find_image_syntax(line)
         if image_data:
             alt_text, img_link = image_data
-            if not img_link.startswith("http"): img_link = "../" + img_link
+            if not img_link.startswith("http"): img_link = "../images/" + img_link
             figure_count += 1
 
             new_line = \
-            f'<figure> \n\
-                <img src="{img_link}" alt="{alt_text}" style="width: 100%;"> \n\
-                <figcaption style="text-align:center;"> \n\
+            f'<figure style="text-align:center;"> \n\
+                <img src="{img_link}" alt="{alt_text}" style="width: 65%;"> \n\
+                <figcaption> \n\
                     Slika {figure_count}: {alt_text} \n\
                 </figcaption> \n\
               </figure> \n'

@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+    color: black;
+    font-family: 'Times New Roman', serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+a {
+    color: blue;
+    text-decoration: underline;
+}
+table, th, td {
+    border: 1px solid black;
+}
+caption {
+    font-style: italic;
+}
+
+/* Page Breaks */
+h1, h2 {
+    break-before: always;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+  
+  ol, p {
+    break-inside: avoid;
+    break-after: auto;
+  }
+  
+  li {
+    break-after: avoid;
+  }

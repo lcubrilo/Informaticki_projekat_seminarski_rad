@@ -27,7 +27,7 @@ def romanize_top_level_heading(new_lines):
 
     return new_lines
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
   test = """
 # Sadržaj <!-- omit in toc -->
 - [1. Uvod](#1-uvod)
@@ -63,9 +63,10 @@ if __name__ == "__main__":
 - [5. Literatura](#5-literatura)
       """
 
-  test = test.split("\n")
-  for line in test:
-      """yo"""
+  #test = test.split("\n")
+  #for line in test:
+      #"""yo"""
       # print(f"{is_heading(line)[0]}, {is_top_level_heading(line)}: {line}")
-  for line in romanize_top_level_heading(test):
-      print(line)
+  #for line in romanize_top_level_heading(test):
+      #print(line)
+'''

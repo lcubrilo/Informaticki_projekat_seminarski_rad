@@ -1,0 +1,72 @@
+/* Digital Mode */
+body {
+  background: linear-gradient(180deg, #121212, #000000); /* Dark gradient background for digital mode */
+  color: #E0E0E0; /* Light text color for better readability on dark background */
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #3498db; /* Blue headings for digital mode */
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for headings */
+}
+
+a {
+  color: #3498db; /* Blue links for digital mode */
+  text-decoration: none; /* Remove underlines from links */
+  transition: color 0.3s ease; /* Smooth color transition for links */
+}
+
+a:hover {
+  color: #2980b9; /* Darker blue on hover */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%; /* Make tables responsive */
+  margin-bottom: 20px; /* Add spacing between tables */
+}
+
+th, td {
+  border: 1px solid #444; /* Darker gray borders for digital mode */
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #1e1e1e; /* Slightly darker background for even rows in digital mode */
+}
+
+
+/* Page Breaks - Apply to both modes */
+@page {
+  size: A4;
+}
+
+@page:right{
+  @bottom-right {
+    content: counter(page);
+  }
+}
+
+@page:left{
+  @bottom-left {
+    content: counter(page);
+  }
+}
+
+h1, h2 {
+  break-before: always;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  break-after: avoid;
+}
+
+ol, p, table, figure {
+  break-inside: avoid;
+  break-after: auto;
+}
+
+li {
+  break-after: avoid;
+}

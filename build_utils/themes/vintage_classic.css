@@ -1,0 +1,33 @@
+body {
+    background-color: #FBF3D3;
+    color: #654321;
+    font-family: 'Courier New', monospace;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: underline;
+}
+a::after {
+    content: " [" attr(href) "]";
+    font-size: smaller;
+}
+table, th, td {
+    border: 1px solid #654321;
+}
+
+/* Page Breaks */
+h1, h2 {
+    break-before: always;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+  
+  ol, p {
+    break-inside: avoid;
+    break-after: auto;
+  }
+  
+  li {
+    break-after: avoid;
+  }

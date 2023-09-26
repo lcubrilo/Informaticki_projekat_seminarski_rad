@@ -52,10 +52,13 @@ def replace_iframes(content):
 if __name__ == "__main__":
     #import pdb; print(sys.argv); pdb.set_trace()
 
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         input_file = "C:\\Users\\Admin\\Documents\\git_clones\\Informaticki_projekat_seminarski_rad\\.outputs\\seminarski_2.html"
+        css = "../build_utils/styles.css"
     else:
         input_file = sys.argv[1]
+        css = sys.argv[2]
+        
     
     with open(input_file, "r", encoding="utf-8") as f:
         content = f.read()
@@ -67,7 +70,7 @@ if __name__ == "__main__":
         <html>
         <head>
             <title></title>
-            <link rel="stylesheet" type="text/css" href="../build_utils/styles.css">
+            <link rel="stylesheet" type="text/css" href="{css}">
         </head>
         <body>
             {content}

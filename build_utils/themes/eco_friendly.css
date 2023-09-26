@@ -1,0 +1,35 @@
+body {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    font-family: Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #1B5E20;
+}
+a {
+    color: #4E342E;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #4E342E;
+}
+
+/* Page Breaks */
+h1, h2 {
+    break-before: always;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+  
+  ol, p {
+    break-inside: avoid;
+    break-after: auto;
+  }
+  
+  li {
+    break-after: avoid;
+  }
