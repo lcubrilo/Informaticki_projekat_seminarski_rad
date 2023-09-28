@@ -1,967 +1,1477 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-            <title></title>
-            <link rel="stylesheet" type="text/css" href="../build_utils/themes/splendor.css">
-        </head>
-        <body>
-            <br><br><br>
 
-  <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: right;">
-      <div style="width: 50px;">                   </div>
-      <img src="../images/UNS_logo.png" style="width: 150px;">
-    </div>
-    <div style="text-align: center;">
-      <div style="font-size: 24px;">Prirodno-matematički Fakultet</div>
-      <div style="font-size: 16px;">Univerzitet u Novom Sadu</div>
-    </div>
-    <div style="text-align: left;">
-      <img src="../images/PMF_logo.png" style="width: 150px;">
-      <div style="width: 50px;">                   </div>
-    </div>
-  </div>
+<html>
 
+<head>
+  <title></title>
+  <link href="../build_utils/themes/splendor.css" rel="stylesheet" type="text/css" />
+</head>
 
-  <br><br><br><br><br><br>
-
-  <div style="font-size: 36px; text-align: center;">IoT praćenje i merenje vazduha</div><br>
-  <div style="font-size: 32px; text-align: center;">Predmet: Informatički projekat</div>
-
-  <br><br><br><br><br><br><br><br><br><br>
-
-  <div style="display: flex; justify-content: space-between;">
-    <div style="text-align: left;">
-      Profesor:<br>
-      Vladimir Kurbalija
-    </div>
-    <div style="text-align: right;">
-      Student:<br>
-      Luka Čubrilo<br>
-      Broj indeksa: 21/20
-    </div>
-  </div>
-  <br><br><br><br><br><br><br><br>
-  <div style="text-align: center; page-break-after: always;">
-    Novi Sad, Septembar 2023.
-  </div>
-<h1 id="sadržaj">Sadržaj <!-- omit in toc --></h1>
-<div style="font-size:10 px">
-
-<div style="font-size:14 px">
-<ul>
-<li><a href="#i--uvod">I Uvod</a>
-</div></li>
-</ul>
-<div style="font-size:14 px">
-<ul>
-<li><a href="#ii--teorijski-okvir">II Teorijski okvir</a>
-</div>
-<ul>
-<li><a href="#21-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">2.1.
-Osnovni termini i oblast u kojoj se praksa radi</a>
-<ul>
-<li><a href="#211-embedded-programiranje">2.1.1. Embedded
-programiranje</a></li>
-<li><a href="#212-internet-of-things">2.1.2. Internet of Things</a></li>
-<li><a href="#213-cloud-computing---računarstvo-u-oblaku">2.1.3. Cloud
-computing - računarstvo u oblaku</a></li>
-</ul></li>
-<li><a href="#22-organizacija-rada-i-tok-prakse">2.2. Organizacija rada
-i tok prakse</a>
-<ul>
-<li><a href="#221-onboarding-">2.2.1. Onboarding //</a></li>
-<li><a href="#222-struktura-ljudi">2.2.2. Struktura ljudi</a></li>
-<li><a href="#223-sastanci---tehnički-deo">2.2.3. Sastanci - tehnički
-deo</a></li>
-<li><a href="#224-sastanci---netehnički-deo">2.2.4. Sastanci -
-netehnički deo</a></li>
-<li><a href="#225-finalna-prezentacija">2.2.5. Finalna
-prezentacija</a></li>
-</ul></li>
-<li><a href="#23-ključni-korišćeni-alati">2.3. Ključni korišćeni
-alati</a>
-<ul>
-<li><a href="#231-arduino-ekosistem">2.3.1. Arduino ekosistem</a></li>
-<li><a href="#232-qt-framework">2.3.2. Qt Framework</a></li>
-</ul></li>
-</ul></li>
-</ul>
-<div style="font-size:14 px">
-<ul>
-<li><a href="#iii--sadržaj-projekta">III Sadržaj projekta</a>
-</div>
-<ul>
-<li><a href="#31-šira-slika-projekta">3.1. Šira slika projekta</a>
-<ul>
-<li><a href="#311-primer-primene-davanje-konteksta-use-case">3.1.1.
-Primer primene, davanje konteksta (<em>use case</em>)</a></li>
-<li><a
-href="#312-primena-1---spoljno-praćenje-vremenskih-prilika-prognoza">3.1.2.
-Primena 1 - spoljno praćenje vremenskih prilika, prognoza</a></li>
-<li><a
-href="#313-primena-2---unutrašnje-praćenje-i-regulacija-osetljivih-procesa">3.1.3.
-Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa</a></li>
-</ul></li>
-<li><a href="#32-struktura-projekta">3.2. Struktura projekta</a>
-<ul>
-<li><a href="#321-hardware">3.2.1. Hardware</a></li>
-<li><a href="#322-sofware">3.2.2. Sofware</a></li>
-</ul></li>
-<li><a href="#33-arduino---prvi-korak-detekcija">3.3. Arduino - prvi
-korak, detekcija</a>
-<ul>
-<li><a href="#331-hardware---arduino-uno">3.3.1. Hardware - Arduino
-Uno</a></li>
-<li><a href="#332-hardware---shields-i-clicks">3.3.2. Hardware - Shields
-i clicks</a></li>
-<li><a href="#333-software---arduino-firmware">3.3.3. Software - Arduino
-firmware</a></li>
-</ul></li>
-<li><a href="#34-raspberry-pi---posrednik">3.4. Raspberry Pi -
-posrednik</a>
-<ul>
-<li><a href="#341-hardware---raspberry-pi">3.4.1. Hardware - Raspberry
-Pi</a></li>
-<li><a href="#342-software---raspberry-pi-cloud-client">3.4.2. Software
-- Raspberry Pi Cloud Client</a></li>
-</ul></li>
-<li><a href="#35-wolkabout-cloud-platforma---centrala-informacija">3.5.
-WolkAbout Cloud Platforma - centrala informacija</a>
-<ul>
-<li><a href="#351-hardware-cloud-platforme">3.5.1. “Hardware” Cloud
-platforme?</a></li>
-<li><a
-href="#352-software---konfigurisanje-povezivanje-monitoring">3.5.2.
-Software - konfigurisanje, povezivanje, monitoring</a></li>
-</ul></li>
-<li><a href="#36-krajnji-korisnik">3.6. Krajnji korisnik</a>
-<ul>
-<li><a href="#361-hardware---windows-linux-">3.6.1. Hardware - Windows,
-Linux, …</a></li>
-<li><a href="#362-software---cross-platform-gui-data-visualizer">3.6.2.
-Software - Cross-platform GUI Data Visualizer</a></li>
-</ul></li>
-</ul></li>
-</ul>
-<div style="font-size:14 px">
--<a href="#iv--zaključak">IV Zaključak</a>
-</div>
-<div style="font-size:14 px">
--<a href="#v--literatura">V Literatura</a>
-</div>
-</div>
-<div style="page-break-before: always;">
-
-</div>
-<h1 id="i-uvod">I Uvod</h1>
-<p>Praksu sam obavio u kompaniji <a
-href="execom.eu"><strong>Execom</strong></a>, koju je u međuvremenu
-kupio <a href=""><strong>HTEC</strong></a>. U pitanju je
-<em>outsourcing</em> kompanija koja ima niz timova, svaki od kojih radi
-na uglavnom jednom projektu za eksternog klijenta. Timovi se bave
-različitim tehnologijama, u zavisnosti od potreba klijenta.</p>
-<p>Kao i svaka <em>outsourcing</em> kompanija, nema svoje interne
-projekte, već ih isključivo uslužno pravi za druge. Važno je napomenuti
-da je njihov nekadašnji interni projekat prerastao u tzv. <em>spin
-off</em> kompaniju <a href=""><strong>WolkAbout</strong></a>, čije cloud
-tehnologije smo koristili na projektu koji sam izradio.</p>
-<p>Tim u koji sam primljen bavi se sa <strong>IoT</strong> (<em>Internet
-of Things</em>) i <strong>Embedded</strong> tehnologijama i u tom
-momentu je radio sa dva različita klijenta na proizvodima koji su njima
-bili potrebni, o čijim detaljima ne mogu govoriti zbog NDA
-(Non-disclosure agreement) koji sam potpisao.</p>
-<p>Srećom, projekat na kojem sam radio je smišljen od nule isključivo u
-edukativne, odnosno svrhe moje prakse, te o njemu mogu govoriti.
-Projekat je open-source i njegov kod je javno dostupan na mom ličnom
-GitHub profilu.</p>
-<p>Budući da ove oblasti (a posebno embedded) zahtevaju visok nivo
-performansi, izabran je programski jezik <strong>C++</strong>. Njegova
-prednost u odnosu na <strong>C</strong> jeste prisustvo
-Objektno-orijentisane paradigme, koja nam je olakšala organizaciju
-koda.</p>
-<p>Takođe korišćen je i <strong>Qt Framework</strong> za
-<em>crossplatform GUI</em> aplikaciju, koji je u potpunosti
-objektno-orijentisan.</p>
-<h1 id="ii-teorijski-okvir">II Teorijski okvir</h1>
-<h2 id="osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">2.1. Osnovni
-termini i oblast u kojoj se praksa radi</h2>
-<h3 id="embedded-programiranje">2.1.1. Embedded programiranje</h3>
-<p><strong>Embedded softver</strong> (od engl. <em>embed</em>,
-“usaditi”) je računarski softver, napisan da kontroliše mašine ili
-uređaje koji se obično ne smatraju računarima u punom smislu te reči,
-poznatim kao embedded sistemi. Tipično su specijalizovani za određenu
-hardversku platformu na kojoj rade i imaju vremenska i memorijska
-ograničenja.<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> Ovaj termin se ponekad koristi
-naizmenično sa <strong>firmware</strong>-om.<a href="#fn2"
-class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>Hardver na kojem se nalazi embedded softver, zbog prostornih
-ograničenja ili energetskih ograničenja, je generalno manji i ne
-preterano moćan, zbog čega je efikasnost softvera izuzetno važna.</p>
-<p>Primeri gde se ovakav sofver koristi: 1. elektroniku automobila 2.
-modemi 3. “mozak” robota 4. kućni aparati (posebno “pametni”) 5. igračke
-6. sigurnosni sistemi 7. automatizovani sistemi proizvodnje.<a
-href="#fn3" class="footnote-ref" id="fnref3"
-role="doc-noteref"><sup>3</sup></a></p>
-<p>Ovaj softver može biti vrlo jednostavan, kao što su sistemi za
-kontrolu osvetljenja koji rade na 8-bitnom mikrokontroleru sa nekoliko
-kilobajta memorije. Međutim, embedded softver može postati vrlo
-sofisticiran u aplikacijama kao što su ruteri, optički mrežni elementi,
-avioni, rakete i sistemi za kontrolu procesa.<a href="#fn4"
-class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<h3 id="internet-of-things">2.1.2. Internet of Things</h3>
-<p><strong>Internet of Things</strong> (IoT) odnosi se na mrežu fizičkih
-uređaja, vozila, aparata i drugih fizičkih objekata koji su opremljeni
-senzorima i/ili aktuatorima (motorima), softverom i mrežnom povezanošću
-koji im omogućavaju prikupljanje i deljenje podataka. Ovi uređaji —
-poznati i kao “<strong>pametni objekti</strong>” — mogu varirati od
-jednostavnih “pametnih kuća” uređaja poput pametnih termostata, do
-nosivih uređaja kao što su pametni satovi i odeća sa RFID tehnologijom,
-do složenih industrijskih mašina i transportnih sistema. Tehnolozi čak
-zamišljaju čitave “pametne gradove” zasnovane na IoT tehnologijama.<a
-href="#fn5" class="footnote-ref" id="fnref5"
-role="doc-noteref"><sup>5</sup></a></p>
-<p>Drugim rečima, IoT je sve ono što nekolicinu embedded uređaja, pomoću
-računarskih mreža (bežične i žičane veze) uvezuje u jedan širi,
-inteligentan sistem. Posebna vrednost je u tome što slab embedded
-računar, može osnažiti resursima pravog računara sa kojim komunicira
-(lokalni računar). To je ono što ovakvom sistemu omogućuje autonomno
-reagovanje na uslove i obavljanje zadataka. Ova lokalna mreža uređaja
-može da se poveže sa internetom, a odatle sa pametnim telefonima ili
-stonim računarima na bilo kom kraju sveta.<a href="#fn6"
-class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<p>To znači da IoT sistemi mogu raditi praktično bilo šta, poput: 1.
-praćenja ekoloških uslova na farmama 2. upravljanja saobraćajnim
-modelima pomoću pametnih automobila i drugih pametnih saobraćajnih
-uređaja 3. kontrole mašina i procesa u fabrikama 4. praćenja stanja
-pacijenta i pružanja adekvatne doze medikamenta 5. do praćenja inventara
-i pošiljki u skladištima.</p>
-<p>Potencijalne primene IoT-a su ogromne i raznolike, a njegov uticaj se
-već oseća u svim granama industrije. Kako broj uređaja povezanih sa
-internetom nastavlja da raste, IoT će verovatno igrati sve važniju ulogu
-u oblikovanju našeg sveta i transformaciji načina na koji živimo, radimo
-i međusobno komuniciramo.<a href="#fn7" class="footnote-ref" id="fnref7"
-role="doc-noteref"><sup>7</sup></a> IoT takođe podstiče gomilanje
-podataka koji se mogu koristiti u treniranju modela veštačke
-inteligencije. <a href="#fn8" class="footnote-ref" id="fnref8"
-role="doc-noteref"><sup>8</sup></a></p>
-<p>U najčešćim primenama u većim preduzećima, IoT uređaji se koriste za
-praćenje širokog spektra parametara kao što su temperatura, vlažnost,
-kvalitet vazduha, potrošnja energije i performanse mašina. Ovi podaci
-mogu se analizirati u realnom vremenu kako bi se identifikovali obrasci,
-trendovi i anomalije koji mogu pomoći preduzećima da optimizuju svoje
-operacije i poboljšaju svoju profitabilnost.<a href="#fn9"
-class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
-<p>Ono što je zaista impresivno je da ova oblast svoje začetke ima još
-iz 1982 godine, kada je Karnegi Melon univerzitet u saradnji sa Koka
-Kolom napravio prvi pametni “vending machine” povezan <del>sa
-internetom</del> <strong>sa tadašnjim ARPANETom</strong>!<a href="#fn10"
-class="footnote-ref" id="fnref10"
-role="doc-noteref"><sup>10</sup></a></p>
-<h3 id="cloud-computing---računarstvo-u-oblaku">2.1.3. Cloud computing -
-računarstvo u oblaku</h3>
-<p><strong>Cloud computing</strong>[1] je mogućnost dobijanja resursa
-računarskog sistema na zahtev, posebno skladišta podataka (oblak
-skladištenja) i računarske snage, bez direktne aktivne uprave od strane
-korisnika[2]. Ova tehnologija je postala popularna jer omogućava
-fleksibilnost i skalabilnost; kompanije više ne moraju da ulažu u skupe
-servere i održavanje infrastrukture. Veliki oblaci često imaju funkcije
-raspoređene na više lokacija, svaka od kojih je podatkovni centar, što
-dodatno povećava otpornost na greške i nudi bolju distribuciju
-resursa.<a href="#fn11" class="footnote-ref" id="fnref11"
-role="doc-noteref"><sup>11</sup></a></p>
-<figure style="text-align:center;">
-<img src="../images/image-7.png" alt="Dijagram koji prikazuje najčešće komponente jednog Cloud computing sistema" style="width: 65%;">
-<figcaption>
-Slika 1: Dijagram koji prikazuje najčešće komponente jednog Cloud
-computing sistema
-</figcaption>
-</figure>
-<p>Računarstvo u oblaku se oslanja na deljenje resursa da bi se postigla
-koherentnost i obično koristi model “plati koliko koristiš”. Ovo ne samo
-da pomaže u smanjenju kapitalnih rashoda (ulaganje u sopstveni hardver
-za servere), ali i takođe sav rizik održavanja mreže (redundancija,
-rezervne kopije, fizički problemi) prelazi na pružaoca <em>cloud</em>
-usluge. Takođe značajno se olakšava skaliranje sopstvenih operacija,
-prostim povećavanjem mesečnog budžeta na platformi. Ono što je bitno da
-se uzme u obzir prilikom planiranja budžeta - je da je teško predvideti
-generisane troškove na jednoj cloud platformi, i lako je greškom
-“potrošiti impulse”.</p>
-<p>Cloud je pre svega marketinški, a ne tehnički pojam. Njegova svrha je
-da dočara sliku u kojoj celokupan skup hardvera i softvera biva
-upravljan od strane provajdera (korisnik ne mora da brine o
-pojedinostima implementacije, već svemu pristupa apstraktno i
-programerski), pa se zato predstavlja kao amorfni oblak.</p>
-<p>Kada je u pitanju <strong>IoT</strong>, <em>cloud computing</em> igra
-ključnu ulogu jer omogućava brzu analizu i obradu velikih količina
-podataka prikupljenih sa raznih uređaja. Osim toga, olakšava upravljanje
-uređajima i omogućava lakšu integraciju sa ostalim sistemima. Ovo je
-naročito korisno u primenama kao što su pametni domovi, industrijska
-automatizacija i zdravstveni monitorinzi.</p>
-<p>Cloud computing je omogućio pojavu jednog dominantnog biznis modela
-na tržištu digitalnih proizvoda - <strong><em>Service as a Service
-(SaaS)</em></strong>, ali i srodnih <em>Platform as a Service</em> i
-<em>Infrastructure as a Service</em> - koji teži da što veći segment
-ovog tržišta pretvori u mesečne pretplate. To se postiže sklanjanjem
-skoro svih podataka ali i operacija izvan klijentovog ličnog uređaja,
-odnosno na serversku (cloud) stranu. <a href="#fn12"
-class="footnote-ref" id="fnref12"
-role="doc-noteref"><sup>12</sup></a></p>
-<h2 id="organizacija-rada-i-tok-prakse">2.2. Organizacija rada i tok
-prakse</h2>
-<p>Rad u timu je bio izuzetno kvalitetno organizovan u skladu sa vodećim
-principima u industriji. Takođe je važno napomenuti da ne samo da su
-uspešno implementirani, nego da su i međuljudski odnosi bili na visokom
-nivou. Bilo je tolerancije i razumevanja, što je značajno pomoglo
-prevazilaženju bilo kojih tehničkih problema. ### 2.2.1. Onboarding //
-Kao i sve moderne IT kompanije, i Execom je imao spreman proces
-<strong>onboarding</strong>-a, odnosno integrisanja novog zaposlenog
-(ili praktikanta) u firmu. To podrazumeva kako tehničke informacije,
-tako i one o vrednostima firme, kulturi firme, međuljudskim odnosima, pa
-čak i običnim svakodnevnim protokolima (gde je kuhinja, gde radnik
-ujutru prijavljuje dolazak karticom, gde je mašina za suđe, …).</p>
-<p><strong>Onboarding</strong> kao izraz, žargon je skovan u teorijama o
-mendžmentu (odnosno upravljanju) iz ’70tih godina u Americi i definiše
-se kao “mehanizam preko kojeg novi zaposleni stiču potrebna znanja,
-veštine i ponašanja kako bi postali efikasni članovi i insajderi
-organizacije”. U standardnom engleskom, ovo se naziva “indukcija”. U
-Sjedinjenim Američkim Državama, do 25% radnika su novi članovi
-organizacije uključeni u proces integrisanja.</p>
-<p>Taktike korišćene u ovom procesu uključuju formalne sastanke,
-predavanja, video materijale, štampane materijale ili orijentacije
-zasnovane na računaru koje opisuju radne operacije i kulturu
-organizacije u koju zaposleni ulazi. Ovaj proces je poznat u drugim
-delovima sveta kao ‘indukcija’ ili obuka. U slučaju Execom-a, postojale
-su unapred spremljene prezentacije koje su nam održane u sali za
-sastanke, a za ostalo su se pobrinuli mentori, dok su HR bili dostupni
-za sva pitanja.</p>
-<p>Studije su dokumentovale da tehnike socijalizacije poput integrisanja
-dovode do pozitivnih ishoda za nove zaposlene. To uključuje veće
-zadovoljstvo poslom, bolje radne performanse, veću posvećenost
-organizaciji i smanjenje profesionalnog stresa i namere za napuštanjem
-posla.<a href="#fn13" class="footnote-ref" id="fnref13"
-role="doc-noteref"><sup>13</sup></a><a href="#fn14" class="footnote-ref"
-id="fnref14" role="doc-noteref"><sup>14</sup></a> ### 2.2.2. Struktura
-ljudi U odnosu na mojih prvih mesec dana u Execomu, gde sam prve sedmice
-imao jednog mentora (koji je kasnije uključio još jednog mentora za
-svakodnevnu komunikaciju i razjašnjavanje/rešavanje problema), u drugih
-mesec dana sam imao sreću raditi sa čak dvojicom mentora i vođom tima
-(koji je rukovodio projektom, vodio mentore i pomagao kad se oni
-susretnu sa poteškoćama).</p>
-<p>Budući da se drugi projekat sastojao iz više delova, te da je bio
-veoma obiman za mesec dana rada, veći broj mentora je bio od presudnog
-značaja za uspešno obavljanje svih zamišljenih radnih zaduženja na
-projektu.</p>
-<p>Budući da je svaki deo predstavljao gotovo skroz nezavistan komad
-softvera, ukoliko bi došlo do prepreke na jednom, mogao sam to
-iskomunicirati sa mentorima i jednostavno preći na drugi dok oni to
-rešavaju. Ovim sistemom smo svi bili veoma zadovoljni i nismo imali
-“praznog hoda”. ### 2.2.3. Sastanci - tehnički deo U kompaniji Execom
-korišćena je <strong>Agile</strong> metodologija, konkretnije
-<strong>Scrum</strong>. Ključan koncept su tzv <em>sprintovi</em>,
-odnosno period od 1-3 sedmice za koji se odredio spisak taskova koji
-moraju da se obave, kao i ko će šta da radi. Nakon što je sprint
-završen, radi se retrospektiva i proverava sa klijentom da li je
-zadovoljan. Ključ je u ciklusima rada i povratne informacije koji se
-brzu smenjuju. Time se sprečava situacija u kojoj tim dugo vremena radi
-na nečemu što zapravo korisniku ne treba.</p>
-<p>To podrazumeva specifičnu dinamiku sastanaka, koji uključuju sve
-članove tima, uključujući product managera, scrum mastera i klijenta<a
-href="#fn15" class="footnote-ref" id="fnref15"
-role="doc-noteref"><sup>15</sup></a>: 1. <strong><em>daily
-(meeting)</em></strong> (takođe <em>stand meeting</em>) - kratke
-sastanke svako (radno) jutro - svaki član tima objasni šta je radio
-juče, šta će danas - feedback na to od strane šefa 2. <strong><em>weekly
-(meeting)</em></strong> - uglavnom krajem sedmice - nešto duže sumacije
-do sada postignutog na nedeljnom nivou - nekad i tehničku demonstraciju
-(često neuglancanu) radi jasnije komunikacije šta je postignuto i da li
-odgovara potrebama klijenta</p>
-<p>U slučaju moje prakse, klijenta nije bilo, mada bi se klijentom mogli
-smatrati svi mi članovi tima.</p>
-<h3 id="sastanci---netehnički-deo">2.2.4. Sastanci - netehnički deo</h3>
-<p>Pored toga, za praktikante je postojala još jedna forma nedeljnih
-sastanaka sa jednim ili više HR (<em>human resources</em>) menadžera,
-sredinom radne sedmice, sa kojima se pratio i “ne-tehnički” deo prakse -
-utisci i zadovoljstvo praktikanta, uklapanje sa drugim članovima tima.
-Iako se on činio neformalnim, HR menadžerke su beležile teze o čemu se
-govorilo i povezivale su to sa utiscima mentora.</p>
-<h3 id="finalna-prezentacija">2.2.5. Finalna prezentacija</h3>
-<p>Kada je tehnička izvedba projekta počela da se privodi kraju, bio sam
-obavešten da ću dobiti priliku da održim finalnu prezentaciju projekta.
-Za razliku od prvog meseca u Execom-u gde je finalni sastanak i
-sumiranje utisaka bilo isključivo iza zatvorenih vrata, sada sam imao
-priliku uzeti aktivno učešće i time pozitivno uticati na konačnu
-odluku/ponudu za daljnju saradnju (stipendiju ili zaposlenje).</p>
-<p>Rečeno mi je da će na njoj prisustvovati HR tim Execoma, moja dva
-mentora, vođa projekta, kao i Chief Technical Officer (CTO) firme, a da
-bi bilo idealno da prezentaciju održim na engleskom uz fizičku
-demonstraciju kako uređaj funkcioniše.</p>
-<p>Biće više reči o njihovoj oceni mog rada, krajnjim ishodima prakse i
-samog projekta u <a href="#4-zaključak">glavi IV - Zaključak</a>.</p>
-<h2 id="ključni-korišćeni-alati">2.3. Ključni korišćeni alati</h2>
-<p>Pre početka ove prakse imao sam ograničenu svest o alatima koje ću na
-kraju koristiti za implementaciju projekta, u čemu leži jedna velika
-vrednost ove prakse. U najvećoj meri su mi prezentovani prilikom
-onboarding procesa, uz kasnije temeljnije upoznavanje sa njima.</p>
-Ono što bih posebno istakao kao pozitivno iznenađenje jeste otvorenost
-mentora i rukovodioca projekta da se neke odluke oko alata ili
-projektovanja implementacije izmene, u skladu sa mojim interesovanjima
-ili ranijim znanjima - sve je bilo otvoreno za diskusiju i nije bilo
-glupih pitanja. ### 2.3.1. Arduino ekosistem
-<table>
-<tr>
-<td style="border: none; padding: 0;">
-<strong>Arduino</strong> je italijanska <em>Open Source</em> kompanija i
-zajednica korisnika koja dizajnira i proizvodi mikrokontrolere i setove
-za izradu mikrokontrolera za izgradnju digitalnih uređaja.<a
-href="#fn16" class="footnote-ref" id="fnref16"
-role="doc-noteref"><sup>16</sup></a> Arduino ploče su komercijalno
-dostupne na zvaničnoj web stranici ili preko ovlašćenih distributera.
-Pored toga, postoje i njihovi klonovi (gotovo identičnog dizajna i
-strukture) velikog broja altenartivnih proizvođača (uglavnom iz Kine) i
-jednog bogatog i širokog ekosistema, kako harverski tako i softverski.
-</td>
-<td style="border: none; padding: 0;width:45%"">
-  
-  <figure style="text-align:center;"> 
-                <img src="../images/image-2.png" alt="Logo kompanije Arduino" style="width: 65%;"> 
-                <figcaption> 
-                    Slika 2: Logo kompanije Arduino 
-                </figcaption> 
-              </figure> 
-
-</td>
-</tr>
-</table>
-<p>Razlog zašto je to moguće jeste u tome što su njihovi hardverski
-proizvodi su licencirani pod <strong>CC BY-SA licencom</strong>, dok je
-softver licenciran pod <strong>GNU Lesser General Public License
-(LGPL)</strong> ili <strong>GNU General Public License (GPL)</strong>,
-što omogućava bilo kome proizvodnju Arduino ploča i distribuciju
-softvera.</p>
-<p>Dizajni Arduino ploča koriste različite mikroprocesore i kontrolere.
-Ploče su opremljene setovima digitalnih i analognih ulazno/izlaznih
-(I/O) pinova koji mogu biti povezani sa raznim ekspanzionim pločama
-(<strong><em>shieldovi</em></strong>) ili pločama za prototipiranje
-(<strong><em>breadboards</em></strong>) i drugim električnim kolima.</p>
-<p>Ploče imaju serijske komunikacione interfejse, tj na većini modela
-USB, koji se takođe koriste za učitavanje programa (firmwarea).
-Mikrokontroleri mogu biti programirani koristeći programerske jezike C i
-C++ (Embedded C), koristeći standardni API koji je poznat kao
-<strong>Arduino programski jezik</strong>, inspirisan jezikom Processing
-i koristi se sa modifikovanom verzijom Processing IDE-a. Pored
-korišćenja tradicionalnih alatki za kompilaciju, Arduino projekat pruža
-integrisano razvojno okruženje (<strong><em>IDE</em></strong>) i
-komandnu liniju razvijenu u Go-u.</p>
-<p>Arduino projekat je započet 2005. godine kao alat za studente na
-Institutu za interakcijski dizajn Ivrea, Italija, sa ciljem da pruži
-jeftin i jednostavan način za početnike i profesionalce da stvaraju
-uređaje koji interaguju sa svojom okolinom koristeći senzore i
-aktuatore. Uobičajeni primeri takvih uređaja namenjeni su početnicima i
-hobistima, uključujući jednostavne robote, termostate i detektore
-pokreta.</p>
-<p>Zbog toga su njihovi proizvodi izabrani za firmware (odnosno
-hardverski “najniži” sloj projekta, najbliži metalu), jer olakšavaju
-značajne glavobolje sa kojima se početnici susreću pri ulasku u IoT ili
-robotiku. ### 2.3.2. Qt Framework</p>
-<table>
-<tr>
-<td style="border: none; padding: 0;width:55%">
-<strong>Qt</strong> (eng. izgovor kao “cute” ili “Q-T”; takođe srp.
-“ku-te”) predstavlja više-platformski (<em>cross-platform</em>) softver
-otvorenog tipa (<em>open source</em>) koji se koristi za razvoj
-grafičkog korisničkog interfejsa (<em>GUI</em>). Njegova glavna prednost
-je visok nivo performansi i ogromna širina platformi koje pokriva uz
-minimalne izmene u samomg programu - od svih mobilnih operativnih
-sistema, pa do desktop i čak <em>embedded</em> sistema.
-</td>
-<td style="border: none; padding: 0; width:45%">
-<figure style="text-align:center;">
-<img src="../images/image-8.png" alt="Logo Qt" style="width: 65%;">
-<figcaption>
-Slika 3: Logo Qt
-</figcaption>
-</figure>
-</td>
-</tr>
-</table>
-<p>Poreklo mu seže iz ranih 90-tih, nakon čega ga kratko razvija Nokija,
-a kasnije Qt postaje open-source fondacija “Qt Project” i preduzeće “The
-Qt Company”. Iako su neke forme Qt i dalje dostupne open source, postoje
-i komercijalne licence.</p>
-<p>Qt je dosta širok framework, što znači da ima svoje “omotače”
-(<em>wrappers</em>) za rešavanje ne samo grafičkog interfejsa, već i za
-rad sa bazama podataka, procesorskim nitima, parsiranjem XML i JSON
-datoteka, sopstvenom varijacijom HTML-a i CSS-a QML i QSS.</p>
-<p>Iz svih ovih razloga, procenjuje se da je broj developera koji
-koriste Qt prešao brojku od 1 miliona u 2017 godini - i zaslužan je za
-ogroman broj open-source programa danas. Moguće ga je koristiti i putem
-programskog jezika Python (PyQt6 ili PySide2)</p>
-<p>Na praksi sam koristio Qt5 za C++. # III Sadržaj projekta Kao što je
-već pomenuto, projekat je bio obiman i sadržao više delova, koje ćemo
-pojedinačno razmotriti, kao i njihove interakcije. ## 3.1. Šira slika
-projekta Ono što je predstavljalo problem pri komuniciranju ovog
-projekta drugim ljudima (npr HR menadžerima) jeste to da iza njega nije
-stajala priča, problem koji rešava, razlog zašto on postoji (pored,
-očigledno obrazovnog). Nije bilo lakog i kratkog načina da ga svedem ili
-sumiram, odnosno nije bilo šire slike.</p>
-<p>Svaki opis njega je nužno prelazio u opisivanje tehničkih
-pojedinosti. Da bih taj problem prevazišao, za finalnu prezentaciju
-rezultata sam naveo par potencijalnih primera kako se on može koristiti.
-### 3.1.1. Primer primene, davanje konteksta (<em>use case</em>) ###
-3.1.2. Primena 1 - spoljno praćenje vremenskih prilika, prognoza Postoji
-više hipotetičkih razloga zašto bi se neko nalazio u situaciji da se ne
-može osloniti na meteorološke stanice u blizini: 1. Nalazi se na
-izolovanom, slabo naseljenom području, tako da je najbliža meteorološka
-stanica prilično udaljena 2. Nalazi se na području koje ima posebnu
-mikroklimu, na primer kotlina, vrh brda i sl; tj u džepu drugačijem od
-okolnih vremenskih prilika 3. Želja da se lično uveri u podatke (lična
-znatiželja ili nepoverenje spram zvaničnih izvora)</p>
-<figure style="text-align:center;">
-<img src="../images/image-9.png" alt="Primer značajnih meteoroloških razlika na geografski malom području" style="width: 65%;">
-<figcaption>
-Slika 4: Primer značajnih meteoroloških razlika na geografski malom
-području
-</figcaption>
-</figure>
-<p>Postojeći sistem bi se lako mogao primeniti u ove svrhe. Sledeći
-logični korak bilo bi razviti sistem predviđanja vremenskih prilika tj
-prognoza na osnovu zabeleženih rezultata, najverovatnije na cloud
-platformi (mada bi potencijalno moglo i na Raspberry Pi).</p>
-<p>Ova primena bi bila relativno jednostavna, jer nije nužno potrebno
-imati više od po jednog aktera u sistemu.</p>
-<h3
-id="primena-2---unutrašnje-praćenje-i-regulacija-osetljivih-procesa">3.1.3.
-Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa</h3>
-<p>Ukoliko se neko bavi skladištenjem osetljivih materija ili praćenjem
-osetljivih procesa: 1. Skladištenje hrane, nestabilnih hemikalija itd 2.
-Fermentacija, <em>dry aging</em>, dimljenje ili usoljavanje mesa,
-kuvanje i bilo koji drugi proces gde je bezbednost hrane važna, a u
-riziku 3. Uzgajanje useva (pogotovo u plasteniku) koji su osetljivi ili
-izvan svoje sezone 4. Naučni eksperimenti, posebno koji se tiču
-hidrostatike, gasova itd.</p>
-<figure style="text-align:center;">
-<img src="../images/image-10.png" alt="Mesara srednje veličine; vizualizacija razmere materijalne štete u slučaju nepovoljnih uslova" style="width: 65%;">
-<figcaption>
-Slika 5: Mesara srednje veličine; vizualizacija razmere materijalne
-štete u slučaju nepovoljnih uslova
-</figcaption>
-</figure>
-<p>Postojeći sistem bi se relativno lako mogao primeniti u ove svrhe.
-Ono što bi bilo neophodno je dodati i neke aktuatore ili elektromotore,
-koji na promene sa senzora mogu da reaguju i tako regulišu sve parametre
-unutar određenih raspona. Naravno, ovakav sistem bi bio manje efektan od
-komercijalnih proizvoda, ali je značajno jeftiniji i dovoljno dobar za
-mikropreduzeća, amatere i hobiste.</p>
-<figure style="text-align:center;">
-<img src="../images/image-11.png" alt="Digitalno praćenje i održavanje plastenika; pametna bašta" style="width: 65%;">
-<figcaption>
-Slika 6: Digitalno praćenje i održavanje plastenika; pametna bašta
-</figcaption>
-</figure>
-<p>Ovakve primene su nešto kompleksnije, ne samo jer zahtevaju
-ozbiljnije teorijsko znanje za oblast primene, već zato što bi
-najverovatnije zahtevalo više Arduino ploča (na primer po jednu u svakom
-silosu žita; ili po jednu na svakih 15 metara u velikoj sušari mesa) i
-više Raspberry Pi računara (svaki kao lokalni sakupljač podataka, unutar
-Bluetooth dometa od senzora). Komunikacija među uređajima je uvek
-predmet problematike i tačka spoticanja, tako da što je veći broj
-uređaja istovremeno - tu su problemi sa koordinisanjem tih zahteva,
-interferencija i verovatno potreba za većim dometom.</p>
-<p>Takva primena bi u potpunosti kvalitetno iskoristila potencijale
-ovakve arhitekture projekta (u suprotnom bi se dosta toga moglo staviti
-u jedan uređaj).</p>
-<h2 id="struktura-projekta">3.2. Struktura projekta</h2>
-<h3 id="hardware">3.2.1. Hardware</h3>
-<p>Projekat je uključivao tri zasebne hardverske komponente, svaku sa
-pratećim softverom koji je bilo potrebno isprogramirati. Tu je bila i
-četvrta komponenta, odnosno <em>cloud platforma</em> kompanije
-WolkAbout.</p>
-<p>Sagledaćemo prvo redom šta je svaka od ovih hardverskih komponenti, a
-zatim ćemo istim redom proći kroz njihov prateći softver koji je
-razvijan na praksi.</p>
-<figure style="text-align:center;">
-<img src="../images/image.png" alt="Šema strukture projekta: tri hardverske komponente označene sivom bojom, uz njihove uzajamne veze prikazane na slici" style="width: 65%;">
-<figcaption>
-Slika 7: Šema strukture projekta: tri hardverske komponente označene
-sivom bojom, uz njihove uzajamne veze prikazane na slici
-</figcaption>
-</figure>
-<h3 id="sofware">3.2.2. Sofware</h3>
-<p>Sva tri zasebna softvera uzajamno komuniciraju, tako da iako su
-zasebne jedinice, sačinjavaju jednu veću labavu celinu. Kao što je
-nagovešteno u <a
-href="#311-primer-primene-davanje-konteksta-use-case">1.1. (<em>use
-case</em>)</a>, moguće je imati više od jednog uređaja, za sva tri
-aspekta (iako smo u našem prototipu imali po tačno jedan iz svake
-kategorije). Više Arduino uređaja može da se poveže na jedan Raspberry
-Pi (ali ne i obrnuto), više Raspberry Pi može da se poveže na jedinu
-cloud platformu (ali ne i obrnuto) i konačno više korisnika može da se
-poveže na jedinu cloud platformu (ali ne i obrnuto).</p>
-<p>Razvoj se obavljao na desktop računaru u Arduino IDE, nakon čega bi
-se firmware serijskom vezom (kablom, punjačem od telefona) prebacivao na
-Arduino ploču.</p>
-<h2 id="arduino---prvi-korak-detekcija">3.3. Arduino - prvi korak,
-detekcija</h2>
-<h3 id="hardware---arduino-uno">3.3.1. Hardware - Arduino Uno</h3>
-<p><strong>Arduino Uno</strong> je Open Source mikrokontrolerska ploča
-bazirana na Microchip ATmega328P, prvi put predstavljena 2010. godine.
-Ploča ima 14 digitalnih i 6 analognih I/O pinova i može se napajati
-putem USB kabla ili eksternog izvora napona između 7 i 20V.</p>
-<figure style="text-align:center;">
-<img src="../images/image-1.png" alt="Fotografija Arduino Uno razvojne ploče" style="width: 65%;">
-<figcaption>
-Slika 8: Fotografija Arduino Uno razvojne ploče
-</figcaption>
-</figure>
-<p>Uno koristi isti mikrokontroler kao Arduino Nano, a ima iste
-konektore kao Arduino Leonardo. Programira se pomoću Arduino IDE preko
-USB tipa A kabla. Raspored i proizvodni fajlovi su dostupni pod Creative
-Commons licencom.</p>
-<p>Reč “Uno” je izabrana da označi značajnu preradu u Arduino seriji i
-ova ploča je naslednik izdanja Duemilanove. Za komunikaciju koristi
-STK500 protokol, ali se razlikuje od prethodnih modela jer ne koristi
-FTDI USB-na-UART čip, već Atmega16U2 kao USB-na-serijski konverter.</p>
-<h3 id="hardware---shields-i-clicks">3.3.2. Hardware - Shields i
-clicks</h3>
-<p>Koristili smo jedan od mnogobrojnih dostupnih <em>shieldova</em> da
-bismo olakšali konekcije sa drugim uređajima (izbegaavamo lemljenje žica
-ili mukotrpno gledanje tzv <em>pinout</em> šema konekcija/pinova).</p>
-<figure style="text-align:center;">
-<img src="../images/image-4.png" alt="Fotografija *Click shield* u primeni sa jednim click slotom popunjenim, a drugim praznim" style="width: 65%;">
-<figcaption>
-Slika 9: Fotografija <em>Click shield</em> u primeni sa jednim click
-slotom popunjenim, a drugim praznim
-</figcaption>
-</figure>
-<p>Izabrali smo <strong>Click shield</strong>, čija je glavna svha da
-omogućuje <em>click</em>-ove, odnosno male pločice sa individualnim
-senzorima koje imaju standardno oblfikovan i dimenzioniran raspored
-pinova, koji (slično shieldu) jednostavno ulaze u uređaj bez upotrebe
-žica.</p>
-<p>Koristili smo 2 “klika” domaćeg preduzeća MikroEletronika:<br />
-1. Detektor temperature, vlage i pritiska vazduha. Takođe je bio
-prisutan i senzor zapaljivih organskih jedinjenja koji nismo koristili.
-(<strong><em>Environment click</em></strong>) 2. <strong>Bluetooth 4.0
-(Low Energy)</strong> odašiljač informacija.</p>
-<table>
-<tr>
-<td style="border: none; padding: 0;">
-<figure style="text-align:center;">
-<img src="../images/image-5.png" alt="Fotografija environment click" style="width: 65%;">
-<figcaption>
-Slika 10: Fotografija environment click
-</figcaption>
-</figure>
-</td>
-<td style="border: none; padding: 0;">
-<figure style="text-align:center;">
-<img src="../images/image-6.png" alt="Fotografija BLE click" style="width: 65%;">
-<figcaption>
-Slika 11: Fotografija BLE click
-</figcaption>
-</figure>
-</td>
-</tr>
-</table>
-<h3 id="software---arduino-firmware">3.3.3. Software - Arduino
-firmware</h3>
-<p>Jednostavno povezivanje bilo kojeg eksternog uređaja, kao što su ovi
-klikovi, kako hardverski a tako i softverski je ključna odlika Arduino
-ekosistema. Da bismo iz firmwarea Arduino razvojne ploče slali komande u
-komponente, potrebno je jednostavno instalirati softverske
-pakete/ekstenzije namenjene za rad sa tim eksternim uređajem. Razlog
-zašto toliki dijapazon eksternih uređaja ima svoje paekte, leži u tome
-da je ceo ekosistem Open Source, te da mu bilo ko može doprinositi.</p>
-<p>Za senzore vazduha koristio sam C biblioteke razvijene od kompanije
-Adafruit, koja je dosta zastupljena i prepoznata u ovoj branši, i to: 1.
-<strong>Adafruit_BME680.h</strong> - specijalizovan za Bosch-ov detektor
-BME680 korišćen na ovom <em>environment click</em>-u. 2.
-<strong>Adafruit_Sensor.h</strong> - osnovna biblioteka za sve vrste
-senzora, na koju se specijalizovane biblioteke oslanjaju.</p>
-<p>Pored toga korišćene su još dve biblioteke za ove senzore (bme680.h,
-bme680_defs.h) u razvojnom procesu, ali u krajnjoj verziji nisu imale
-značajan uticaj.</p>
-<p>Za Bluetooth komunikaciju niske energije (BLE - Bluetooth Low Energy)
-korišćena je biblioteka <strong>BLEPerihperal.h</strong></p>
-<h2 id="raspberry-pi---posrednik">3.4. Raspberry Pi - posrednik</h2>
-<h3 id="hardware---raspberry-pi">3.4.1. Hardware - Raspberry Pi</h3>
-<p><strong>Raspberry Pi</strong> je serija malih računara na jednoj
-ploči (SBCs) razvijenih u Ujedinjenom Kraljevstvu od strane Fondacije
-Raspberry Pi u saradnji sa Broadcom-om. Originalni cilj Raspberry Pi
-projekta bio je promocija osnovnog računarskog obrazovanja u školama.
-Originalni model postao je popularniji nego što je bilo očekivano,
-prodavajući se izvan svoje ciljne tržišne niše za upotrebe kao što su
-robotika. Široko se koristi u mnogim oblastima, kao što su nadgledanje
-vremenskih uslova, zbog svoje niske cene, modularnosti i otvorenog
-dizajna. Obično ga koriste zaljubljenici u računare i elektroniku, zbog
-njegovog usvajanja HDMI i USB standarda.</p>
-<p>Nakon izdavanja druge vrste ploče, Fondacija Raspberry Pi je osnovala
-novi entitet, nazvan Raspberry Pi Trading, i postavila Ebena Uptona za
-izvršnog direktora, sa odgovornošću za razvoj tehnologije. Fondacija je
-ponovo posvećena kao obrazovna dobrotvorna organizacija za promociju
-osnovnog računarskog obrazovanja u školama i zemljama. Većina Pis-a se
-proizvodi u Sonijevoj fabrici u Pencoedu u Velsu, dok se drugi proizvode
-u Kini i Japanu.</p>
-<p>2015, Raspberry Pi je postao najprodavaniji britanski računar.</p>
-<p>Ono što je za njih zanimljivo jeste, pored neograničene primene u
-projektima entuzijasta i hobista, jeste da u potpunosti mogu poslužiti
-kao desktop računari, sa sve periferijama (tastatura, miš, monitor). Na
-njega smo zakačili BLE 4.0 prijemnik koji je primao poruke sa Arduina
-(očitane vrednosti sa senzora). Putem Ethernet (LAN) kabla se kačio na
-internet i komunicirao sa cloud platformom WolkAbout.</p>
-<h3 id="software---raspberry-pi-cloud-client">3.4.2. Software -
-Raspberry Pi Cloud Client</h3>
-<p>Softver za Raspberry Pi je razvijen u programskom jeziku C++. U
-početku smo za razvoj koristili SSH vezu, tako da je RPi bio u
-“headless” režimu. To znači da sam razvoj radio na svom stonom računaru,
-i onda slao code, slično radu sa Arduinom. Usled mnogobrojnih problema u
-komunikaciji mog Windows računara i Linux-a na RPi (Raspberry Pi OS)
-prešli smo na upotrebu RPi kao samostalnog računara, povezanog na TV sa
-svojim periferijama (miš, tastatura).</p>
-<p>Program se bavi prikupljanjem podataka sa BLE (Bluetooth Low Energy)
-konekcije sa Arduinom i njihovim slanjem na WolkAbout IoT platformu. Od
-biblioteka, korišćene su: 1. Gattlib++ za BLE komunikaciju 2. Wolk.h za
-komunikaciju sa WolkAbout platformom (bazirano na MQTT protokolu)</p>
-<p>Početna Podešavanja Definisan je enum <code>AirCharacteristic</code>
-sa vrednostima <code>TEMP</code>, <code>HUMI</code>, i
-<code>PRES</code>. Napravljena je globalna instanca <code>wolk</code>
-klase <code>Wolk</code>. Inicijalizovana je centralna jedinica za BLE sa
-imenom <code>arduino</code>. Definovane su UUID-ove (Unique Universal
-Identifiers) za BLE uređaj, servise i karakteristike.</p>
-<p>Funkcije za Obaveštenja <code>notificationCallback</code>: Ova
-funkcija se poziva svaki put kada stigne obaveštenje sa BLE uređaja. U
-zavisnosti od vrste karakteristike (TEMP, PRES, ili HUMI), podaci se
-dodaju u <code>wolk</code> instancu i ispisuju se na standardni izlaz.
-<code>tempCallback</code>, <code>presCallback</code>,
-<code>humiCallback</code>: Ovi pozivi su specijalizovani slučajevi
-notificationCallback-a za određene tipove podataka (temperatura,
-pritisak, vlažnost).</p>
-<p><code>main()</code> funkcija 1. Wolk Setup: Kreira se Wolk uređaj sa
-određenim kredencijalima i uspostavlja se veza sa WolkAbout platformom.
-2. BLE Setup: Inicijalizuje se BLE i povezuje se na BLE uređaj. - Ako je
-uspešno omogućena BLE veza, postavljaju se parametri veze i povezuje se
-sa BLE uređajem. Nakon toga,započinju se obaveštenja za odabrane servise
-i karakteristike. - Ako povezivanje ne uspe, veza sa WolkAbout
-platformom se prekida i program se završava. 3. Glavna Petlja:
-Kontinuirano se obrađuju asinhroni događaji sa BLE uređaja i program
-spava na kratko između iteracija.</p>
-<h2 id="wolkabout-cloud-platforma---centrala-informacija">3.5. WolkAbout
-Cloud Platforma - centrala informacija</h2>
-<h3 id="hardware-cloud-platforme">3.5.1. “Hardware” Cloud
-platforme?</h3>
-<p>Kao što je pomenuto u <a
-href="#213-cloud-computing---računarstvo-u-oblaku">1.3. Cloud computing
-- računarstvo u oblaku</a> glavna vrednost je upravo u tome da se
-developer ne mora baviti hardverskim pojedinostima, već isključivo
-apstrakcijom i softverom.</p>
-<h3 id="software---konfigurisanje-povezivanje-monitoring">3.5.2.
-Software - konfigurisanje, povezivanje, monitoring</h3>
-<p><strong>WolkAbout Cloud</strong> platforma je gotov proizvod koji se
-minimalno programira, već jednostavno koristi putem GUI-ja. Potrebno je
-ulogovati se sa svojim kredencijalima (koji se dobijaju onda kada se
-korišćenje njihovih usluga plati, i svako korišćenje se prebrojava i
-sabira).</p>
-<p>U njoj je bilo potrebno da okvirno opišem kakve uređaje imam, kakvim
-podacima barataju. Bilo je moguće dizajnirati tzv <em>dashboard</em>
-putem kojeg se može vizualno pratiti promet podataka (i tako proveriti
-da li isprogramirane komponente ispravno rade svoj posao).</p>
-<h2 id="krajnji-korisnik">3.6. Krajnji korisnik</h2>
-<h3 id="hardware---windows-linux">3.6.1. Hardware - Windows, Linux,
-…</h3>
-<p>Kao što je pomenuto u odeljku <a href="#232-qt-framework">3.2. Qt
-Framework</a>, glavna prednost je u tome da jedan razvojni proces može
-da se jednostavno prebaci u paket za bilo koju platformu. Budući da sam
-softver za krajnjeg korisnika razvijao na Windows desktopu (u drugom
-mesecu), najjednostavnije mi je bilo da ga za tu platformu i razvijem.
-Veoma prosto bi se prebacio i na Linux (na kojem sam razvijao u prvom
-mesecu), macOS, Android i iOS. Jedino je za mobilne platforme potrebno
-malo pažnje za dizajn, povodom ograničenijeg prostora na ekranu.</p>
-<h3 id="software---cross-platform-gui-data-visualizer-todo">3.6.2.
-Software - Cross-platform GUI Data Visualizer //TODO</h3>
-<h4 id="mainwindow-klasa">3.6.2.1. MainWindow klasa</h4>
-<p>Glavna klasa u kojoj je smeštena većina logike je
-<code>MainWindow</code>. Ova klasa upravlja svim elementima korisničkog
-interfejsa i komunikacijom sa IoT platformom.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MainWindow <span class="op">:</span> <span class="kw">public</span> <span class="ex">QMainWindow</span> <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Q_OBJECT</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">explicit</span> MainWindow<span class="op">(</span><span class="ex">QWidget</span> <span class="op">*</span>parent <span class="op">=</span> <span class="kw">nullptr</span><span class="op">);</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="ex">slots</span><span class="op">:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> on_pushButton_clicked<span class="op">();</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-<h4 id="funkcije-za-komunikaciju">3.6.2.2. Funkcije za komunikaciju</h4>
-<ul>
-<li><code>getSensors()</code>: Ova funkcija koristi cURL za slanje GET
-http zahteva WolkAbout platformi kako bi se dobili podaci sa
-senzora.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>CURL <span class="op">*</span>curl<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>CURLcode res<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>curl <span class="op">=</span> curl_easy_init<span class="op">();</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>curl<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    curl_easy_setopt<span class="op">(</span>curl<span class="op">,</span> CURLOPT_URL<span class="op">,</span> <span class="st">&quot;http://api.wolkabout.com/sensors&quot;</span><span class="op">);</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> curl_easy_perform<span class="op">(</span>curl<span class="op">);</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<ul>
-<li><code>getDevices()</code>: Slična kao <code>getSensors()</code>, ali
-koristi se za dobijanje informacija o dostupnim uređajima.</li>
-</ul>
-<h4 id="json-parsing">3.6.2.3. JSON Parsing</h4>
-<p>Za parsiranje JSON odgovora koristi se ručno napisana logika.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">QJsonDocument</span> doc <span class="op">=</span> <span class="ex">QJsonDocument::fromJson</span><span class="op">(</span>data<span class="op">);</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">QJsonObject</span> obj <span class="op">=</span> doc<span class="op">.</span>object<span class="op">();</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">QJsonArray</span> sensorsArray <span class="op">=</span> obj<span class="op">[</span><span class="st">&quot;sensors&quot;</span><span class="op">].</span>toArray<span class="op">();</span></span></code></pre></div>
-<h4 id="grafički-interfejs">3.6.2.4. Grafički interfejs</h4>
-<p>Grafički interfejs je kreiran koristeći Qt Designer, a elementi su
-povezani sa <code>MainWindow</code> klasom. Podaci o interfejsu se
-nalaze u fajlu ekstenzije <code>.ui</code>, u jeziku QML.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">widget</span><span class="ot"> class=</span><span class="st">&quot;QPushButton&quot;</span><span class="ot"> name=</span><span class="st">&quot;pushButton&quot;</span>&gt;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">property</span><span class="ot"> name=</span><span class="st">&quot;text&quot;</span>&gt;</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">string</span>&gt;Log in&lt;/<span class="kw">string</span>&gt;</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">property</span>&gt;</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">widget</span>&gt;</span></code></pre></div>
-Grafički interfejs izgleda ovako:
-<figure style="text-align:center;">
-<img src="../images/GUI.png" alt="Screenshot korisničkog interfejsa" style="width: 65%;">
-<figcaption>
-Slika 12: Screenshot korisničkog interfejsa
-</figcaption>
-</figure>
-<h4 id="korisnička-priča">3.6.2.5. Korisnička priča</h4>
-<p>Sa leve strane se unose email i password za povezivanje sa
-WolkAbout-ovom platformom čiji API koristimo. Klikom na log-in se
-pokušava uspostaviti konekcija, a ukoliko uspe otključava se leva
-polovina ekrana.</p>
-<p>Moguće je osvežavati listu uređaja (tj Arduino senzora), i putem
-padajuće liste birati koji od uređaja gledamo. Svaki uređaj ima svoj
-nadimak koji se može podešavati na web stranici WolkAbouta.</p>
-<p>Takođe imamo informaciju da li je uređaj trenutno povezan preko RPi
-sa internetom ili ne (tj da li možemo očekivati sveže podatke).</p>
-<p>Ispod nam se nalaze podaci koji su učitani za trenutni uređaj,
-zajedno sa mernom jedinicom. Kliktanjem na mernu jedinicu (padajuća
-lista) moguće je izabrati drugu mernu jedinicu, tako da se brojčana
-vrednost momentalno konvertuje.</p>
-<div style="page-break-before: always;">
-
-</div>
-<h1 id="iv-zaključak">IV Zaključak</h1>
-<p>Nakon odrađene finalne prezentacije, dobio sam povratne informacije
-svih uključenih u proces. Reakcije su bile izuzetno pozitivne i
-koncenzus je bio da sam za mojih drugih mesec dana u Execomu veoma
-očigledno napredovao. Konstatovali su da sam bio aktivno uključen, i da
-im se svideo i način komunikacije i saradnje.</p>
-<p>Iznenadilo me je kada su objasnili da nije bilo namenjeno da stignem
-sva tri aspekta u projektu u zadatom vremenskom okviru (da su natrpali i
-malo više da ne ponestane taskova), i da su zaista zadovoljni uloženim
-naporom, vremenom i efikasnošću multitaskovanja.</p>
-<figure style="text-align:center;">
-<img src="../images/izvestaji_prakse.png" alt="Skenirani izveštaji sa ukupno dva meseca prakse" style="width: 65%;">
-<figcaption>
-Slika 13: Skenirani izveštaji sa ukupno dva meseca prakse
-</figcaption>
-</figure>
-<p>Iako sam bio takmičar iz programiranja, i bavio se njime godinama,
-bio sam svestan da zapravo nemam pojma šta znači pravi rad u firmi, i da
-se ta dva nikako ne mogu porediti. To me je zabrinjavalo, smatrao sam da
-je prerizično tek tako se upustiti i strogo karijerno opredeliti za
-programiranje, ako ne znam šta me čeka, samo na osnovu školskog iskustva
-ili nahvaljenosti profesije. To je ujedno bila moja glavna motivacija za
-praksu, i sa zadovoljstvom mogu reći da je to u potpunosti uspelo. Samo
-prvih mesec dana prakse su mi u potpunosti odagnali sva pitanja,
-nedoumice i strahove i totalno premostili jaz u percepciji. Potvrdile su
-mi se neke percepcije i saznanja, te sam se mogao samouverenije upustiti
-u odabir karijere.</p>
-<div style="page-break-before: always;">
-
-</div>
-<h1 id="v-literatura">V Literatura</h1>
-<div style="font-size: 13px;">
-<aside id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p><a
-href="http://www.stroustrup.com/abstraction-and-machine.pdf">“Abstraction
-and the C++ machine model”, B. Stroustrup, 2005</a><a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><a
-href="https://www.ndss-symposium.org/wp-content/uploads/2017/09/towards-automated-dynamic-analysis-linux-based-embedded-firmware.pdf">“Towards
-Automated Dynamic Analysis for Linux-based Embedded Firmware”, D. Chen
-et al, 2016</a><a href="#fnref2" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><a
-href="https://web.archive.org/web/20131029203328/http://www.computer.org/portal/web/certification/Embedded-Systems">“Embedded
-Systems Methods and Technologies”, R. Oshana, 2012</a><a href="#fnref3"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p><a
-href="https://ptolemy.berkeley.edu/publications/papers/02/embsoft/embsoftwre.pdf">“Embedded
-Software”, E. Lee, 2001</a><a href="#fnref4" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p><a
-href="https://www.ibm.com/topics/internet-of-things">“What is the
-internet of things?”, IBM</a><a href="#fnref5" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p><a
-href="https://ieeexplore.ieee.org/abstract/document/6669062">“An
-Internet of Things (IoT) architecture for embedded appliances”, T.
-Yashiro et al, 2013</a><a href="#fnref6" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p><a
-href="https://www.ibm.com/topics/internet-of-things">“What is the
-internet of things?”, IBM</a><a href="#fnref7" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p><a
-href="https://www.sciencedirect.com/science/article/abs/pii/S1569190X20300083">“IoT,
-cloud, big data and AI in interdisciplinary domains”, Y. Chen,
-2020</a><a href="#fnref8" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><a
-href="https://www.ibm.com/topics/internet-of-things">“What is the
-internet of things?”, IBM</a><a href="#fnref9" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p><a
-href="https://www.cs.cmu.edu/~coke/history_long.txt">“The”Only” Coke
-Machine on the Internet”, Carnegie Mellon University, 2014</a><a
-href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p><a
-href="https://link.springer.com/chapter/10.1007/978-3-642-10665-1_63">“Cloud
-Computing: An Overview”, L. Qian et al, 2009</a><a href="#fnref11"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p><a
-href="https://ieeexplore.ieee.org/abstract/document/4278733">The
-Business Model of “Software-As-A-Service”, Dan Ma, 2007</a><a
-href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p><a
-href="https://psycnet.apa.org/doiLanding?doi=10.1037%2F0021-9010.81.2.199">“Proactivity
-during organizational entry: The role of desire for control.”, S.
-Ashford et al, 1996</a><a href="#fnref13" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn14"><p><a
-href="https://journals.sagepub.com/doi/10.1177/014920638501100304">“Social
-Support and Adjustment to Work: A Longitudinal Study”, C. Fisher,
-1985</a></p>
-</div>
-<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></li>
-<li id="fn15"><p><a href="https://scrumguides.org/scrum-guide.html">“The
-2020 Scrum Guide”, J. Sutherland &amp; K. Schwaber</a><a href="#fnref15"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn16"><p><a
-href="https://web.archive.org/web/20180403132515/http://www.princeton.edu/~ffab/media___downloads_files/IntroArduinoBook.pdf">“Introduction
-to Arduino, A. Smith, 2011</a><a href="#fnref16" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-</ol>
-</aside>
-
-        </body>
-        </html>
+<body>
     
+  <div>
+    <br><br><br><br><br><br>
+
+    <div style="display: flex; justify-content: space-between;">
+      <div style="text-align: right;">
+        <div style="width: 50px;"> </div>
+        <img src="../images/UNS_logo.png" style="width: 150px;">
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 24px;">Prirodno-matematički Fakultet</div>
+        <div style="font-size: 16px;">Univerzitet u Novom Sadu</div>
+      </div>
+      <div style="text-align: left;">
+        <img src="../images/PMF_logo.png" style="width: 150px;">
+        <div style="width: 50px;"> </div>
+      </div>
+    </div>
+
+    <br><br><br><br><br><br>
+
+    <div style="font-size: 36px; text-align: center;">IoT praćenje i merenje vazduha</div><br>
+    <div style="font-size: 32px; text-align: center;">Predmet: Informatički projekat</div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div style="display: flex; justify-content: space-between; font-size:16px">
+      <div style="width: 20%;"></div>
+      <div style="text-align: left;">
+        Profesor:<br>
+        Vladimir Kurbalija
+      </div>
+      <div style="text-align: right;">
+        Student:<br>
+        Luka Čubrilo<br>
+        Broj indeksa: 21/20
+      </div>
+      <div style="width: 20%;"></div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br>
+
+    <div style="text-align: center; page-break-after: always;">
+      Novi Sad, Septembar 2023.
+    </div>
+  </div>
+
+  <hr />
+  <h1 id="sadržaj">Sadržaj <!-- omit in toc --></h1>
+  <ul class="toc">
+    <li style="font-size: 16px;"><a href="#1-uvod">I Uvod</a></li>
+    <li style="font-size: 16px;"><a href="#2-teorijski-okvir">II Teorijski okvir</a>
+      <ul>
+        <li style="font-size: 14px;"><a href="#21-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">1.
+            Osnovni termini i oblast u kojoj se praksa radi</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#211-embedded-programiranje">1.1. Embedded
+                programiranje</a></li>
+            <li style="font-size: 12px;"><a href="#212-internet-of-things">1.2. Internet of Things</a></li>
+            <li style="font-size: 12px;"><a href="#213-cloud-computing---računarstvo-u-oblaku">1.3. Cloud
+                computing - računarstvo u oblaku</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#22-organizacija-rada-i-tok-prakse">2. Organizacija rada i
+            tok prakse</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#221-onboarding">2.1. Onboarding</a></li>
+            <li style="font-size: 12px;"><a href="#222-struktura-ljudi">2.2. Struktura ljudi</a></li>
+            <li style="font-size: 12px;"><a href="#223-sastanci---tehnički-deo">2.3. Sastanci - tehnički
+                deo</a></li>
+            <li style="font-size: 12px;"><a href="#224-sastanci---netehnički-deo">2.4. Sastanci - netehnički
+                deo</a></li>
+            <li style="font-size: 12px;"><a href="#225-finalna-prezentacija">2.5. Finalna
+                prezentacija</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#23-ključni-korišćeni-alati">3. Ključni korišćeni alati</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#231-arduino-ekosistem">3.1. Arduino ekosistem</a></li>
+            <li style="font-size: 12px;"><a href="#232-qt-framework">3.2. Qt Framework</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li style="font-size: 16px;"><a href="#3-sadržaj-projekta">III Sadržaj projekta</a>
+      <ul>
+        <li style="font-size: 14px;"><a href="#31-šira-slika-projekta">1. Šira slika projekta</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#311-davanje-konteksta---potencijalna-primena-use-case-1">1.1.
+                Davanje konteksta - potencijalna primena (<em>use case</em>) 1</a></li>
+            <li style="font-size: 12px;"><a href="#312-davanje-konteksta---potencijalna-primena-use-case-2">1.2.
+                Davanje konteksta - potencijalna primena (<em>use case</em>) 2</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#32-struktura-projekta">2. Struktura projekta</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#321-hardware">2.1. Hardware</a></li>
+            <li style="font-size: 12px;"><a href="#322-sofware">2.2. Sofware</a></li>
+            <li style="font-size: 12px;"><a href="#323-github-repozitorijum">2.3. GitHub
+                repozitorijum</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#33-arduino---prvi-korak-detekcija">3. Arduino - prvi
+            korak, detekcija</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#331-hardware---arduino-uno">3.1. Hardware - Arduino
+                Uno</a></li>
+            <li style="font-size: 12px;"><a href="#332-hardware---shields-i-clicks">3.2. Hardware - Shields i
+                clicks</a></li>
+            <li style="font-size: 12px;"><a href="#333-software---arduino-firmware">3.3. Software - Arduino
+                firmware</a></li>
+            <li style="font-size: 12px;"><a href="#334-arduino---detaljna-analiza-koda">3.4. Arduino -
+                Detaljna Analiza Koda</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#34-raspberry-pi---posrednik">4. Raspberry Pi -
+            posrednik</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#341-hardware---raspberry-pi">4.1. Hardware - Raspberry
+                Pi</a></li>
+            <li style="font-size: 12px;"><a href="#342-software---raspberry-pi-cloud-client">4.2. Software -
+                Raspberry Pi Cloud Client</a></li>
+            <li style="font-size: 12px;"><a href="#343-raspberry-pi---detaljna-analiza-koda">4.3. Raspberry
+                Pi - Detaljna Analiza Koda</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#35-wolkabout-cloud-platforma---centrala-informacija">5.
+            WolkAbout Cloud Platforma - centrala informacija</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#351-hardware-cloud-platforme">5.1. “Hardware” Cloud
+                platforme?</a></li>
+            <li style="font-size: 12px;"><a href="#352-software---konfigurisanje-povezivanje-monitoring">5.2.
+                Software - konfigurisanje, povezivanje, monitoring</a></li>
+          </ul>
+        </li>
+        <li style="font-size: 14px;"><a href="#36-krajnji-korisnik">6. Krajnji korisnik</a>
+          <ul>
+            <li style="font-size: 12px;"><a href="#361-hardware---windows-linux-">6.1. Hardware - Windows,
+                Linux, …</a></li>
+            <li style="font-size: 12px;"><a href="#362-software---cross-platform-gui-data-visualizer">6.2.
+                Software - Cross-platform GUI Data Visualizer</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li style="font-size: 16px;"><a href="#4-zaključak">IV Zaključak</a></li>
+    <li style="font-size: 16px;"><a href="#5-literatura">V Literatura</a></li>
+  </ul>
+  <hr />
+  <div style="page-break-before: always;">
+  </div>
+  <h1 id="i-uvod">I Uvod</h1>
+  <p>Praksu sam obavio u kompaniji <a href="execom.eu"><strong>Execom</strong></a>, koju je u međuvremenu
+    kupio <a href=""><strong>HTEC</strong></a>. U pitanju je
+    <em>outsourcing</em> kompanija koja ima niz timova, svaki od kojih radi
+    na uglavnom jednom projektu za eksternog klijenta. Timovi se bave
+    različitim tehnologijama, u zavisnosti od potreba klijenta.
+  </p>
+  <figure style="text-align:center;">
+    <img alt="Logo kompanije Execom" src="../images/execom_logo.png" style="width: 65%;" />
+    <figcaption>
+      Slika 1: Logo kompanije Execom
+    </figcaption>
+  </figure>
+  <p>Kao i svaka <em>outsourcing</em> kompanija, nema svoje interne
+    projekte, već ih isključivo uslužno pravi za druge. Važno je napomenuti
+    da je njihov nekadašnji interni projekat prerastao u tzv. <em>spin
+      off</em> kompaniju <a href=""><strong>WolkAbout</strong></a>, čije cloud
+    tehnologije smo koristili na projektu koji sam izradio.</p>
+  <p>Tim u koji sam primljen bavi se sa <strong>IoT</strong> (<em>Internet
+      of Things</em>) i <strong>Embedded</strong> tehnologijama i u tom
+    momentu je radio sa dva različita klijenta na proizvodima koji su njima
+    bili potrebni, o čijim detaljima ne mogu govoriti zbog NDA
+    (Non-disclosure agreement) koji sam potpisao.</p>
+  <p>Srećom, projekat na kojem sam radio je smišljen od nule isključivo u
+    edukativne, odnosno svrhe moje prakse, te o njemu mogu govoriti.
+    Projekat je open-source i njegov kod je javno dostupan na mom <a
+      href="https://github.com/lcubrilo/IoT-Ambience">ličnom GitHub
+      profilu</a>.</p>
+  <p>Budući da ove oblasti (a posebno embedded) zahtevaju visok nivo
+    performansi, izabran je programski jezik <strong>C++</strong>. Njegova
+    prednost u odnosu na <strong>C</strong> jeste prisustvo
+    Objektno-orijentisane paradigme, koja nam je olakšala organizaciju
+    koda.</p>
+  <p>Takođe korišćen je i <strong>Qt Framework</strong> za
+    <em>crossplatform GUI</em> aplikaciju, koji je u potpunosti
+    objektno-orijentisan.
+  </p>
+  <h1 id="ii-teorijski-okvir">II Teorijski okvir</h1>
+  <h2 id="ii-1.-osnovni-termini-i-oblast-u-kojoj-se-praksa-radi">II-1.
+    Osnovni termini i oblast u kojoj se praksa radi</h2>
+  <h3 id="ii-1.1.-embedded-programiranje">II-1.1. Embedded
+    programiranje</h3>
+  <p><strong>Embedded softver</strong> (od engl. <em>embed</em>,
+    “usaditi”) je računarski softver, napisan da kontroliše mašine ili
+    uređaje koji se obično ne smatraju računarima u punom smislu te reči,
+    poznatim kao embedded sistemi. Tipično su specijalizovani za određenu
+    hardversku platformu na kojoj rade i imaju vremenska i memorijska
+    ograničenja.<a class="footnote-ref" href="#fn1" id="fnref1" role="doc-noteref"><sup>1</sup></a> Ovaj termin se
+    ponekad koristi
+    naizmenično sa <strong>firmware</strong>-om.<a class="footnote-ref" href="#fn2" id="fnref2"
+      role="doc-noteref"><sup>2</sup></a></p>
+  <p>Hardver na kojem se nalazi embedded softver, zbog prostornih
+    ograničenja ili energetskih ograničenja, je generalno manji i ne
+    preterano moćan, zbog čega je efikasnost softvera izuzetno važna.</p>
+  <p>Primeri gde se ovakav sofver koristi: 1. elektroniku automobila 2.
+    modemi 3. “mozak” robota 4. kućni aparati (posebno “pametni”) 5. igračke
+    6. sigurnosni sistemi 7. automatizovani sistemi proizvodnje.<a class="footnote-ref" href="#fn3" id="fnref3"
+      role="doc-noteref"><sup>3</sup></a></p>
+  <p>Ovaj softver može biti vrlo jednostavan, kao što su sistemi za
+    kontrolu osvetljenja koji rade na 8-bitnom mikrokontroleru sa nekoliko
+    kilobajta memorije. Međutim, embedded softver može postati vrlo
+    sofisticiran u aplikacijama kao što su ruteri, optički mrežni elementi,
+    avioni, rakete i sistemi za kontrolu procesa.<a class="footnote-ref" href="#fn4" id="fnref4"
+      role="doc-noteref"><sup>4</sup></a></p>
+  <h3 id="ii-1.2.-internet-of-things">II-1.2. Internet of Things</h3>
+  <p><strong>Internet of Things</strong> (IoT) odnosi se na mrežu fizičkih
+    uređaja, vozila, aparata i drugih fizičkih objekata koji su opremljeni
+    senzorima i/ili aktuatorima (motorima), softverom i mrežnom povezanošću
+    koji im omogućavaju prikupljanje i deljenje podataka. Ovi uređaji —
+    poznati i kao “<strong>pametni objekti</strong>” — mogu varirati od
+    jednostavnih “pametnih kuća” uređaja poput pametnih termostata, do
+    nosivih uređaja kao što su pametni satovi i odeća sa RFID tehnologijom,
+    do složenih industrijskih mašina i transportnih sistema. Tehnolozi čak
+    zamišljaju čitave “pametne gradove” zasnovane na IoT tehnologijama.<a class="footnote-ref" href="#fn5" id="fnref5"
+      role="doc-noteref"><sup>5</sup></a></p>
+  <p>Drugim rečima, IoT je sve ono što nekolicinu embedded uređaja, pomoću
+    računarskih mreža (bežične i žičane veze) uvezuje u jedan širi,
+    inteligentan sistem. Posebna vrednost je u tome što slab embedded
+    računar, može osnažiti resursima pravog računara sa kojim komunicira
+    (lokalni računar). To je ono što ovakvom sistemu omogućuje autonomno
+    reagovanje na uslove i obavljanje zadataka. Ova lokalna mreža uređaja
+    može da se poveže sa internetom, a odatle sa pametnim telefonima ili
+    stonim računarima na bilo kom kraju sveta.<a class="footnote-ref" href="#fn6" id="fnref6"
+      role="doc-noteref"><sup>6</sup></a></p>
+  <p>To znači da IoT sistemi mogu raditi praktično bilo šta, poput: 1.
+    praćenja ekoloških uslova na farmama 2. upravljanja saobraćajnim
+    modelima pomoću pametnih automobila i drugih pametnih saobraćajnih
+    uređaja 3. kontrole mašina i procesa u fabrikama 4. praćenja stanja
+    pacijenta i pružanja adekvatne doze medikamenta 5. do praćenja inventara
+    i pošiljki u skladištima.</p>
+  <p>Potencijalne primene IoT-a su ogromne i raznolike, a njegov uticaj se
+    već oseća u svim granama industrije. Kako broj uređaja povezanih sa
+    internetom nastavlja da raste, IoT će verovatno igrati sve važniju ulogu
+    u oblikovanju našeg sveta i transformaciji načina na koji živimo, radimo
+    i međusobno komuniciramo.<a class="footnote-ref" href="#fn7" id="fnref7" role="doc-noteref"><sup>7</sup></a> IoT
+    takođe podstiče gomilanje
+    podataka koji se mogu koristiti u treniranju modela veštačke
+    inteligencije. <a class="footnote-ref" href="#fn8" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+  <p>U najčešćim primenama u većim preduzećima, IoT uređaji se koriste za
+    praćenje širokog spektra parametara kao što su temperatura, vlažnost,
+    kvalitet vazduha, potrošnja energije i performanse mašina. Ovi podaci
+    mogu se analizirati u realnom vremenu kako bi se identifikovali obrasci,
+    trendovi i anomalije koji mogu pomoći preduzećima da optimizuju svoje
+    operacije i poboljšaju svoju profitabilnost.<a class="footnote-ref" href="#fn9" id="fnref9"
+      role="doc-noteref"><sup>9</sup></a></p>
+  <p>Ono što je zaista impresivno je da ova oblast svoje začetke ima još
+    iz 1982 godine, kada je Karnegi Melon univerzitet u saradnji sa Koka
+    Kolom napravio prvi pametni “vending machine” povezan <del>sa
+      internetom</del> <strong>sa tadašnjim ARPANETom</strong>!<a class="footnote-ref" href="#fn10" id="fnref10"
+      role="doc-noteref"><sup>10</sup></a></p>
+  <h3 id="ii-1.3.-cloud-computing---računarstvo-u-oblaku">II-1.3. Cloud
+    computing - računarstvo u oblaku</h3>
+  <p><strong>Cloud computing</strong>[1] je mogućnost dobijanja resursa
+    računarskog sistema na zahtev, posebno skladišta podataka (oblak
+    skladištenja) i računarske snage, bez direktne aktivne uprave od strane
+    korisnika[2]. Ova tehnologija je postala popularna jer omogućava
+    fleksibilnost i skalabilnost; kompanije više ne moraju da ulažu u skupe
+    servere i održavanje infrastrukture. Veliki oblaci često imaju funkcije
+    raspoređene na više lokacija, svaka od kojih je podatkovni centar, što
+    dodatno povećava otpornost na greške i nudi bolju distribuciju
+    resursa.<a class="footnote-ref" href="#fn11" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+  <figure style="text-align:center;">
+    <img alt="Dijagram koji prikazuje najčešće komponente jednog Cloud computing sistema" src="../images/image-7.png"
+      style="width: 65%;" />
+    <figcaption>
+      Slika 2: Dijagram koji prikazuje najčešće komponente jednog Cloud
+      computing sistema
+    </figcaption>
+  </figure>
+  <p>Računarstvo u oblaku se oslanja na deljenje resursa da bi se postigla
+    koherentnost i obično koristi model “plati koliko koristiš”. Ovo ne samo
+    da pomaže u smanjenju kapitalnih rashoda (ulaganje u sopstveni hardver
+    za servere), ali i takođe sav rizik održavanja mreže (redundancija,
+    rezervne kopije, fizički problemi) prelazi na pružaoca <em>cloud</em>
+    usluge. Takođe značajno se olakšava skaliranje sopstvenih operacija,
+    prostim povećavanjem mesečnog budžeta na platformi. Ono što je bitno da
+    se uzme u obzir prilikom planiranja budžeta - je da je teško predvideti
+    generisane troškove na jednoj cloud platformi, i lako je greškom
+    “potrošiti impulse”.</p>
+  <p>Cloud je pre svega marketinški, a ne tehnički pojam. Njegova svrha je
+    da dočara sliku u kojoj celokupan skup hardvera i softvera biva
+    upravljan od strane provajdera (korisnik ne mora da brine o
+    pojedinostima implementacije, već svemu pristupa apstraktno i
+    programerski), pa se zato predstavlja kao amorfni oblak.</p>
+  <p>Kada je u pitanju <strong>IoT</strong>, <em>cloud computing</em> igra
+    ključnu ulogu jer omogućava brzu analizu i obradu velikih količina
+    podataka prikupljenih sa raznih uređaja. Osim toga, olakšava upravljanje
+    uređajima i omogućava lakšu integraciju sa ostalim sistemima. Ovo je
+    naročito korisno u primenama kao što su pametni domovi, industrijska
+    automatizacija i zdravstveni monitorinzi.</p>
+  <p>Cloud computing je omogućio pojavu jednog dominantnog biznis modela
+    na tržištu digitalnih proizvoda - <strong><em>Service as a Service
+        (SaaS)</em></strong>, ali i srodnih <em>Platform as a Service</em> i
+    <em>Infrastructure as a Service</em> - koji teži da što veći segment
+    ovog tržišta pretvori u mesečne pretplate. To se postiže sklanjanjem
+    skoro svih podataka ali i operacija izvan klijentovog ličnog uređaja,
+    odnosno na serversku (cloud) stranu. <a class="footnote-ref" href="#fn12" id="fnref12"
+      role="doc-noteref"><sup>12</sup></a>
+  </p>
+  <h2 id="ii-2.-organizacija-rada-i-tok-prakse">II-2. Organizacija rada i
+    tok prakse</h2>
+  <p>Rad u timu je bio izuzetno kvalitetno organizovan u skladu sa vodećim
+    principima u industriji. Takođe je važno napomenuti da ne samo da su
+    uspešno implementirani, nego da su i međuljudski odnosi bili na visokom
+    nivou. Bilo je tolerancije i razumevanja, što je značajno pomoglo
+    prevazilaženju bilo kojih tehničkih problema. ### II-2.1. Onboarding Kao
+    i sve moderne IT kompanije, i Execom je imao spreman proces
+    <strong>onboarding</strong>-a, odnosno integrisanja novog zaposlenog
+    (ili praktikanta) u firmu. To podrazumeva kako tehničke informacije,
+    tako i one o vrednostima firme, kulturi firme, međuljudskim odnosima, pa
+    čak i običnim svakodnevnim protokolima (gde je kuhinja, gde radnik
+    ujutru prijavljuje dolazak karticom, gde je mašina za suđe, …).
+  </p>
+  <p><strong>Onboarding</strong> kao izraz, žargon je skovan u teorijama o
+    mendžmentu (odnosno upravljanju) iz ’70tih godina u Americi i definiše
+    se kao “mehanizam preko kojeg novi zaposleni stiču potrebna znanja,
+    veštine i ponašanja kako bi postali efikasni članovi i insajderi
+    organizacije”. U standardnom engleskom, ovo se naziva “indukcija”. U
+    Sjedinjenim Američkim Državama, do 25% radnika su novi članovi
+    organizacije uključeni u proces integrisanja.</p>
+  <p>Taktike korišćene u ovom procesu uključuju formalne sastanke,
+    predavanja, video materijale, štampane materijale ili orijentacije
+    zasnovane na računaru koje opisuju radne operacije i kulturu
+    organizacije u koju zaposleni ulazi. Ovaj proces je poznat u drugim
+    delovima sveta kao ‘indukcija’ ili obuka. U slučaju Execom-a, postojale
+    su unapred spremljene prezentacije koje su nam održane u sali za
+    sastanke, a za ostalo su se pobrinuli mentori, dok su HR bili dostupni
+    za sva pitanja.</p>
+  <p>Studije su dokumentovale da tehnike socijalizacije poput integrisanja
+    dovode do pozitivnih ishoda za nove zaposlene. To uključuje veće
+    zadovoljstvo poslom, bolje radne performanse, veću posvećenost
+    organizaciji i smanjenje profesionalnog stresa i namere za napuštanjem
+    posla.<a class="footnote-ref" href="#fn13" id="fnref13" role="doc-noteref"><sup>13</sup></a><a class="footnote-ref"
+      href="#fn14" id="fnref14" role="doc-noteref"><sup>14</sup></a> ### II-2.2. Struktura
+    ljudi U odnosu na mojih prvih mesec dana u Execomu, gde sam prve sedmice
+    imao jednog mentora (koji je kasnije uključio još jednog mentora za
+    svakodnevnu komunikaciju i razjašnjavanje/rešavanje problema), u drugih
+    mesec dana sam imao sreću raditi sa čak dvojicom mentora i vođom tima
+    (koji je rukovodio projektom, vodio mentore i pomagao kad se oni
+    susretnu sa poteškoćama).</p>
+  <p>Budući da se drugi projekat sastojao iz više delova, te da je bio
+    veoma obiman za mesec dana rada, veći broj mentora je bio od presudnog
+    značaja za uspešno obavljanje svih zamišljenih radnih zaduženja na
+    projektu.</p>
+  <p>Budući da je svaki deo predstavljao gotovo skroz nezavistan komad
+    softvera, ukoliko bi došlo do prepreke na jednom, mogao sam to
+    iskomunicirati sa mentorima i jednostavno preći na drugi dok oni to
+    rešavaju. Ovim sistemom smo svi bili veoma zadovoljni i nismo imali
+    “praznog hoda”. ### II-2.3. Sastanci - tehnički deo U kompaniji Execom
+    korišćena je <strong>Agile</strong> metodologija, konkretnije
+    <strong>Scrum</strong>. Ključan koncept su tzv <em>sprintovi</em>,
+    odnosno period od 1-3 sedmice za koji se odredio spisak taskova koji
+    moraju da se obave, kao i ko će šta da radi. Nakon što je sprint
+    završen, radi se retrospektiva i proverava sa klijentom da li je
+    zadovoljan. Ključ je u ciklusima rada i povratne informacije koji se
+    brzu smenjuju. Time se sprečava situacija u kojoj tim dugo vremena radi
+    na nečemu što zapravo korisniku ne treba.
+  </p>
+  <p>To podrazumeva specifičnu dinamiku sastanaka, koji uključuju sve
+    članove tima, uključujući product managera, scrum mastera i klijenta<a class="footnote-ref" href="#fn15"
+      id="fnref15" role="doc-noteref"><sup>15</sup></a>:</p>
+  <ol type="1">
+    <li><strong><em>daily (meeting)</em></strong> (takođe <em>stand
+        meeting</em>)
+      <ul>
+        <li>kratke sastanke svako (radno) jutro</li>
+        <li>svaki član tima objasni šta je radio juče, šta će danas</li>
+        <li>feedback na to od strane šefa</li>
+      </ul>
+    </li>
+    <li><strong><em>weekly (meeting)</em></strong>
+      <ul>
+        <li>uglavnom krajem sedmice</li>
+        <li>nešto duže sumacije do sada postignutog na nedeljnom nivou</li>
+        <li>nekad i tehničku demonstraciju (često neuglancanu) radi jasnije
+          komunikacije šta je postignuto i da li odgovara potrebama klijenta</li>
+      </ul>
+    </li>
+  </ol>
+  <p>U slučaju moje prakse, klijenta nije bilo, mada bi se klijentom mogli
+    smatrati svi mi članovi tima.</p>
+  <h3 id="ii-2.4.-sastanci---netehnički-deo">II-2.4. Sastanci - netehnički
+    deo</h3>
+  <p>Pored toga, za praktikante je postojala još jedna forma nedeljnih
+    sastanaka sa jednim ili više HR (<em>human resources</em>) menadžera,
+    sredinom radne sedmice, sa kojima se pratio i “ne-tehnički” deo prakse -
+    utisci i zadovoljstvo praktikanta, uklapanje sa drugim članovima tima.
+    Iako se on činio neformalnim, HR menadžerke su beležile teze o čemu se
+    govorilo i povezivale su to sa utiscima mentora.</p>
+  <h3 id="ii-2.5.-finalna-prezentacija">II-2.5. Finalna prezentacija</h3>
+  <p>Kada je tehnička izvedba projekta počela da se privodi kraju, bio sam
+    obavešten da ću dobiti priliku da održim finalnu prezentaciju projekta.
+    Za razliku od prvog meseca u Execom-u gde je finalni sastanak i
+    sumiranje utisaka bilo isključivo iza zatvorenih vrata, sada sam imao
+    priliku uzeti aktivno učešće i time pozitivno uticati na konačnu
+    odluku/ponudu za daljnju saradnju (stipendiju ili zaposlenje).</p>
+  <p>Rečeno mi je da će na njoj prisustvovati HR tim Execoma, moja dva
+    mentora, vođa projekta, kao i Chief Technical Officer (CTO) firme, a da
+    bi bilo idealno da prezentaciju održim na engleskom uz fizičku
+    demonstraciju kako uređaj funkcioniše.</p>
+  <p>Biće više reči o njihovoj oceni mog rada, krajnjim ishodima prakse i
+    samog projekta u <a href="#4-zaključak">glavi IV - Zaključak</a>.</p>
+  <h2 id="ii-3.-ključni-korišćeni-alati">II-3. Ključni korišćeni
+    alati</h2>
+  <p>Pre početka ove prakse imao sam ograničenu svest o alatima koje ću na
+    kraju koristiti za implementaciju projekta, u čemu leži jedna velika
+    vrednost ove prakse. U najvećoj meri su mi prezentovani prilikom
+    onboarding procesa, uz kasnije temeljnije upoznavanje sa njima.</p>
+  <p>Ono što bih posebno istakao kao pozitivno iznenađenje jeste
+    otvorenost mentora i rukovodioca projekta da se neke odluke oko alata
+    ili projektovanja implementacije izmene, u skladu sa mojim
+    interesovanjima ili ranijim znanjima - sve je bilo otvoreno za diskusiju
+    i nije bilo glupih pitanja.</p>
+  <h3 id="ii-3.1.-arduino-ekosistem">II-3.1. Arduino ekosistem</h3>
+  <table>
+    <tr>
+      <td style="border: none; padding: 0;">
+        <strong>Arduino</strong> je italijanska <em>Open Source</em> kompanija i
+        zajednica korisnika koja dizajnira i proizvodi mikrokontrolere i setove
+        za izradu mikrokontrolera za izgradnju digitalnih uređaja.<a class="footnote-ref" href="#fn16" id="fnref16"
+          role="doc-noteref"><sup>16</sup></a> Arduino ploče su komercijalno
+        dostupne na zvaničnoj web stranici ili preko ovlašćenih distributera.
+        Pored toga, postoje i njihovi klonovi (gotovo identičnog dizajna i
+        strukture) velikog broja altenartivnih proizvođača (uglavnom iz Kine) i
+        jednog bogatog i širokog ekosistema, kako harverski tako i softverski.
+      </td>
+      <td "="" style=" border: none; padding: 0;width:45%">
+        <figure style="text-align:center;">
+          <img alt="Logo kompanije Arduino" src="../images/image-2.png" style="width: 65%;" />
+          <figcaption>
+            Slika 3: Logo kompanije Arduino
+          </figcaption>
+        </figure>
+      </td>
+    </tr>
+  </table>
+  <p>Razlog zašto je to moguće jeste u tome što su njihovi hardverski
+    proizvodi su licencirani pod <strong>CC BY-SA licencom</strong>, dok je
+    softver licenciran pod <strong>GNU Lesser General Public License
+      (LGPL)</strong> ili <strong>GNU General Public License (GPL)</strong>,
+    što omogućava bilo kome proizvodnju Arduino ploča i distribuciju
+    softvera.</p>
+  <p>Dizajni Arduino ploča koriste različite mikroprocesore i kontrolere.
+    Ploče su opremljene setovima digitalnih i analognih ulazno/izlaznih
+    (I/O) pinova koji mogu biti povezani sa raznim ekspanzionim pločama
+    (<strong><em>shieldovi</em></strong>) ili pločama za prototipiranje
+    (<strong><em>breadboards</em></strong>) i drugim električnim kolima.</p>
+  <p>Ploče imaju serijske komunikacione interfejse, tj na većini modela
+    USB, koji se takođe koriste za učitavanje programa (firmwarea).
+    Mikrokontroleri mogu biti programirani koristeći programerske jezike C i
+    C++ (Embedded C), koristeći standardni API koji je poznat kao
+    <strong>Arduino programski jezik</strong>, inspirisan jezikom Processing
+    i koristi se sa modifikovanom verzijom Processing IDE-a. Pored
+    korišćenja tradicionalnih alatki za kompilaciju, Arduino projekat pruža
+    integrisano razvojno okruženje (<strong><em>IDE</em></strong>) i
+    komandnu liniju razvijenu u Go-u.
+  </p>
+  <p>Arduino projekat je započet 2005. godine kao alat za studente na
+    Institutu za interakcijski dizajn Ivrea, Italija, sa ciljem da pruži
+    jeftin i jednostavan način za početnike i profesionalce da stvaraju
+    uređaje koji interaguju sa svojom okolinom koristeći senzore i
+    aktuatore. Uobičajeni primeri takvih uređaja namenjeni su početnicima i
+    hobistima, uključujući jednostavne robote, termostate i detektore
+    pokreta.</p>
+  <p>Zbog toga su njihovi proizvodi izabrani za firmware (odnosno
+    hardverski “najniži” sloj projekta, najbliži metalu), jer olakšavaju
+    značajne glavobolje sa kojima se početnici susreću pri ulasku u IoT ili
+    robotiku.</p>
+  <h3 id="ii-3.2.-qt-framework">II-3.2. Qt Framework</h3>
+  <table>
+    <tr>
+      <td style="border: none; padding: 0;width:55%">
+        <strong>Qt</strong> (eng. izgovor kao “cute” ili “Q-T”; takođe srp.
+        “ku-te”) predstavlja više-platformski (<em>cross-platform</em>) softver
+        otvorenog tipa (<em>open source</em>) koji se koristi za razvoj
+        grafičkog korisničkog interfejsa (<em>GUI</em>). Njegova glavna prednost
+        je visok nivo performansi i ogromna širina platformi koje pokriva uz
+        minimalne izmene u samomg programu - od svih mobilnih operativnih
+        sistema, pa do desktop i čak <em>embedded</em> sistema.
+      </td>
+      <td style="border: none; padding: 0; width:45%">
+        <figure style="text-align:center;">
+          <img alt="Logo Qt" src="..//images/image-8.png" style="width: 65%;" />
+          <figcaption>
+            Slika 4: Logo Qt
+          </figcaption>
+        </figure>
+      </td>
+    </tr>
+  </table>
+  <p>Poreklo mu seže iz ranih 90-tih, nakon čega ga kratko razvija Nokija,
+    a kasnije Qt postaje open-source fondacija “Qt Project” i preduzeće “The
+    Qt Company”. Iako su neke forme Qt i dalje dostupne open source, postoje
+    i komercijalne licence.</p>
+  <p>Qt je dosta širok framework, što znači da ima svoje “omotače”
+    (<em>wrappers</em>) za rešavanje ne samo grafičkog interfejsa, već i za
+    rad sa bazama podataka, procesorskim nitima, parsiranjem XML i JSON
+    datoteka, sopstvenom varijacijom HTML-a i CSS-a QML i QSS.</p>
+  <p>Iz svih ovih razloga, procenjuje se da je broj developera koji
+    koriste Qt prešao brojku od 1 miliona u 2017 godini - i zaslužan je za
+    ogroman broj open-source programa danas. Moguće ga je koristiti i putem
+    programskog jezika Python (PyQt6 ili PySide2)</p>
+  <p>Na praksi sam koristio Qt5 za C++.</p>
+  <h1 id="iii-sadržaj-projekta">III Sadržaj projekta</h1>
+  <p>Kao što je već pomenuto, projekat je bio obiman i sadržao više
+    delova, koje ćemo pojedinačno razmotriti, kao i njihove interakcije. ##
+    III-1. Šira slika projekta Ono što je predstavljalo problem pri
+    komuniciranju ovog projekta drugim ljudima (npr HR menadžerima) jeste to
+    da iza njega nije stajala priča, problem koji rešava, razlog zašto on
+    postoji (pored, očigledno obrazovnog). Nije bilo lakog i kratkog načina
+    da ga svedem ili sumiram, odnosno nije bilo šire slike.</p>
+  <p>Svaki opis njega je nužno prelazio u opisivanje tehničkih
+    pojedinosti. Da bih taj problem prevazišao, za finalnu prezentaciju
+    rezultata sam naveo par potencijalnih primera kako se on može koristiti.
+    ### III-1.1. Davanje konteksta - potencijalna primena (<em>use
+      case</em>) 1 <em>Spoljno</em> praćenje vremenskih prilika, prognoza
+    Postoji više hipotetičkih razloga zašto bi se neko nalazio u situaciji
+    da se ne može osloniti na meteorološke stanice u blizini: 1. Nalazi se
+    na izolovanom, slabo naseljenom području, tako da je najbliža
+    meteorološka stanica prilično udaljena 2. Nalazi se na području koje ima
+    posebnu mikroklimu, na primer kotlina, vrh brda i sl; tj u džepu
+    drugačijem od okolnih vremenskih prilika 3. Želja da se lično uveri u
+    podatke (lična znatiželja ili nepoverenje spram zvaničnih izvora)</p>
+  <figure style="text-align:center;">
+    <img alt="Primer značajnih meteoroloških razlika na geografski malom području" src="../images/image-9.png"
+      style="width: 65%;" />
+    <figcaption>
+      Slika 5: Primer značajnih meteoroloških razlika na geografski malom
+      području
+    </figcaption>
+  </figure>
+  <p>Postojeći sistem bi se lako mogao primeniti u ove svrhe. Sledeći
+    logični korak bilo bi razviti sistem predviđanja vremenskih prilika tj
+    prognoza na osnovu zabeleženih rezultata, najverovatnije na cloud
+    platformi (mada bi potencijalno moglo i na Raspberry Pi).</p>
+  <p>Ova primena bi bila relativno jednostavna, jer nije nužno potrebno
+    imati više od po jednog aktera u sistemu.</p>
+  <h3 id="iii-1.2.-davanje-konteksta---potencijalna-primena-use-case-2">III-1.2.
+    Davanje konteksta - potencijalna primena (<em>use case</em>) 2</h3>
+  <p><em>Unutrašnje</em> praćenje i regulacija osetljivih procesa Ukoliko
+    se neko bavi skladištenjem osetljivih materija ili praćenjem osetljivih
+    procesa: 1. Skladištenje hrane, nestabilnih hemikalija itd 2.
+    Fermentacija, <em>dry aging</em>, dimljenje ili usoljavanje mesa,
+    kuvanje i bilo koji drugi proces gde je bezbednost hrane važna, a u
+    riziku 3. Uzgajanje useva (pogotovo u plasteniku) koji su osetljivi ili
+    izvan svoje sezone 4. Naučni eksperimenti, posebno koji se tiču
+    hidrostatike, gasova itd.</p>
+  <figure style="text-align:center;">
+    <img alt="Mesara srednje veličine; vizualizacija razmere materijalne štete u slučaju nepovoljnih uslova"
+      src="../images/image-10.png" style="width: 65%;" />
+    <figcaption>
+      Slika 6: Mesara srednje veličine; vizualizacija razmere materijalne
+      štete u slučaju nepovoljnih uslova
+    </figcaption>
+  </figure>
+  <p>Postojeći sistem bi se relativno lako mogao primeniti u ove svrhe.
+    Ono što bi bilo neophodno je dodati i neke aktuatore ili elektromotore,
+    koji na promene sa senzora mogu da reaguju i tako regulišu sve parametre
+    unutar određenih raspona. Naravno, ovakav sistem bi bio manje efektan od
+    komercijalnih proizvoda, ali je značajno jeftiniji i dovoljno dobar za
+    mikropreduzeća, amatere i hobiste.</p>
+  <figure style="text-align:center;">
+    <img alt="Digitalno praćenje i održavanje plastenika; pametna bašta" src="../images/image-11.png"
+      style="width: 65%;" />
+    <figcaption>
+      Slika 7: Digitalno praćenje i održavanje plastenika; pametna bašta
+    </figcaption>
+  </figure>
+  <p>Ovakve primene su nešto kompleksnije, ne samo jer zahtevaju
+    ozbiljnije teorijsko znanje za oblast primene, već zato što bi
+    najverovatnije zahtevalo više Arduino ploča (na primer po jednu u svakom
+    silosu žita; ili po jednu na svakih 15 metara u velikoj sušari mesa) i
+    više Raspberry Pi računara (svaki kao lokalni sakupljač podataka, unutar
+    Bluetooth dometa od senzora). Komunikacija među uređajima je uvek
+    predmet problematike i tačka spoticanja, tako da što je veći broj
+    uređaja istovremeno - tu su problemi sa koordinisanjem tih zahteva,
+    interferencija i verovatno potreba za većim dometom.</p>
+  <p>Takva primena bi u potpunosti kvalitetno iskoristila potencijale
+    ovakve arhitekture projekta (u suprotnom bi se dosta toga moglo staviti
+    u jedan uređaj).</p>
+  <h2 id="iii-2.-struktura-projekta">III-2. Struktura projekta</h2>
+  <h3 id="iii-2.1.-hardware">III-2.1. Hardware</h3>
+  <p>Projekat je uključivao tri zasebne hardverske komponente, svaku sa
+    pratećim softverom koji je bilo potrebno isprogramirati. Tu je bila i
+    četvrta komponenta, odnosno <em>cloud platforma</em> kompanije
+    WolkAbout.</p>
+  <p>Sagledaćemo redom svaku od ovih komponenti, prvo iz harverske
+    perspektive a zatim iz softverske.</p>
+  <figure style="text-align:center;">
+    <img
+      alt="Šema strukture projekta: tri hardverske komponente označene sivom bojom, uz njihove uzajamne veze prikazane na slici"
+      src="../images/image.png" style="width: 65%;" />
+    <figcaption>
+      Slika 8: Šema strukture projekta: tri hardverske komponente označene
+      sivom bojom, uz njihove uzajamne veze prikazane na slici
+    </figcaption>
+  </figure>
+  <h3 id="iii-2.2.-sofware">III-2.2. Sofware</h3>
+  <p>Sva tri zasebna softvera uzajamno komuniciraju, tako da iako su
+    zasebne jedinice, sačinjavaju jednu veću labavu celinu. Kao što je
+    nagovešteno u <a href="#311-primer-primene-davanje-konteksta-use-case">1.1. (<em>use
+        case</em>)</a>, moguće je imati više od jednog uređaja, za sva tri
+    aspekta (iako smo u našem prototipu imali po tačno jedan iz svake
+    kategorije).</p>
+  <p>Više Arduino uređaja može da se poveže na jedan Raspberry Pi (ali ne
+    i obrnuto), više Raspberry Pi može da se poveže na jedinu cloud
+    platformu (ali ne i obrnuto) i konačno više korisnika može da se poveže
+    na jedinu cloud platformu (ali ne i obrnuto).</p>
+  <p>Razvoj se obavljao na desktop računaru u Arduino IDE, nakon čega bi
+    se firmware serijskom vezom (kablom, punjačem od telefona) prebacivao na
+    Arduino ploču.</p>
+  <h3 id="iii-2.3.-github-repozitorijum">III-2.3. GitHub
+    repozitorijum</h3>
+  <p>Kao što je već pomenuto, kompletan napisan kod se nalazi na mom
+    ličnom GitHub profilu: https://github.com/lcubrilo/IoT-Ambience</p>
+  <figure style="text-align:center;">
+    <img alt="Screenshot sadržaja repozitorijuma" src="..//images/repo_screenshot.png" style="width: 65%;" />
+    <figcaption>
+      Slika 9: Screenshot sadržaja repozitorijuma
+    </figcaption>
+  </figure>
+  <p>Uprkos tome, VCS (<em>Version Control Software</em>) koji smo mi
+    koristili prilikom obavljanja prakse bio je <strong>GitLab</strong>;
+    odnosno njegova internalna kompanijska verzija. Svaka od tri softverske
+    komponente bila je u zasebnom repozitorijumu (koje sam povezao u ovaj
+    krovni repozitorijum, u kojim sam uključio i finalnu prezentaciju).</p>
+  <p>Takođe smo organizovali raspodelu taskova, njihov status u stilu
+    Kanban ploča, <em>pull request</em>ove i feedback na njih putem GitLaba
+    u potpunosti simulirajući realne uslove rada i realne alate. U ovome sam
+    posebno uživao, prepoznao važnost i nastavio na sličan način
+    organizovati čak i samostalan programerski rad.</p>
+  <h2 id="iii-3.-arduino---prvi-korak-detekcija">III-3. Arduino - prvi
+    korak, detekcija</h2>
+  <h3 id="iii-3.1.-hardware---arduino-uno">III-3.1. Hardware - Arduino
+    Uno</h3>
+  <p><strong>Arduino Uno</strong> je Open Source mikrokontrolerska ploča
+    bazirana na Microchip ATmega328P, prvi put predstavljena 2010. godine.
+    Ploča ima 14 digitalnih i 6 analognih I/O pinova i može se napajati
+    putem USB kabla ili eksternog izvora napona između 7 i 20V.</p>
+  <figure style="text-align:center;">
+    <img alt="Fotografija Arduino Uno razvojne ploče" src="../images/image-1.png" style="width: 65%;" />
+    <figcaption>
+      Slika 10: Fotografija Arduino Uno razvojne ploče
+    </figcaption>
+  </figure>
+  <p>Uno koristi isti mikrokontroler kao Arduino Nano, a ima iste
+    konektore kao Arduino Leonardo. Programira se pomoću Arduino IDE preko
+    USB tipa A kabla. Raspored i proizvodni fajlovi su dostupni pod Creative
+    Commons licencom.</p>
+  <p>Reč “Uno” je izabrana da označi značajnu preradu u Arduino seriji i
+    ova ploča je naslednik izdanja Duemilanove. Za komunikaciju koristi
+    STK500 protokol, ali se razlikuje od prethodnih modela jer ne koristi
+    FTDI USB-na-UART čip, već Atmega16U2 kao USB-na-serijski konverter.</p>
+  <h3 id="iii-3.2.-hardware---shields-i-clicks">III-3.2. Hardware -
+    Shields i clicks</h3>
+  <p>Koristili smo jedan od mnogobrojnih dostupnih <em>shieldova</em> da
+    bismo olakšali konekcije sa drugim uređajima (izbegaavamo lemljenje žica
+    ili mukotrpno gledanje tzv <em>pinout</em> šema konekcija/pinova).</p>
+  <figure style="text-align:center;">
+    <img alt="Fotografija *Click shield* u primeni sa jednim click slotom popunjenim, a drugim praznim"
+      src="../images/image-4.png" style="width: 65%;" />
+    <figcaption>
+      Slika 11: Fotografija <em>Click shield</em> u primeni sa jednim click
+      slotom popunjenim, a drugim praznim
+    </figcaption>
+  </figure>
+  <p>Izabrali smo <strong>Click shield</strong>, čija je glavna svha da
+    omogućuje <em>click</em>-ove, odnosno male pločice sa individualnim
+    senzorima koje imaju standardno oblikovan i dimenzioniran raspored
+    pinova, koji (slično shieldu) jednostavno ulaze u uređaj bez upotrebe
+    žica.</p>
+  <p>Koristili smo 2 “klika” domaćeg preduzeća MikroEletronika:<br>
+    1. Detektor temperature, vlage i pritiska vazduha. Takođe je bio
+    prisutan i senzor zapaljivih organskih jedinjenja koji nismo koristili.
+    (<strong><em>Environment click</em></strong>) 2. <strong>Bluetooth 4.0
+      (Low Energy)</strong> odašiljač informacija.</br></p>
+  <table>
+    <tr>
+      <td style="border: none; padding: 0;">
+        <figure style="text-align:center;">
+          <img alt="Fotografija environment click" src="../images/image-5.png" style="width: 65%;" />
+          <figcaption>
+            Slika 12: Fotografija environment click
+          </figcaption>
+        </figure>
+      </td>
+      <td style="border: none; padding: 0;">
+        <figure style="text-align:center;">
+          <img alt="Fotografija BLE click" src="../images/image-6.png" style="width: 65%;" />
+          <figcaption>
+            Slika 13: Fotografija BLE click
+          </figcaption>
+        </figure>
+      </td>
+    </tr>
+  </table>
+  <h3 id="iii-3.3.-software---arduino-firmware">III-3.3. Software -
+    Arduino firmware</h3>
+  <p>Jednostavno povezivanje bilo kojeg eksternog uređaja, kao što su ovi
+    klikovi, kako hardverski a tako i softverski je ključna odlika Arduino
+    ekosistema. Da bismo iz firmwarea Arduino razvojne ploče slali komande u
+    komponente, potrebno je jednostavno instalirati softverske
+    pakete/ekstenzije namenjene za rad sa tim eksternim uređajem. Razlog
+    zašto toliki dijapazon eksternih uređaja ima svoje paekte, leži u tome
+    da je ceo ekosistem Open Source, te da mu bilo ko može doprinositi.</p>
+  <p>Za senzore vazduha koristio sam C biblioteke razvijene od kompanije
+    Adafruit, koja je dosta zastupljena i prepoznata u ovoj branši, i
+    to:</p>
+  <ol type="1">
+    <li><strong>Adafruit_BME680.h</strong> - specijalizovan za Bosch-ov
+      detektor BME680 korišćen na ovom <em>environment click</em>-u.<br>
+      </br></li>
+    <li><strong>Adafruit_Sensor.h</strong> - osnovna biblioteka za sve vrste
+      senzora, na koju se specijalizovane biblioteke oslanjaju.</li>
+  </ol>
+  <p>Pored toga korišćene su još dve biblioteke za ove senzore (bme680.h,
+    bme680_defs.h) u razvojnom procesu, ali u krajnjoj verziji nisu imale
+    značajan uticaj.</p>
+  <p>Za Bluetooth komunikaciju niske energije (BLE - Bluetooth Low Energy)
+    korišćena je biblioteka <strong>BLEPeripheral.h</strong></p>
+  <p>Ovako se te biblioteke pozivaju u kodu:</p>
+  <div class="sourceCode" id="cb1">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;BLEPeripheral.h&gt;</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_Sensor.h&gt;</span></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_BME680.h&gt;</span></span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bme680.h&gt;</span></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bme680_defs.h&gt;</span></span></code></pre>
+  </div>
+  <p>Tu se nalaze i definicije konstanti neophodnih za daljnje izvršavanje
+    programa (broj karakteristika koje merimo senzorima (temperatura,
+    pritisak, vlažnost), ID pinova itd)</p>
+  <div class="sourceCode" id="cb2">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="pp">#define NO_OF_CHARS </span><span class="dv">3</span><span class="pp"> </span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="pp">#define PIN_REQ </span><span class="dv">46</span></span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a><span class="pp">#define PIN_RDY </span><span class="dv">2</span></span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a><span class="pp">#define PIN_RST  </span><span class="dv">48</span></span></code></pre>
+  </div>
+  <h3 id="iii-3.4.-arduino---detaljna-analiza-koda">III-3.4. Arduino -
+    Detaljna Analiza Koda</h3>
+  <h4 id="i--šira-slika-i-šema">I- Šira slika i šema</h4>
+  <p>Pre dubljeg ulaženja u kod, sagledajmo ovu šemu radi šire slike.</p>
+  <p>Na y osi se nalazi protok vremena, tj kako bi se inače i čitala šema
+    jednog algoritma.</p>
+  <p>Na x osi se nalazi tok podataka, odnosno kako prelaze iz senzora, u
+    softver i nadalje na Bluetooth odašiljač.</p>
+  <figure style="text-align:center;">
+    <img alt="Šematski prikaz algoritma Arduina" src="../image-1.png" style="width: 65%;" />
+    <figcaption>
+      Slika 14: Šematski prikaz algoritma Arduina
+    </figcaption>
+  </figure>
+  <p>Zelenom bojom sam označio sve što se tiče senzora, a plavom sve što
+    se tiče Bluetooth konekcije. Crvenom su označene pauze (kratke od 500ms
+    u toku ciklusa između svakog merenja i duge od 5000ms između celih
+    ciklusa)</p>
+  <p>Pored toga, možemo jasno uočiti da gornji deo pripada početnom
+    konfigurisanju stvari (<code>setup</code>) a donji deo pripada glavnoj
+    petlji (<code>loop</code>) - što ujedno predstavlja osnovnu gradivnu
+    jedincu svakog Arduino programa.</p>
+  <p>To nas prirodno vodi na analizu koda.</p>
+  <h4 id="ii--prelazak-u-code">II- Prelazak u code</h4>
+  <p>U setupu pozivamo funkcije koje nam inicijalizuju i osposobljavaju
+    ključne komponente - senzore i Bluetooth konekciju.</p>
+  <div class="sourceCode" id="cb3">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Started the firmware."</span><span class="op">);</span></span>
+<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a>  bluetoothLESetup<span class="op">();</span></span>
+<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a>  atmosphereSensor<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb3-6"><a aria-hidden="true" href="#cb3-6" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p><code>loop()</code> predstavlja petlju koja se neprekidno izvršava.
+    Možda na prvi pogled izgleda neobično. Međutim njena jezgrovitost
+    zavarava.</p>
+  <div class="sourceCode" id="cb4">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="dt">bool</span> ok<span class="op">;</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>poll<span class="op">();</span></span>
+<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a>  <span class="cf">if</span><span class="op">(</span>BLEconnected<span class="op">){</span></span>
+<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a>    <span class="cf">do</span></span>
+<span id="cb4-6"><a aria-hidden="true" href="#cb4-6" tabindex="-1"></a>      ok <span class="op">=</span> sensor2cloud<span class="op">();</span></span>
+<span id="cb4-7"><a aria-hidden="true" href="#cb4-7" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>ok<span class="op">);</span></span>
+<span id="cb4-8"><a aria-hidden="true" href="#cb4-8" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb4-9"><a aria-hidden="true" href="#cb4-9" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Najprostije rečeno, u ¸petlji konstantno šaljemo podatke sa senzora
+    na Raspberry Pi koristeći funkciju <code>sensor2cloud()</code>. Ona
+    odmah vraća <code>false</code> ukoliko nije prošlo pet sekundi, koliko
+    smo odredili da bude učestalost učitavanja, ni ne ulazivši u svoje
+    izvršavanje i prekidajući <code>do while</code> petlju.</p>
+  <p>Naravno, pre nego što to uopšte probamo, moramo proveriti da li imamo
+    Bluetooth konekciju putem naše varijable <code>BLEconnected</code>, koja
+    se menja u skladu u poremećajima ili ponovnom uspostavljanju
+    komunikacije putem funkcija koje smo mi definisali, koje reaguju na
+    <em>event</em>-ove koje <em>poll</em>-ujemo odnosno
+    proveravamo/osvežavamo.
+  </p>
+  <p>Pređimo u sledećem delu na hendlovanje eventova.</p>
+  <h4 id="iii--inicijalizacija-i-podešavanje-ble">III-
+    <strong>Inicijalizacija i Podešavanje BLE</strong>
+  </h4>
+  <p>Prvo moramo definisati instancu klase <code>BLEPeripheral</code>.</p>
+  <p>Nad njom se podešavaju osnovni parametri za BLE, uključujući
+    imenovanje uređaja korišćenje pretprocesorskih konstanti za pinove
+    definisanih iznad i hendlovanje događaja povezivanja ili prekida sa
+    mojim funkcijama <code>connectToBLE()</code> i
+    <code>disconnectFromBLE()</code> - o čemu će biti više reči.
+  </p>
+  <div class="sourceCode" id="cb5">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>BLEPeripheral bluetoothLE <span class="op">=</span> BLEPeripheral<span class="op">(</span>PIN_REQ<span class="op">,</span> PIN_RDY<span class="op">,</span> PIN_RST<span class="op">);</span></span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a><span class="dt">void</span> bluetoothLESetup<span class="op">()</span> <span class="op">{</span> </span>
+<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>setLocalName<span class="op">(</span><span class="st">"ARDuino3"</span><span class="op">);</span></span>
+<span id="cb5-5"><a aria-hidden="true" href="#cb5-5" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>setEventHandler<span class="op">(</span>BLEConnected<span class="op">,</span> connectToBLE<span class="op">);</span></span>
+<span id="cb5-6"><a aria-hidden="true" href="#cb5-6" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>setEventHandler<span class="op">(</span>BLEDisconnected<span class="op">,</span> disconnectFromBLE<span class="op">);</span></span>
+<span id="cb5-7"><a aria-hidden="true" href="#cb5-7" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a aria-hidden="true" href="#cb5-8" tabindex="-1"></a>  <span class="co">//...</span></span></code></pre>
+  </div>
+  <p>Funkcija nastavlja dalje podešavanjem atributa (servis sa šifrom,
+    karakteristika i deskriptor); na isti način za svako od tri merenja.
+    Kada je sve spremno, objekat <code>bluetoothLE</code> konačno pokreće i
+    ispisuje obaveštenje na serijsku vezu.</p>
+  <div class="sourceCode" id="cb6">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>  <span class="co">//...</span></span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>setAdvertisedServiceUuid<span class="op">(</span>ts<span class="op">.</span>uuid<span class="op">());</span></span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>addAttribute<span class="op">(</span>ts<span class="op">);</span></span>
+<span id="cb6-4"><a aria-hidden="true" href="#cb6-4" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>addAttribute<span class="op">(</span>tc<span class="op">);</span></span>
+<span id="cb6-5"><a aria-hidden="true" href="#cb6-5" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>addAttribute<span class="op">(</span>td<span class="op">);</span></span>
+<span id="cb6-6"><a aria-hidden="true" href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a aria-hidden="true" href="#cb6-7" tabindex="-1"></a>  <span class="co">//...</span></span>
+<span id="cb6-8"><a aria-hidden="true" href="#cb6-8" tabindex="-1"></a>  <span class="co">// na istovetan način za pritisak i vazduh</span></span>
+<span id="cb6-9"><a aria-hidden="true" href="#cb6-9" tabindex="-1"></a>  <span class="co">//...</span></span>
+<span id="cb6-10"><a aria-hidden="true" href="#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a aria-hidden="true" href="#cb6-11" tabindex="-1"></a>  bluetoothLE<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb6-12"><a aria-hidden="true" href="#cb6-12" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Finished setting up the BLE."</span><span class="op">);</span></span>
+<span id="cb6-13"><a aria-hidden="true" href="#cb6-13" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Hajde da objasnimo šta su <code>ts</code>, <code>tc</code> i
+    <code>td</code> iz odlomka iznad.
+  </p>
+  <p>U ovom segmentu, BLE servis se inicijalizuje i konfiguriše za
+    prenošenje podataka o temperaturi na adresi <code>CCC0</code>, zajedno
+    sa karakteristikama i deskriptorom toga za šta je namenjen.</p>
+  <div class="sourceCode" id="cb7">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>BLEService ts <span class="op">=</span> BLEService<span class="op">(</span><span class="st">"CCC0"</span><span class="op">);</span></span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>BLEIntCharacteristic tc <span class="op">=</span> BLEIntCharacteristic<span class="op">(</span><span class="st">"CCC1"</span><span class="op">,</span> BLERead <span class="op">|</span> BLENotify<span class="op">);</span></span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a>BLEDescriptor td <span class="op">=</span> BLEDescriptor<span class="op">(</span><span class="st">"2901"</span><span class="op">,</span> <span class="st">"Temperature; Degrees Celsius"</span><span class="op">);</span></span></code></pre>
+  </div>
+  <p>Na istovetan način se inicijalizacija i konfiguracija obavlja i za
+    pritisak i za vlažnost vazduha, samo na drugim adresama i sa drugačijim
+    deskriptorima.</p>
+  <p>A ovde su i definicije funkcija koje hendluju konekcije:</p>
+  <div class="sourceCode" id="cb8">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="co">//BLE connectivity checks and callbacks</span></span>
+<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a><span class="dt">bool</span> BLEconnected <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-3"><a aria-hidden="true" href="#cb8-3" tabindex="-1"></a><span class="dt">void</span> connectToBLE<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-4"><a aria-hidden="true" href="#cb8-4" tabindex="-1"></a>  BLEconnected <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb8-5"><a aria-hidden="true" href="#cb8-5" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">Connected."</span><span class="op">);</span></span>
+<span id="cb8-6"><a aria-hidden="true" href="#cb8-6" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-7"><a aria-hidden="true" href="#cb8-7" tabindex="-1"></a><span class="dt">void</span> disconnectFromBLE<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-8"><a aria-hidden="true" href="#cb8-8" tabindex="-1"></a>  BLEconnected <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb8-9"><a aria-hidden="true" href="#cb8-9" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Disconnected."</span><span class="op">);</span></span>
+<span id="cb8-10"><a aria-hidden="true" href="#cb8-10" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Sada shvatamo zašto se u <code>loop</code> koristila promenljiva
+    <code>BLEconnected</code>, šta je njome upravljalo i koju je vezu imalo
+    sa metodom <code>bluetoothLE.poll()</code>.
+  </p>
+  <h4 id="iv--čitanje-i-slanje-senzorskih-podataka">IV- <strong>Čitanje i
+      Slanje Senzorskih Podataka</strong></h4>
+  <p>Pogledajmo glavnu funkciju koja se bavi učitavanjem podataka
+    <code>sensor2cloud()</code>, koju smo videli u <code>loop()</code>.
+  </p>
+  <p>Krenućemo od samog kraja ove funkcije, gde objašnjavamo kako
+    cikliramo kroz sve moguće karakteristike koje imamo (u našem slučaju -
+    temperatura, pritisak, vlažnost). Kada to shvatimo, ostatak će imati
+    smisla.</p>
+  <p>Svaki put kada se ova funkcija obavi, iterator se pomera za jedan, a
+    ako je dosegao maksimum vraća se na početak, kao i tajmer koji se
+    resetuje.</p>
+  <div class="sourceCode" id="cb9">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>  <span class="co">//If we've went through all of them, it's time to start over</span></span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a>  <span class="cf">if</span><span class="op">(</span>characteristicsIterator <span class="op">==</span> NO_OF_CHARS<span class="op">){</span></span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a>    previousMillis <span class="op">=</span> currentMillis<span class="op">;</span></span>
+<span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a>    characteristicsIterator <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-5"><a aria-hidden="true" href="#cb9-5" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"---------"</span><span class="op">);</span></span>
+<span id="cb9-6"><a aria-hidden="true" href="#cb9-6" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb9-7"><a aria-hidden="true" href="#cb9-7" tabindex="-1"></a>  </span>
+<span id="cb9-8"><a aria-hidden="true" href="#cb9-8" tabindex="-1"></a>  characteristicsIterator<span class="op">++;</span></span>
+<span id="cb9-9"><a aria-hidden="true" href="#cb9-9" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb9-10"><a aria-hidden="true" href="#cb9-10" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Sa tim u vidu, sada možemo krenuti od početka funkcije - figurativno
+    govoreći “gledamo na štopericu” (tj. <code>milis()</code>) i gledamo
+    koliko je prošlo otkako smo ušli u ovaj ciklus (vreme ubeleženo u
+    <code>previousMillis</code>).
+  </p>
+  <p>Određeno je da pauza treba biti 5000ms, nakon čega ide učitavanje
+    jedne karakteristike, pauza od 500ms, pa sledeća i tako redom do
+    kraja.</p>
+  <div class="sourceCode" id="cb10">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="dt">bool</span> sensor2cloud<span class="op">()</span></span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a aria-hidden="true" href="#cb10-3" tabindex="-1"></a>  <span class="dt">int</span> currentMillis <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb10-4"><a aria-hidden="true" href="#cb10-4" tabindex="-1"></a>  <span class="co">//Burst of all options within 5 seconds, with 0.5 second pauses between options</span></span>
+<span id="cb10-5"><a aria-hidden="true" href="#cb10-5" tabindex="-1"></a>  <span class="cf">if</span><span class="op">((</span>currentMillis <span class="op">-</span> previousMillis<span class="op">)</span> <span class="op">&lt;</span> <span class="op">(</span><span class="dv">5000</span> <span class="op">+</span> <span class="op">(</span>characteristicsIterator <span class="op">*</span> <span class="dv">500</span><span class="op">)))</span></span>
+<span id="cb10-6"><a aria-hidden="true" href="#cb10-6" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb10-7"><a aria-hidden="true" href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a aria-hidden="true" href="#cb10-8" tabindex="-1"></a>  <span class="co">//If enough time has passed, get to work:</span></span>
+<span id="cb10-9"><a aria-hidden="true" href="#cb10-9" tabindex="-1"></a>  <span class="co">//...</span></span></code></pre>
+  </div>
+  <p>Ukoliko nije prošlo dovoljno vremena, funkcija vraća
+    <code>false</code> i ništa se dalje ne odvija.
+  </p>
+  <p>Međutim, ako je prošlo dovoljno vremena, idemo dalje. Koristeći
+    switch case “dekodiramo” naš indeks koji iterira - gde svako merenje ima
+    svoj indeks. U skladu sa vrednoću ovog iteratora, učitavamo ili
+    temperaturu ili pritisak ili vlažnost.</p>
+  <div class="sourceCode" id="cb11">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>  <span class="co">//...</span></span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a>  </span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a>  <span class="dt">int</span> Value<span class="op">;</span></span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a>  </span>
+<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a>  <span class="co">//getting from the proper sensor</span></span>
+<span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a>  <span class="cf">switch</span><span class="op">(</span>characteristicsIterator<span class="op">){</span> </span>
+<span id="cb11-7"><a aria-hidden="true" href="#cb11-7" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span> Value <span class="op">=</span> <span class="dt">int</span><span class="op">(</span>atmosphereSensor<span class="op">.</span>readTemperature<span class="op">());</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Read temp: "</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb11-8"><a aria-hidden="true" href="#cb11-8" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span> Value <span class="op">=</span> <span class="dt">int</span><span class="op">(</span>atmosphereSensor<span class="op">.</span>readPressure<span class="op">()/</span><span class="dv">100</span><span class="op">);</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Read pres: "</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb11-9"><a aria-hidden="true" href="#cb11-9" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span> Value <span class="op">=</span> <span class="dt">int</span><span class="op">(</span>atmosphereSensor<span class="op">.</span>readHumidity<span class="op">());</span> Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Read humi: "</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb11-10"><a aria-hidden="true" href="#cb11-10" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb11-11"><a aria-hidden="true" href="#cb11-11" tabindex="-1"></a></span>
+<span id="cb11-12"><a aria-hidden="true" href="#cb11-12" tabindex="-1"></a>  <span class="co">//...</span></span></code></pre>
+  </div>
+  <p>Koja god od karakteristika da je učitana u vrednost, ispisujemo je na
+    ekran (da bismo odmah videli šta se dešava bez čekanja).</p>
+  <p>Tek posle toga pokušavamo da je pošaljemo na odgovarajuću Bluetooth
+    karakteristiku (što potencijalno može poći po zlu, greškom u konekciji
+    ali ne i senzoru).</p>
+  <div class="sourceCode" id="cb12">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>  <span class="co">//Printing the decimal value for humans, and the hex (since it is stored in hex)</span></span>
+  <span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span>Value<span class="op">);</span></span>
+  <span id="cb12-3"><a aria-hidden="true" href="#cb12-3" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" hex: "</span><span class="op">);</span></span>
+  <span id="cb12-4"><a aria-hidden="true" href="#cb12-4" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span>Value<span class="op">,</span> HEX<span class="op">);</span></span>
+  <span id="cb12-5"><a aria-hidden="true" href="#cb12-5" tabindex="-1"></a>  </span>
+  <span id="cb12-6"><a aria-hidden="true" href="#cb12-6" tabindex="-1"></a>  <span class="co">//sending to the proper characteristic</span></span>
+  <span id="cb12-7"><a aria-hidden="true" href="#cb12-7" tabindex="-1"></a>  <span class="cf">switch</span><span class="op">(</span>characteristicsIterator<span class="op">){</span></span>
+  <span id="cb12-8"><a aria-hidden="true" href="#cb12-8" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span> tc<span class="op">.</span>setValue<span class="op">(</span>Value<span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+  <span id="cb12-9"><a aria-hidden="true" href="#cb12-9" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span> pc<span class="op">.</span>setValue<span class="op">(</span>Value<span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+  <span id="cb12-10"><a aria-hidden="true" href="#cb12-10" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span> hc<span class="op">.</span>setValue<span class="op">(</span>Value<span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+  <span id="cb12-11"><a aria-hidden="true" href="#cb12-11" tabindex="-1"></a>  <span class="op">}</span>  </span>
+  <span id="cb12-12"><a aria-hidden="true" href="#cb12-12" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>I tako smo došli do kraja ove ključne funkcije, a time i do
+    celokupnog firmware-a za Arduino.</p>
+  <h4 id="v--prostor-za-unapređenja-u-budućnosti">V- Prostor za
+    unapređenja u budućnosti</h4>
+  <p>Razmatrali smo sledeće mogućnosti za unapređenje, ukoliko bi projekat
+    prešao u sledeću fazu:</p>
+  <ol type="1">
+    <li>Omogućiti da i druge vrste klikova sakupljaju podatke</li>
+    <li>Dodati LED lampe koje daju indikator o trenutnom stanju uređaja</li>
+    <li>Dodati LCD koji bi mogao da ispisuje podatke koji su inače vidljivi
+      samo preko serijske veze</li>
+    <li>Da se uređaj bolje <em>advertizuje</em> tj jasnije i vidljivije
+      prikazuje drugim uređajima</li>
+    <li>Dodati fizičke prekidače kojima menjamo merne jedinice</li>
+  </ol>
+  <h2 id="iii-4.-raspberry-pi---posrednik">III-4. Raspberry Pi -
+    posrednik</h2>
+  <h3 id="iii-4.1.-hardware---raspberry-pi">III-4.1. Hardware - Raspberry
+    Pi</h3>
+  <p><strong>Raspberry Pi</strong> je serija malih računara na jednoj
+    ploči (SBCs) razvijenih u Ujedinjenom Kraljevstvu od strane Fondacije
+    Raspberry Pi u saradnji sa Broadcom-om. Originalni cilj Raspberry Pi
+    projekta bio je promocija osnovnog računarskog obrazovanja u školama.
+    Originalni model postao je popularniji nego što je bilo očekivano,
+    prodavajući se izvan svoje ciljne tržišne niše za upotrebe kao što su
+    robotika. Široko se koristi u mnogim oblastima, kao što su nadgledanje
+    vremenskih uslova, zbog svoje niske cene, modularnosti i otvorenog
+    dizajna. Obično ga koriste zaljubljenici u računare i elektroniku, zbog
+    njegovog usvajanja HDMI i USB standarda.</p>
+  <figure style="text-align:center;">
+    <img alt="Fotografija Raspberry Pi 3 Model B, poput onog korišćenog na praksi" src="../images/image-12.png"
+      style="width: 65%;" />
+    <figcaption>
+      Slika 15: Fotografija Raspberry Pi 3 Model B, poput onog korišćenog na
+      praksi
+    </figcaption>
+  </figure>
+  <p>Nakon izdavanja druge vrste ploče, Fondacija Raspberry Pi je osnovala
+    novi entitet, nazvan Raspberry Pi Trading, i postavila Ebena Uptona za
+    izvršnog direktora, sa odgovornošću za razvoj tehnologije. Fondacija je
+    ponovo posvećena kao obrazovna dobrotvorna organizacija za promociju
+    osnovnog računarskog obrazovanja u školama i zemljama. Većina Pis-a se
+    proizvodi u Sonijevoj fabrici u Pencoedu u Velsu, dok se drugi proizvode
+    u Kini i Japanu.</p>
+  <p>2015, Raspberry Pi je postao najprodavaniji britanski računar.</p>
+  <p>Ono što je za njih zanimljivo jeste, pored neograničene primene u
+    projektima entuzijasta i hobista, jeste da u potpunosti mogu poslužiti
+    kao desktop računari, sa sve periferijama (tastatura, miš, monitor). Na
+    njega smo zakačili BLE 4.0 prijemnik koji je primao poruke sa Arduina
+    (očitane vrednosti sa senzora). Putem Ethernet (LAN) kabla se kačio na
+    internet i komunicirao sa cloud platformom WolkAbout.</p>
+  <h3 id="iii-4.2.-software---raspberry-pi-cloud-client">III-4.2. Software
+    - Raspberry Pi Cloud Client</h3>
+  <p>Softver za Raspberry Pi je razvijen u programskom jeziku C++. U
+    početku smo za razvoj koristili SSH vezu, tako da je RPi bio u
+    “headless” režimu. To znači da sam razvoj radio na svom stonom računaru,
+    i onda slao code, slično radu sa Arduinom. Usled mnogobrojnih problema u
+    komunikaciji mog Windows računara i Linux-a na RPi (Raspberry Pi OS)
+    prešli smo na upotrebu RPi kao samostalnog računara, povezanog na TV sa
+    svojim periferijama (miš, tastatura).</p>
+  <p>Program se bavi prikupljanjem podataka sa BLE (Bluetooth Low Energy)
+    konekcije sa Arduinom i njihovim slanjem na WolkAbout IoT platformu. Od
+    biblioteka, korišćene su: 1. Gattlib++ za BLE komunikaciju 2. Wolk.h za
+    komunikaciju sa WolkAbout platformom (bazirano na MQTT protokolu)</p>
+  <h3 id="iii-4.3.-raspberry-pi---detaljna-analiza-koda">III-4.3.
+    Raspberry Pi - Detaljna Analiza Koda</h3>
+  <h4 id="iii-5.1.-šira-slika-i-šema">III-5.1. Šira slika i šema</h4>
+  <p>Slično kao i na prethodnoj šemi, i ovde x i y ose prikazuju
+    vremensko-prostorno kretanje podataka kroz program. Takođe opet imamo
+    inicijalno nameštanje veze sa ulazom i izlazom, i imamo petlju, gde
+    asinhrono čekamo notifikacije sa Arduina.</p>
+  <p>Podatke šaljemo MQTT protokolom na portove koje smo definisali kako u
+    kodu ovde, tako i na WolkAbout platformi.</p>
+  <figure style="text-align:center;">
+    <img alt="Šematski prikaz algoritma Raspberry Pi" src="../image-2.png" style="width: 65%;" />
+    <figcaption>
+      Slika 16: Šematski prikaz algoritma Raspberry Pi
+    </figcaption>
+  </figure>
+  <p>Hajdemo sada da pređemo u precizniju implementaciju.</p>
+  <h4 id="iii-5.2.-uključivanje-biblioteka">III-5.2. Uključivanje
+    Biblioteka</h4>
+  <p>Kod počinje sa uključivanjem potrebnih biblioteka:</p>
+  <div class="sourceCode" id="cb13">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Gattlibpp.h&gt;</span></span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb13-3"><a aria-hidden="true" href="#cb13-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span><span class="pp"> </span><span class="co">// for usleep</span></span>
+<span id="cb13-4"><a aria-hidden="true" href="#cb13-4" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Wolk.h"</span></span></code></pre>
+  </div>
+  <ul>
+    <li><code>Gattlibpp.h</code>: Za BLE (Bluetooth Low Energy)
+      komunikaciju.</li>
+    <li><code>iostream</code>: Za rad sa standardnim I/O streamovima.</li>
+    <li><code>unistd.h</code>: Za funkciju <code>usleep</code> koja
+      omogućava pauze između iteracija.</li>
+    <li><code>Wolk.h</code>: Za komunikaciju sa WolkAbout platformom.</li>
+  </ul>
+  <h4 id="iii-5.3.-definisanje-enumeracija-i-globalnih-promenljivih">III-5.3.
+    Definisanje Enumeracija i Globalnih Promenljivih</h4>
+  <p>Definišemo enumeracije, umesto direktnog rada sa integerima ovde.
+    Takođe definišemo objekat <code>wolk</code> nad kojim radimo sve
+    operacije.</p>
+  <div class="sourceCode" id="cb14">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">enum</span> airCharacteristics <span class="op">{</span>TEMP<span class="op">,</span> HUMI<span class="op">,</span> PRES<span class="op">}</span> AirCharacteristic<span class="op">;</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a><span class="bu">std::</span>unique_ptr<span class="op">&lt;</span>wolkabout<span class="op">::</span>Wolk<span class="op">&gt;</span> wolk<span class="op">;</span></span></code></pre>
+  </div>
+  <ul>
+    <li><code>airCharacteristics</code>: Enum koji definiše tipove
+      karakteristika vazduha (TEMP, HUMI, PRES).</li>
+    <li><code>wolk</code>: Globalna instanca Wolk klase za komunikaciju sa
+      WolkAbout platformom.</li>
+  </ul>
+  <h4 id="iii-5.4.-konfiguracija-ble-bluetooth-low-energy">III-5.4.
+    Konfiguracija BLE (Bluetooth Low Energy)</h4>
+  <p>Drugi uređaj sa kojim naš posrednik komunicira je Arduino, i njegovu
+    apstrakciju imamo pomoću Gattlib biblioteke.</p>
+  <div class="sourceCode" id="cb15">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a>Gattlib<span class="op">::</span>BLECentral<span class="op">*</span> arduino <span class="op">=</span> Gattlib<span class="op">::</span>BLECentral<span class="op">::</span>getInstance<span class="op">();</span>  </span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a><span class="at">const</span> <span class="bu">std::</span>string <span class="op">&amp;</span>BLEDeviceUUID <span class="op">=</span> <span class="st">"F1:5D:35:C4:08:9F"</span><span class="op">;</span></span>
+<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a><span class="bu">std::</span>string serviceUUIDs<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="st">"0xCCC0"</span><span class="op">,</span> <span class="st">"0xDDD0"</span><span class="op">,</span> <span class="st">"0xEEE0"</span><span class="op">};</span></span>
+<span id="cb15-4"><a aria-hidden="true" href="#cb15-4" tabindex="-1"></a><span class="bu">std::</span>string characteristicUUIDs<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span><span class="st">"0xCCC1"</span><span class="op">,</span> <span class="st">"0xDDD1"</span><span class="op">,</span><span class="st">"0xEEE1"</span><span class="op">};</span></span></code></pre>
+  </div>
+  <ul>
+    <li><code>arduino</code>: Instanca BLE centralne jedinice.</li>
+    <li><code>BLEDeviceUUID</code>: Jedinstveni identifikator uređaja na
+      kojem sam radio.</li>
+    <li><code>serviceUUIDs</code> i <code>characteristicUUIDs</code>:
+      UUID-ovi za servise i karakteristike koje smo definisali u Arduino
+      kodu.</li>
+  </ul>
+  <h4 id="iii-5.5.-funkcije-za-obaveštenja">III-5.5. Funkcije za
+    Obaveštenja</h4>
+  <p>Ove funkcije obrađuju dolazne podatke sa BLE uređaja.</p>
+  <p><code>notificationCallback</code>: Opšta funkcija za obradu podataka.
+    Dodaje podatke u <code>wolk</code> instancu i ispisuje ih.</p>
+  <p>Prvo radimo operacije sa bitovima</p>
+  <div class="sourceCode" id="cb16">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="dt">void</span> notificationCallback<span class="op">(</span><span class="at">const</span> Gattlib<span class="op">::</span>BinaryBuffer <span class="op">&amp;</span>data<span class="op">,</span> AirCharacteristic x<span class="op">){</span></span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a>    Gattlib<span class="op">::</span>BinaryBuffer<span class="op">::</span>const_iterator i <span class="op">=</span> data<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a>    </span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>    <span class="co">//We receive a 4 digit hexadecimal number, always split into 2 packages.</span></span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a>    <span class="co">//First package represents last 2 digits and vice versa</span></span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a>    <span class="co">//Sometimes the first 2 digits are zeros. We don't care about them.</span></span>
+<span id="cb16-8"><a aria-hidden="true" href="#cb16-8" tabindex="-1"></a>    <span class="dt">int</span> firstPacket <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)*</span>i<span class="op">++,</span> secondPacket <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)*</span>i<span class="op">;</span></span>
+<span id="cb16-9"><a aria-hidden="true" href="#cb16-9" tabindex="-1"></a>    <span class="dt">int</span> value <span class="op">=</span> <span class="op">(</span>secondPacket <span class="op">&lt;&lt;</span> <span class="dv">8</span><span class="op">)</span> <span class="op">+</span> firstPacket<span class="op">;</span></span></code></pre>
+  </div>
+  <p>Zatim kada smo obradili dve heksadecimalne vrednosti i isparsirali
+    ih, možemo te podatke slati u zavisnosti od argumenta x:</p>
+  <div class="sourceCode" id="cb17">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a>    <span class="cf">switch</span><span class="op">(</span>x<span class="op">){</span></span>
+<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a>        <span class="cf">case</span> TEMP<span class="op">:</span> wolk <span class="op">-&gt;</span> addSensorReading<span class="op">(</span><span class="st">"T"</span><span class="op">,</span> value<span class="op">);</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Temp: "</span> <span class="op">&lt;&lt;</span> value <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb17-3"><a aria-hidden="true" href="#cb17-3" tabindex="-1"></a>        <span class="cf">case</span> PRES<span class="op">:</span> wolk <span class="op">-&gt;</span> addSensorReading<span class="op">(</span><span class="st">"P"</span><span class="op">,</span> value<span class="op">);</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Pres: "</span> <span class="op">&lt;&lt;</span> value <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb17-4"><a aria-hidden="true" href="#cb17-4" tabindex="-1"></a>        <span class="cf">case</span> HUMI<span class="op">:</span> wolk <span class="op">-&gt;</span> addSensorReading<span class="op">(</span><span class="st">"H"</span><span class="op">,</span> value<span class="op">);</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Humi: "</span> <span class="op">&lt;&lt;</span> value <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl <span class="op">&lt;&lt;</span> <span class="st">"--------"</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb17-5"><a aria-hidden="true" href="#cb17-5" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-6"><a aria-hidden="true" href="#cb17-6" tabindex="-1"></a>    wolk <span class="op">-&gt;</span> publish<span class="op">();</span></span>
+<span id="cb17-7"><a aria-hidden="true" href="#cb17-7" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Radi kraćeg i lepšeg kucanja koda, napravili smo alijase koji
+    pozivaju ovu opštu funkciju:</p>
+  <div class="sourceCode" id="cb18">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a><span class="dt">void</span> tempCallback<span class="op">(</span><span class="at">const</span> Gattlib<span class="op">::</span>BinaryBuffer <span class="op">&amp;</span>data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a>    notificationCallback<span class="op">(</span>data<span class="op">,</span> TEMP<span class="op">);</span></span>
+<span id="cb18-3"><a aria-hidden="true" href="#cb18-3" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-4"><a aria-hidden="true" href="#cb18-4" tabindex="-1"></a><span class="dt">void</span> presCallback<span class="op">(</span><span class="at">const</span> Gattlib<span class="op">::</span>BinaryBuffer <span class="op">&amp;</span>data<span class="op">){</span></span>
+<span id="cb18-5"><a aria-hidden="true" href="#cb18-5" tabindex="-1"></a>    notificationCallback<span class="op">(</span>data<span class="op">,</span> PRES<span class="op">);</span></span>
+<span id="cb18-6"><a aria-hidden="true" href="#cb18-6" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-7"><a aria-hidden="true" href="#cb18-7" tabindex="-1"></a><span class="dt">void</span> humiCallback<span class="op">(</span><span class="at">const</span> Gattlib<span class="op">::</span>BinaryBuffer <span class="op">&amp;</span>data<span class="op">){</span></span>
+<span id="cb18-8"><a aria-hidden="true" href="#cb18-8" tabindex="-1"></a>     notificationCallback<span class="op">(</span>data<span class="op">,</span> HUMI<span class="op">);</span></span>
+<span id="cb18-9"><a aria-hidden="true" href="#cb18-9" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <h4 id="iii-5.6.-glavna-main-funkcija">III-5.6. Glavna
+    (<code>main</code>) Funkcija</h4>
+  <p>Ova funkcija inicijalizuje Wolk i BLE jedinice i upravlja njihovom
+    interakcijom.</p>
+  <h4 id="wolk-setup">Wolk Setup</h4>
+  <p>Povezivanje se na WolkAbout platformu:</p>
+  <div class="sourceCode" id="cb19">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> </span>
+<span id="cb19-2"><a aria-hidden="true" href="#cb19-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-3"><a aria-hidden="true" href="#cb19-3" tabindex="-1"></a>    wolkabout<span class="op">::</span>Device WolkDeviceCredentials<span class="op">(</span><span class="st">"471d6850-8bed-4eca-9e6e-97fd9300b117"</span><span class="op">,</span> <span class="st">"5B2OD76EC4"</span><span class="op">);</span></span>
+<span id="cb19-4"><a aria-hidden="true" href="#cb19-4" tabindex="-1"></a>    wolk <span class="op">=</span> wolkabout<span class="op">::</span>Wolk<span class="op">::</span>newBuilder<span class="op">(</span>WolkDeviceCredentials<span class="op">).</span>host<span class="op">(</span><span class="st">"ssl://api-demo.wolkabout.com:8883"</span><span class="op">).</span>build<span class="op">();</span></span>
+<span id="cb19-5"><a aria-hidden="true" href="#cb19-5" tabindex="-1"></a>    wolk<span class="op">-&gt;</span><span class="fu">connect</span><span class="op">();</span></span>
+<span id="cb19-6"><a aria-hidden="true" href="#cb19-6" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Connected to Wolk."</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb19-7"><a aria-hidden="true" href="#cb19-7" tabindex="-1"></a>    <span class="co">//...</span></span></code></pre>
+  </div>
+  <h4 id="ble-setup">BLE Setup</h4>
+  <p>Povezuje se na BLE uređaj i omogućava obaveštenja za odabrane servise
+    i karakteristike. Ovo je nešto kompleksnije zato što koristi lambda
+    funkcije u C++.</p>
+  <p>Pokušava se <code>arduino -&gt; enable()</code>, a ako je uspešan
+    zatim i <code>arduino -&gt; connect()</code>:</p>
+  <div class="sourceCode" id="cb20">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a><span class="co">//BLE setup </span></span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a>arduino <span class="op">-&gt;</span> enable<span class="op">([]()</span> <span class="co">//succ enable</span></span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-4"><a aria-hidden="true" href="#cb20-4" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Enabled BLE connection."</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb20-5"><a aria-hidden="true" href="#cb20-5" tabindex="-1"></a>    arduino <span class="op">-&gt;</span> connectionParameters<span class="op">().</span>security <span class="op">=</span> BT_SEC_LOW<span class="op">;</span></span>
+<span id="cb20-6"><a aria-hidden="true" href="#cb20-6" tabindex="-1"></a>    arduino <span class="op">-&gt;</span> connectionParameters<span class="op">().</span>destinationType <span class="op">=</span> Gattlib<span class="op">::</span>Address<span class="op">::</span>LE_PUBLIC<span class="op">;</span></span>
+<span id="cb20-7"><a aria-hidden="true" href="#cb20-7" tabindex="-1"></a>    </span>
+<span id="cb20-8"><a aria-hidden="true" href="#cb20-8" tabindex="-1"></a>    arduino <span class="op">-&gt;</span> <span class="fu">connect</span><span class="op">(</span>BLEDeviceUUID<span class="op">,[]()</span> <span class="co">//succ connect</span></span>
+<span id="cb20-9"><a aria-hidden="true" href="#cb20-9" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-10"><a aria-hidden="true" href="#cb20-10" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Connected to a BLE device."</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb20-11"><a aria-hidden="true" href="#cb20-11" tabindex="-1"></a>        arduino <span class="op">-&gt;</span> startNotification<span class="op">(</span>BLEDeviceUUID<span class="op">,</span> serviceUUIDs<span class="op">[</span>TEMP<span class="op">],</span> characteristicUUIDs<span class="op">[</span>TEMP<span class="op">],</span> tempCallback<span class="op">);</span></span>
+<span id="cb20-12"><a aria-hidden="true" href="#cb20-12" tabindex="-1"></a>        arduino <span class="op">-&gt;</span> startNotification<span class="op">(</span>BLEDeviceUUID<span class="op">,</span> serviceUUIDs<span class="op">[</span>PRES<span class="op">],</span> characteristicUUIDs<span class="op">[</span>PRES<span class="op">],</span> presCallback<span class="op">);</span></span>
+<span id="cb20-13"><a aria-hidden="true" href="#cb20-13" tabindex="-1"></a>        arduino <span class="op">-&gt;</span> startNotification<span class="op">(</span>BLEDeviceUUID<span class="op">,</span> serviceUUIDs<span class="op">[</span>HUMI<span class="op">],</span> characteristicUUIDs<span class="op">[</span>HUMI<span class="op">],</span> humiCallback<span class="op">);</span>   </span>
+<span id="cb20-14"><a aria-hidden="true" href="#cb20-14" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-15"><a aria-hidden="true" href="#cb20-15" tabindex="-1"></a><span class="co">//...</span></span></code></pre>
+  </div>
+  <p>To je idealan scenario. Ukoliko connect ili enable ne uspeju, radimo
+    identičnu stvar stvar:</p>
+  <div class="sourceCode" id="cb21">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a><span class="op">[]()</span> <span class="co">//fail connect/enable</span></span>
+<span id="cb21-2"><a aria-hidden="true" href="#cb21-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-3"><a aria-hidden="true" href="#cb21-3" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">"Failed connect."</span><span class="op">;</span></span>
+<span id="cb21-4"><a aria-hidden="true" href="#cb21-4" tabindex="-1"></a>    wolk<span class="op">-&gt;</span><span class="fu">disconnect</span><span class="op">();</span></span>
+<span id="cb21-5"><a aria-hidden="true" href="#cb21-5" tabindex="-1"></a>    <span class="bu">std::</span>terminate<span class="op">();</span></span>
+<span id="cb21-6"><a aria-hidden="true" href="#cb21-6" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <p>Da sumiramo, šira slika ovakve ugnježdene lambda sintakse izgleda
+    ovako:</p>
+  <div class="sourceCode" id="cb22">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a><span class="co">//BLE setup </span></span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a>arduino <span class="op">-&gt;</span> enable<span class="op">([]()</span></span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-4"><a aria-hidden="true" href="#cb22-4" tabindex="-1"></a>    <span class="co">// Prvi deo codea ako je enable uspeo, pa grananje</span></span>
+<span id="cb22-5"><a aria-hidden="true" href="#cb22-5" tabindex="-1"></a>    </span>
+<span id="cb22-6"><a aria-hidden="true" href="#cb22-6" tabindex="-1"></a>    arduino <span class="op">-&gt;</span> <span class="fu">connect</span><span class="op">(</span>BLEDeviceUUID<span class="op">,[]()</span><span class="co">//succ connect</span></span>
+<span id="cb22-7"><a aria-hidden="true" href="#cb22-7" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb22-8"><a aria-hidden="true" href="#cb22-8" tabindex="-1"></a>        <span class="co">// Code ako su i enable i connect uspeli    </span></span>
+<span id="cb22-9"><a aria-hidden="true" href="#cb22-9" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-10"><a aria-hidden="true" href="#cb22-10" tabindex="-1"></a>    <span class="op">,[]()</span></span>
+<span id="cb22-11"><a aria-hidden="true" href="#cb22-11" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb22-12"><a aria-hidden="true" href="#cb22-12" tabindex="-1"></a>        <span class="co">// Code ako je enable uspeo, ali connect nije</span></span>
+<span id="cb22-13"><a aria-hidden="true" href="#cb22-13" tabindex="-1"></a>    <span class="op">});</span></span>
+<span id="cb22-14"><a aria-hidden="true" href="#cb22-14" tabindex="-1"></a><span class="op">},[]()</span></span>
+<span id="cb22-15"><a aria-hidden="true" href="#cb22-15" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-16"><a aria-hidden="true" href="#cb22-16" tabindex="-1"></a>    <span class="co">// Code ako enable nije uspeo</span></span>
+<span id="cb22-17"><a aria-hidden="true" href="#cb22-17" tabindex="-1"></a>    <span class="co">// (nismo ni mogli da probamo connect)</span></span>
+<span id="cb22-18"><a aria-hidden="true" href="#cb22-18" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-19"><a aria-hidden="true" href="#cb22-19" tabindex="-1"></a><span class="op">);</span></span></code></pre>
+  </div>
+  <h4 id="glavna-petlja">Glavna Petlja</h4>
+  <p>Nakon uspostavljanja cloud i ble konekcije, imamo jednostavnu petlju,
+    gde program spava na 50 milisekundi (50.000 mikrosekundi) pa čita da li
+    je išta stiglo sa Arduina. Na taj način kontinuirano obrađujemo
+    asinhrone događaje.</p>
+  <div class="sourceCode" id="cb23">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb23-1"><a aria-hidden="true" href="#cb23-1" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> </span>
+<span id="cb23-2"><a aria-hidden="true" href="#cb23-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-3"><a aria-hidden="true" href="#cb23-3" tabindex="-1"></a>    arduino <span class="op">-&gt;</span> processAsync<span class="op">();</span></span>
+<span id="cb23-4"><a aria-hidden="true" href="#cb23-4" tabindex="-1"></a>    usleep<span class="op">(</span><span class="dv">50000</span><span class="op">);</span></span>
+<span id="cb23-5"><a aria-hidden="true" href="#cb23-5" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <h2 id="iii-5.-wolkabout-cloud-platforma---centrala-informacija">III-5.
+    WolkAbout Cloud Platforma - centrala informacija</h2>
+  <h3 id="iii-5.1.-hardware-cloud-platforme">III-5.1. “Hardware” Cloud
+    platforme?</h3>
+  <p>Kao što je pomenuto u <a href="#213-cloud-computing---računarstvo-u-oblaku">1.3. Cloud computing
+      - računarstvo u oblaku</a> glavna vrednost je upravo u tome da se
+    developer ne mora baviti hardverskim pojedinostima, već isključivo
+    apstrakcijom i softverom.</p>
+  <h3 id="iii-5.2.-software---konfigurisanje-povezivanje-monitoring">III-5.2.
+    Software - konfigurisanje, povezivanje, monitoring</h3>
+  <p><strong>WolkAbout Cloud</strong> platforma je gotov proizvod koji se
+    minimalno programira, već jednostavno koristi putem GUI-ja. Potrebno je
+    ulogovati se sa svojim kredencijalima (koji se dobijaju onda kada se
+    korišćenje njihovih usluga plati, i svako korišćenje se prebrojava i
+    sabira).</p>
+  <p>U njoj je bilo potrebno da okvirno opišem kakve uređaje imam, kakvim
+    podacima barataju. Bilo je moguće dizajnirati tzv <em>dashboard</em>
+    putem kojeg se može vizualno pratiti promet podataka (i tako proveriti
+    da li isprogramirane komponente ispravno rade svoj posao).</p>
+  <h2 id="iii-6.-krajnji-korisnik">III-6. Krajnji korisnik</h2>
+  <h3 id="iii-6.1.-hardware---windows-linux">III-6.1. Hardware - Windows,
+    Linux, …</h3>
+  <p>Kao što je pomenuto u odeljku <a href="#232-qt-framework">3.2. Qt
+      Framework</a>, glavna prednost je u tome da jedan razvojni proces može
+    da se jednostavno prebaci u paket za bilo koju platformu. Budući da sam
+    softver za krajnjeg korisnika razvijao na Windows desktopu (u drugom
+    mesecu), najjednostavnije mi je bilo da ga za tu platformu i razvijem.
+    Veoma prosto bi se prebacio i na Linux (na kojem sam razvijao u prvom
+    mesecu), macOS, Android i iOS. Jedino je za mobilne platforme potrebno
+    malo pažnje za dizajn, povodom ograničenijeg prostora na ekranu.</p>
+  <h3 id="iii-6.2.-software---cross-platform-gui-data-visualizer">III-6.2.
+    Software - Cross-platform GUI Data Visualizer</h3>
+  <h4 id="iii-6.2.1.-mainwindow-klasa">III-6.2.1. MainWindow klasa</h4>
+  <p>Glavna klasa u kojoj je smeštena većina logike je
+    <code>MainWindow</code>. Ova klasa upravlja svim elementima korisničkog
+    interfejsa i komunikacijom sa IoT platformom.
+  </p>
+  <div class="sourceCode" id="cb24">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a><span class="kw">class</span> MainWindow <span class="op">:</span> <span class="kw">public</span> <span class="ex">QMainWindow</span> <span class="op">{</span></span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a>    <span class="ex">Q_OBJECT</span></span>
+<span id="cb24-3"><a aria-hidden="true" href="#cb24-3" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb24-4"><a aria-hidden="true" href="#cb24-4" tabindex="-1"></a>    <span class="kw">explicit</span> MainWindow<span class="op">(</span><span class="ex">QWidget</span> <span class="op">*</span>parent <span class="op">=</span> <span class="kw">nullptr</span><span class="op">);</span></span>
+<span id="cb24-5"><a aria-hidden="true" href="#cb24-5" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb24-6"><a aria-hidden="true" href="#cb24-6" tabindex="-1"></a><span class="kw">private</span> <span class="ex">slots</span><span class="op">:</span></span>
+<span id="cb24-7"><a aria-hidden="true" href="#cb24-7" tabindex="-1"></a>    <span class="dt">void</span> on_pushButton_clicked<span class="op">();</span></span>
+<span id="cb24-8"><a aria-hidden="true" href="#cb24-8" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb24-9"><a aria-hidden="true" href="#cb24-9" tabindex="-1"></a><span class="op">};</span></span></code></pre>
+  </div>
+  <h4 id="iii-6.2.2.-funkcije-za-komunikaciju">III-6.2.2. Funkcije za
+    komunikaciju</h4>
+  <ul>
+    <li><code>getSensors()</code>: Ova funkcija koristi cURL za slanje GET
+      http zahteva WolkAbout platformi kako bi se dobili podaci sa
+      senzora.</li>
+  </ul>
+  <div class="sourceCode" id="cb25">
+    <pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb25-1"><a aria-hidden="true" href="#cb25-1" tabindex="-1"></a>CURL <span class="op">*</span>curl<span class="op">;</span></span>
+<span id="cb25-2"><a aria-hidden="true" href="#cb25-2" tabindex="-1"></a>CURLcode res<span class="op">;</span></span>
+<span id="cb25-3"><a aria-hidden="true" href="#cb25-3" tabindex="-1"></a>curl <span class="op">=</span> curl_easy_init<span class="op">();</span></span>
+<span id="cb25-4"><a aria-hidden="true" href="#cb25-4" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>curl<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb25-5"><a aria-hidden="true" href="#cb25-5" tabindex="-1"></a>    curl_easy_setopt<span class="op">(</span>curl<span class="op">,</span> CURLOPT_URL<span class="op">,</span> <span class="st">"http://api.wolkabout.com/sensors"</span><span class="op">);</span></span>
+<span id="cb25-6"><a aria-hidden="true" href="#cb25-6" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb25-7"><a aria-hidden="true" href="#cb25-7" tabindex="-1"></a>    res <span class="op">=</span> curl_easy_perform<span class="op">(</span>curl<span class="op">);</span></span>
+<span id="cb25-8"><a aria-hidden="true" href="#cb25-8" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb25-9"><a aria-hidden="true" href="#cb25-9" tabindex="-1"></a><span class="op">}</span></span></code></pre>
+  </div>
+  <ul>
+    <li><code>getDevices()</code>: Slična kao <code>getSensors()</code>, ali
+      koristi se za dobijanje informacija o dostupnim uređajima.</li>
+  </ul>
+  <h4 id="iii-6.2.3.-json-parsing">III-6.2.3. JSON Parsing</h4>
+  <p>Za parsiranje JSON odgovora koristi se ručno napisana logika.</p>
+  <div class="sourceCode" id="cb26">
+    <pre
+      class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="ex">QJsonDocument</span> doc <span class="op">=</span> <span class="ex">QJsonDocument::fromJson</span><span class="op">(</span>data<span class="op">);</span></span>
+<span id="cb26-2"><a aria-hidden="true" href="#cb26-2" tabindex="-1"></a><span class="ex">QJsonObject</span> obj <span class="op">=</span> doc<span class="op">.</span>object<span class="op">();</span></span>
+<span id="cb26-3"><a aria-hidden="true" href="#cb26-3" tabindex="-1"></a><span class="ex">QJsonArray</span> sensorsArray <span class="op">=</span> obj<span class="op">[</span><span class="st">"sensors"</span><span class="op">].</span>toArray<span class="op">();</span></span></code></pre>
+  </div>
+  <h4 id="iii-6.2.4.-grafički-interfejs">III-6.2.4. Grafički
+    interfejs</h4>
+  <p>Grafički interfejs je kreiran koristeći Qt Designer, a elementi su
+    povezani sa <code>MainWindow</code> klasom. Podaci o interfejsu se
+    nalaze u fajlu ekstenzije <code>.ui</code>, u jeziku QML.</p>
+  <div class="sourceCode" id="cb27">
+    <pre
+      class="sourceCode xml"><code class="sourceCode xml"><span id="cb27-1"><a aria-hidden="true" href="#cb27-1" tabindex="-1"></a>&lt;<span class="kw">widget</span><span class="ot"> class=</span><span class="st">"QPushButton"</span><span class="ot"> name=</span><span class="st">"pushButton"</span>&gt;</span>
+<span id="cb27-2"><a aria-hidden="true" href="#cb27-2" tabindex="-1"></a>    &lt;<span class="kw">property</span><span class="ot"> name=</span><span class="st">"text"</span>&gt;</span>
+<span id="cb27-3"><a aria-hidden="true" href="#cb27-3" tabindex="-1"></a>    &lt;<span class="kw">string</span>&gt;Log in&lt;/<span class="kw">string</span>&gt;</span>
+<span id="cb27-4"><a aria-hidden="true" href="#cb27-4" tabindex="-1"></a>    &lt;/<span class="kw">property</span>&gt;</span>
+<span id="cb27-5"><a aria-hidden="true" href="#cb27-5" tabindex="-1"></a>&lt;/<span class="kw">widget</span>&gt;</span></code></pre>
+  </div>
+  <p>Grafički interfejs izgleda ovako:</p>
+  <figure style="text-align:center;">
+    <img alt="Screenshot korisničkog interfejsa" src="../images/GUI.png" style="width: 65%;" />
+    <figcaption>
+      Slika 17: Screenshot korisničkog interfejsa
+    </figcaption>
+  </figure>
+  <h4 id="iii-6.2.5.-korisnička-priča">III-6.2.5. Korisnička priča</h4>
+  <p>Sa leve strane se unose email i password za povezivanje sa
+    WolkAbout-ovom platformom čiji API koristimo. Klikom na log-in se
+    pokušava uspostaviti konekcija, a ukoliko uspe otključava se leva
+    polovina ekrana.</p>
+  <p>Moguće je osvežavati listu uređaja (tj Arduino senzora), i putem
+    padajuće liste birati koji od uređaja gledamo. Svaki uređaj ima svoj
+    nadimak koji se može podešavati na web stranici WolkAbouta.</p>
+  <p>Takođe imamo informaciju da li je uređaj trenutno povezan preko RPi
+    sa internetom ili ne (tj da li možemo očekivati sveže podatke).</p>
+  <p>Ispod nam se nalaze podaci koji su učitani za trenutni uređaj,
+    zajedno sa mernom jedinicom. Kliktanjem na mernu jedinicu (padajuća
+    lista) moguće je izabrati drugu mernu jedinicu, tako da se brojčana
+    vrednost momentalno konvertuje.</p>
+  <div style="page-break-before: always;">
+  </div>
+  <h1 id="iv-zaključak">IV Zaključak</h1>
+  <p>Nakon odrađene finalne prezentacije, dobio sam povratne informacije
+    svih uključenih u proces. Reakcije su bile izuzetno pozitivne i
+    koncenzus je bio da sam za mojih drugih mesec dana u Execomu veoma
+    očigledno napredovao. Konstatovali su da sam bio aktivno uključen, i da
+    im se svideo i način komunikacije i saradnje.</p>
+  <p>Iznenadilo me je kada su objasnili da nije bilo namenjeno da stignem
+    sva tri aspekta u projektu u zadatom vremenskom okviru (da su natrpali i
+    malo više da ne ponestane taskova), i da su zaista zadovoljni uloženim
+    naporom, vremenom i efikasnošću multitaskovanja.</p>
+  <figure style="text-align:center;">
+    <img alt="Skenirani izveštaji sa ukupno dva meseca prakse" src="../images/izvestaji_prakse.png"
+      style="width: 65%;" />
+    <figcaption>
+      Slika 18: Skenirani izveštaji sa ukupno dva meseca prakse
+    </figcaption>
+  </figure>
+  <p>Iako sam bio takmičar iz programiranja, i bavio se njime godinama,
+    bio sam svestan da zapravo nemam pojma šta znači pravi rad u firmi, i da
+    se ta dva nikako ne mogu porediti. To me je zabrinjavalo, smatrao sam da
+    je prerizično tek tako se upustiti i strogo karijerno opredeliti za
+    programiranje, ako ne znam šta me čeka, samo na osnovu školskog iskustva
+    ili nahvaljenosti profesije. To je ujedno bila moja glavna motivacija za
+    praksu, i sa zadovoljstvom mogu reći da je to u potpunosti uspelo. Samo
+    prvih mesec dana prakse su mi u potpunosti odagnali sva pitanja,
+    nedoumice i strahove i totalno premostili jaz u percepciji. Potvrdile su
+    mi se neke percepcije i saznanja, te sam se mogao samouverenije upustiti
+    u odabir karijere.</p>
+  <div style="page-break-before: always;">
+  </div>
+  <h1 id="v-literatura">V Literatura</h1>
+  <div style="font-size: 13px;">
+    <aside class="footnotes footnotes-end-of-document" id="footnotes" role="doc-endnotes">
+      <hr />
+      <ol>
+        <li id="fn1">
+          <p><a href="http://www.stroustrup.com/abstraction-and-machine.pdf">“Abstraction
+              and the C++ machine model”, B. Stroustrup, 2005</a><a class="footnote-back" href="#fnref1"
+              role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn2">
+          <p><a
+              href="https://www.ndss-symposium.org/wp-content/uploads/2017/09/towards-automated-dynamic-analysis-linux-based-embedded-firmware.pdf">“Towards
+              Automated Dynamic Analysis for Linux-based Embedded Firmware”, D. Chen
+              et al, 2016</a><a class="footnote-back" href="#fnref2" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn3">
+          <p><a
+              href="https://web.archive.org/web/20131029203328/http://www.computer.org/portal/web/certification/Embedded-Systems">“Embedded
+              Systems Methods and Technologies”, R. Oshana, 2012</a><a class="footnote-back" href="#fnref3"
+              role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn4">
+          <p><a href="https://ptolemy.berkeley.edu/publications/papers/02/embsoft/embsoftwre.pdf">“Embedded
+              Software”, E. Lee, 2001</a><a class="footnote-back" href="#fnref4" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn5">
+          <p><a href="https://www.ibm.com/topics/internet-of-things">“What is the
+              internet of things?”, IBM</a><a class="footnote-back" href="#fnref5" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn6">
+          <p><a href="https://ieeexplore.ieee.org/abstract/document/6669062">“An
+              Internet of Things (IoT) architecture for embedded appliances”, T.
+              Yashiro et al, 2013</a><a class="footnote-back" href="#fnref6" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn7">
+          <p><a href="https://www.ibm.com/topics/internet-of-things">“What is the
+              internet of things?”, IBM</a><a class="footnote-back" href="#fnref7" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn8">
+          <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S1569190X20300083">“IoT,
+              cloud, big data and AI in interdisciplinary domains”, Y. Chen,
+              2020</a><a class="footnote-back" href="#fnref8" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn9">
+          <p><a href="https://www.ibm.com/topics/internet-of-things">“What is the
+              internet of things?”, IBM</a><a class="footnote-back" href="#fnref9" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn10">
+          <p><a href="https://www.cs.cmu.edu/~coke/history_long.txt">“The”Only” Coke
+              Machine on the Internet”, Carnegie Mellon University, 2014</a><a class="footnote-back" href="#fnref10"
+              role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn11">
+          <p><a href="https://link.springer.com/chapter/10.1007/978-3-642-10665-1_63">“Cloud
+              Computing: An Overview”, L. Qian et al, 2009</a><a class="footnote-back" href="#fnref11"
+              role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn12">
+          <p><a href="https://ieeexplore.ieee.org/abstract/document/4278733">The
+              Business Model of “Software-As-A-Service”, Dan Ma, 2007</a><a class="footnote-back" href="#fnref12"
+              role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn13">
+          <p><a href="https://psycnet.apa.org/doiLanding?doi=10.1037%2F0021-9010.81.2.199">“Proactivity
+              during organizational entry: The role of desire for control.”, S.
+              Ashford et al, 1996</a><a class="footnote-back" href="#fnref13" role="doc-backlink">↩︎</a></p>
+        </li>
+        <li id="fn14">
+          <p><a href="https://journals.sagepub.com/doi/10.1177/014920638501100304">“Social
+              Support and Adjustment to Work: A Longitudinal Study”, C. Fisher,
+              1985</a></p>
+        </li>
+      </ol>
+    </aside>
+  </div>
+  <a class="footnote-back" href="#fnref14" role="doc-backlink">↩︎</a>
+  <li id="fn15">
+    <p><a href="https://scrumguides.org/scrum-guide.html">“The
+        2020 Scrum Guide”, J. Sutherland &amp; K. Schwaber</a><a class="footnote-back" href="#fnref15"
+        role="doc-backlink">↩︎</a></p>
+  </li>
+  <li id="fn16">
+    <p><a
+        href="https://web.archive.org/web/20180403132515/http://www.princeton.edu/~ffab/media___downloads_files/IntroArduinoBook.pdf">“Introduction
+        to Arduino, A. Smith, 2011</a><a class="footnote-back" href="#fnref16" role="doc-backlink">↩︎</a></p>
+  </li>
+
+
+</body>
+
+</html>

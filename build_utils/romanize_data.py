@@ -3,15 +3,16 @@ dig2rom = {'1': 'I', '2': 'II', '3': 'III', '4': 'IV', '5': 'V', '6': 'VI', '7':
 def num2head(number, isInToc):
     temp = f"- [{number}" if isInToc else f"# {number}" # Different pattern for ToC or main
 
-    if number in dig2rom.keys(): return temp + "."
-    if number in dig2rom.values(): return temp + " "
-    return temp
+    if number in dig2rom.keys(): return temp + "." # Arabic digits require a dot
+    if number in dig2rom.values(): return temp + " " # Roman numerals require a space
+    return temp # Empty head
 
 heading_D2R_ToC = {num2head(digit, True): num2head(roman, True) for digit, roman in dig2rom.items()}
 empty_head_ToC = num2head("", True)
 
 heading_D2R_mainText = {num2head(digit, False): num2head(roman, False) for digit, roman in dig2rom.items()}
-empty_head_mainText = num2head("", False)
+empty_head_mainText = num2head("", False) # This is correct and original intention
+
 
 def heading_D2R(isToC=None):
     if isToC==None:

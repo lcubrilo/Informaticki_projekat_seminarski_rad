@@ -1,5 +1,6 @@
 import sys
 import re
+from bs4 import BeautifulSoup
 
 def extract_body_content(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -47,6 +48,29 @@ def replace_iframes(content):
     
     return content
 
+def wrap_html(content):
+    return \
+f"""<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{css}">
+</head>
+<body>
+    {content}
+</body>
+</html>
+"""
+
+
+def traverse_tree(tag, depth):
+    try:
+        if tag.children == None: return
+    except: return
+    for child in tag.children:
+        if child.name == 'li':
+            child['style'] = f"font-size: {16 - depth}px;"
+        traverse_tree(child, depth + 1)
 
 
 if __name__ == "__main__":
@@ -66,17 +90,16 @@ if __name__ == "__main__":
     content = replace_iframes(content)
 
     # Wrapping the entire content with proper HTML structure
-    final_content = f"""<!DOCTYPE html>
-        <html>
-        <head>
-            <title></title>
-            <link rel="stylesheet" type="text/css" href="{css}">
-        </head>
-        <body>
-            {content}
-        </body>
-        </html>
-    """
+    final_content = wrap_html(content)
+
+    
+    soup = BeautifulSoup(final_content, 'html.parser')
+    root = soup.find('ul')
+    root['class'] = "toc"
+
+    traverse_tree(root, 0)
+
+    final_content = str(soup)
 
     try:
         with open(input_file, "w", encoding="utf-8") as f:

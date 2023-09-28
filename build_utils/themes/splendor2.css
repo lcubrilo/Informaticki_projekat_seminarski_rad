@@ -1,0 +1,150 @@
+@import "furtive-print";
+@import "furtive-typescale";
+@import "furtive-responsive-utils";
+
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
+
+html {
+  font-size: 14px;
+  max-width: 100%;
+}
+
+body:not(code):not(div.sourceCode) {
+  color: #444;
+  font-family: 'Merriweather', Georgia, serif;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
+p,
+*:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(div.sourceCode) {
+  margin: 1rem auto 1rem;
+  max-width: 42rem;
+  padding: .25rem;
+}
+
+div {
+  width: 100%;
+}
+
+div img {
+  width: 100%;
+}
+
+blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem auto 1rem;
+  max-width: 42rem;
+}
+
+li {
+  margin-left: 2rem;
+}
+
+/* Counteract the specificity of the gross *:not() chain. */
+h1 {
+  padding: 4rem 0 !important;
+}
+/*  === End gross hack */
+
+p {
+  color: #555;
+  height: auto;
+  line-height: 1.45;
+}
+
+
+a,
+a:visited {
+  color: #3498db;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #2980b9;
+}
+
+/* --------- Print-Friendly Styles --------- */
+
+@page {
+  size: A4;
+}
+
+@page:right{
+  @bottom-right {
+    content: counter(page);
+  }
+}
+
+@page:left{
+  @bottom-left {
+    content: counter(page);
+  }
+}
+
+h1, h2 {
+  break-before: always;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  break-after: avoid;
+}
+
+ul, ol, p, table, figure {
+  break-inside: avoid;
+  break-after: auto;
+}
+
+li {
+  break-after: avoid;
+}
+
+ul.toc ul{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 20px; 
+}
+
+li.toc {
+  margin: 0;
+}
+
+p {
+  text-align: justify;
+}
+
+/* General styling for the source code container */
+div.sourceCode {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+/* Styling for C++ source code */
+.sourceCode.cpp {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 14px;
+}
+
+/* Syntax Highlighting */
+.sourceCode .co { /* Comments */
+  color: #008800;
+  font-style: italic;
+}
+.sourceCode .cf { /* Control flow keywords */
+  color: #0000FF;
+}
+.sourceCode .op { /* Operators */
+  color: #666666;
+}
+.sourceCode .dv { /* Digits/Values */
+  color: #FF4500;
+}
+.sourceCode .st { /* String Text */
+  color: #BA2121;
+}

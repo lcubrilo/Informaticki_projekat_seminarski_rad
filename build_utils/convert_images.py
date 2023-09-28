@@ -1,6 +1,7 @@
 import sys
 import os
 from romanize_headings import romanize_top_level_heading
+#from vary_fontsize_toc import transform_toc_in_file
 
 def find_image_syntax(line):
     start_pos = line.find("![")
@@ -35,7 +36,7 @@ def convert_images(input_file, output_folder):
         start_pos, end_pos, image_data = find_image_syntax(line)
         if image_data:
             alt_text, img_link = image_data
-            if not img_link.startswith("http"): img_link = "../images/" + img_link
+            if not img_link.startswith("http"): img_link = "../" + img_link
             figure_count += 1
 
             new_line = \
@@ -62,6 +63,7 @@ if __name__ == "__main__":
     output_folder = sys.argv[2]
     
     new_lines = convert_images(input_file, output_folder)
+    #new_lines = transform_toc_in_file(new_lines)
     new_lines = romanize_top_level_heading(new_lines)
 
     output_file = os.path.join(output_folder, os.path.basename(input_file).replace('.md', '_2.md'))

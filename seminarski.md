@@ -8,7 +8,7 @@
     - [2.1.2. Internet of Things](#212-internet-of-things)
     - [2.1.3. Cloud computing - računarstvo u oblaku](#213-cloud-computing---računarstvo-u-oblaku)
   - [2.2. Organizacija rada i tok prakse](#22-organizacija-rada-i-tok-prakse)
-    - [2.2.1. Onboarding //](#221-onboarding-)
+    - [2.2.1. Onboarding](#221-onboarding)
     - [2.2.2. Struktura ljudi](#222-struktura-ljudi)
     - [2.2.3. Sastanci - tehnički deo](#223-sastanci---tehnički-deo)
     - [2.2.4. Sastanci - netehnički deo](#224-sastanci---netehnički-deo)
@@ -18,25 +18,27 @@
     - [2.3.2. Qt Framework](#232-qt-framework)
 - [3. Sadržaj projekta](#3-sadržaj-projekta)
   - [3.1. Šira slika projekta](#31-šira-slika-projekta)
-    - [3.1.1. Primer primene, davanje konteksta (*use case*)](#311-primer-primene-davanje-konteksta-use-case)
-    - [3.1.2. Primena 1 - spoljno praćenje vremenskih prilika, prognoza](#312-primena-1---spoljno-praćenje-vremenskih-prilika-prognoza)
-    - [3.1.3. Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa](#313-primena-2---unutrašnje-praćenje-i-regulacija-osetljivih-procesa)
+    - [3.1.1. Davanje konteksta - potencijalna primena (*use case*) 1](#311-davanje-konteksta---potencijalna-primena-use-case-1)
+    - [3.1.2. Davanje konteksta - potencijalna primena (*use case*) 2](#312-davanje-konteksta---potencijalna-primena-use-case-2)
   - [3.2. Struktura projekta](#32-struktura-projekta)
     - [3.2.1. Hardware](#321-hardware)
     - [3.2.2. Sofware](#322-sofware)
+    - [3.2.3. GitHub repozitorijum](#323-github-repozitorijum)
   - [3.3. Arduino - prvi korak, detekcija](#33-arduino---prvi-korak-detekcija)
     - [3.3.1. Hardware - Arduino Uno](#331-hardware---arduino-uno)
     - [3.3.2. Hardware - Shields i clicks](#332-hardware---shields-i-clicks)
     - [3.3.3. Software - Arduino firmware](#333-software---arduino-firmware)
+    - [3.3.4. Arduino - Detaljna Analiza Koda](#334-arduino---detaljna-analiza-koda)
   - [3.4. Raspberry Pi - posrednik](#34-raspberry-pi---posrednik)
     - [3.4.1. Hardware - Raspberry Pi](#341-hardware---raspberry-pi)
     - [3.4.2. Software - Raspberry Pi Cloud Client](#342-software---raspberry-pi-cloud-client)
+    - [3.4.3. Raspberry Pi - Detaljna Analiza Koda](#343-raspberry-pi---detaljna-analiza-koda)
   - [3.5. WolkAbout Cloud Platforma - centrala informacija](#35-wolkabout-cloud-platforma---centrala-informacija)
     - [3.5.1. "Hardware" Cloud platforme?](#351-hardware-cloud-platforme)
     - [3.5.2. Software - konfigurisanje, povezivanje, monitoring](#352-software---konfigurisanje-povezivanje-monitoring)
   - [3.6. Krajnji korisnik](#36-krajnji-korisnik)
     - [3.6.1. Hardware - Windows, Linux, ...](#361-hardware---windows-linux-)
-    - [3.6.2. Software - Cross-platform GUI Data Visualizer //TODO](#362-software---cross-platform-gui-data-visualizer-todo)
+    - [3.6.2. Software - Cross-platform GUI Data Visualizer](#362-software---cross-platform-gui-data-visualizer)
 - [4. Zaključak](#4-zaključak)
 - [5. Literatura](#5-literatura)
 
@@ -46,11 +48,13 @@
 # 1. Uvod
 Praksu sam obavio u kompaniji [**Execom**](execom.eu), koju je u međuvremenu kupio [**HTEC**](). U pitanju je *outsourcing* kompanija koja ima niz timova, svaki od kojih radi na uglavnom jednom projektu za eksternog klijenta. Timovi se bave različitim tehnologijama, u zavisnosti od potreba klijenta.
 
+![Logo kompanije Execom](images/execom_logo.png)
+
 Kao i svaka *outsourcing* kompanija, nema svoje interne projekte, već ih isključivo uslužno pravi za druge. Važno je napomenuti da je njihov nekadašnji interni projekat prerastao u tzv. *spin off* kompaniju [**WolkAbout**](), čije cloud tehnologije smo koristili na projektu koji sam izradio.
 
 Tim u koji sam primljen bavi se sa **IoT** (*Internet of Things*) i **Embedded** tehnologijama i u tom momentu je radio sa dva različita klijenta na proizvodima koji su njima bili potrebni, o čijim detaljima ne mogu govoriti zbog NDA (Non-disclosure agreement) koji sam potpisao.
 
-Srećom, projekat na kojem sam radio je smišljen od nule isključivo u edukativne, odnosno svrhe moje prakse, te o njemu mogu govoriti. Projekat je open-source i njegov kod je javno dostupan na mom ličnom GitHub profilu. 
+Srećom, projekat na kojem sam radio je smišljen od nule isključivo u edukativne, odnosno svrhe moje prakse, te o njemu mogu govoriti. Projekat je open-source i njegov kod je javno dostupan na mom [ličnom GitHub profilu](https://github.com/lcubrilo/IoT-Ambience). 
 
 Budući da ove oblasti (a posebno embedded) zahtevaju visok nivo performansi, izabran je programski jezik **C++**. Njegova prednost u odnosu na **C** jeste prisustvo Objektno-orijentisane paradigme, koja nam je olakšala organizaciju koda. 
 
@@ -95,7 +99,7 @@ Ono što je zaista impresivno je da ova oblast svoje začetke ima još iz 1982 g
 ### 2.1.3. Cloud computing - računarstvo u oblaku 
 **Cloud computing**[1] je mogućnost dobijanja resursa računarskog sistema na zahtev, posebno skladišta podataka (oblak skladištenja) i računarske snage, bez direktne aktivne uprave od strane korisnika[2]. Ova tehnologija je postala popularna jer omogućava fleksibilnost i skalabilnost; kompanije više ne moraju da ulažu u skupe servere i održavanje infrastrukture. Veliki oblaci često imaju funkcije raspoređene na više lokacija, svaka od kojih je podatkovni centar, što dodatno povećava otpornost na greške i nudi bolju distribuciju resursa.[^12]
 
-![Dijagram koji prikazuje najčešće komponente jednog Cloud computing sistema](image-7.png)
+![Dijagram koji prikazuje najčešće komponente jednog Cloud computing sistema](images/image-7.png)
 
 Računarstvo u oblaku se oslanja na deljenje resursa da bi se postigla koherentnost i obično koristi model "plati koliko koristiš". Ovo ne samo da pomaže u smanjenju kapitalnih rashoda (ulaganje u sopstveni hardver za servere), ali i takođe sav rizik održavanja mreže (redundancija, rezervne kopije, fizički problemi) prelazi na pružaoca *cloud* usluge. Takođe značajno se olakšava skaliranje sopstvenih operacija, prostim povećavanjem mesečnog budžeta na platformi. Ono što je bitno da se uzme u obzir prilikom planiranja budžeta - je da je teško predvideti generisane troškove na jednoj cloud platformi, i lako je greškom "potrošiti impulse".
 
@@ -107,7 +111,7 @@ Cloud computing je omogućio pojavu jednog dominantnog biznis modela na tržišt
 
 ## 2.2. Organizacija rada i tok prakse
 Rad u timu je bio izuzetno kvalitetno organizovan u skladu sa vodećim principima u industriji. Takođe je važno napomenuti da ne samo da su uspešno implementirani, nego da su i međuljudski odnosi bili na visokom nivou. Bilo je tolerancije i razumevanja, što je značajno pomoglo prevazilaženju bilo kojih tehničkih problema.
-### 2.2.1. Onboarding //
+### 2.2.1. Onboarding
 Kao i sve moderne IT kompanije, i Execom je imao spreman proces **onboarding**-a, odnosno integrisanja novog zaposlenog (ili praktikanta) u firmu. To podrazumeva kako tehničke informacije, tako i one o vrednostima firme, kulturi firme, međuljudskim odnosima, pa čak i običnim svakodnevnim protokolima (gde je kuhinja, gde radnik ujutru prijavljuje dolazak karticom, gde je mašina za suđe, ...).
 
 **Onboarding** kao izraz, žargon je skovan u teorijama o mendžmentu (odnosno upravljanju) iz '70tih godina u Americi i definiše se kao "mehanizam preko kojeg novi zaposleni stiču potrebna znanja, veštine i ponašanja kako bi postali efikasni članovi i insajderi organizacije". U standardnom engleskom, ovo se naziva "indukcija". U Sjedinjenim Američkim Državama, do 25% radnika su novi članovi organizacije uključeni u proces integrisanja.
@@ -124,15 +128,17 @@ Budući da je svaki deo predstavljao gotovo skroz nezavistan komad softvera, uko
 ### 2.2.3. Sastanci - tehnički deo
 U kompaniji Execom korišćena je **Agile** metodologija, konkretnije **Scrum**. Ključan koncept su tzv *sprintovi*, odnosno period od 1-3 sedmice za koji se odredio spisak taskova koji moraju da se obave, kao i ko će šta da radi. Nakon što je sprint završen, radi se retrospektiva i proverava sa klijentom da li je zadovoljan. Ključ je u ciklusima rada i povratne informacije koji se brzu smenjuju. Time se sprečava situacija u kojoj tim dugo vremena radi na nečemu što zapravo korisniku ne treba.
 
-To podrazumeva specifičnu dinamiku sastanaka, koji uključuju sve članove tima, uključujući product managera, scrum mastera i klijenta[^8]:
+To podrazumeva specifičnu dinamiku sastanaka, koji uključuju sve članove tima, uključujući product managera, scrum mastera i klijenta[^8]:  
+
 1. ***daily (meeting)*** (takođe *stand meeting*)
-   - kratke sastanke svako (radno) jutro 
+   - kratke sastanke svako (radno) jutro
    - svaki član tima objasni šta je radio juče, šta će danas
    - feedback na to od strane šefa
+ 
 2. ***weekly (meeting)***
     - uglavnom krajem sedmice
     - nešto duže sumacije do sada postignutog na nedeljnom nivou
-    - nekad i tehničku demonstraciju (često neuglancanu) radi jasnije komunikacije šta je postignuto i da li odgovara potrebama klijenta
+    - nekad i tehničku demonstraciju (često neuglancanu) radi jasnije komunikacije šta je postignuto i da li odgovara potrebama klijenta  
 
 U slučaju moje prakse, klijenta nije bilo, mada bi se klijentom mogli smatrati svi mi članovi tima.
 
@@ -150,6 +156,7 @@ Biće više reči o njihovoj oceni mog rada, krajnjim ishodima prakse i samog pr
 Pre početka ove prakse imao sam ograničenu svest o alatima koje ću na kraju koristiti za implementaciju projekta, u čemu leži jedna velika vrednost ove prakse. U najvećoj meri su mi prezentovani prilikom onboarding procesa, uz kasnije temeljnije upoznavanje sa njima.
 
 Ono što bih posebno istakao kao pozitivno iznenađenje jeste otvorenost mentora i rukovodioca projekta da se neke odluke oko alata ili projektovanja implementacije izmene, u skladu sa mojim interesovanjima ili ranijim znanjima - sve je bilo otvoreno za diskusiju i nije bilo glupih pitanja.
+
 ### 2.3.1. Arduino ekosistem
 <table><tr>
 <td style="border: none; padding: 0;">
@@ -158,7 +165,7 @@ Ono što bih posebno istakao kao pozitivno iznenađenje jeste otvorenost mentora
 </td>
 <td style="border: none; padding: 0;width:45%"">
   
-  ![Logo kompanije Arduino](image-2.png)
+  ![Logo kompanije Arduino](images/image-2.png)
 </td>
 </tr></table>
 
@@ -171,6 +178,7 @@ Ploče imaju serijske komunikacione interfejse, tj na većini modela USB, koji s
 Arduino projekat je započet 2005. godine kao alat za studente na Institutu za interakcijski dizajn Ivrea, Italija, sa ciljem da pruži jeftin i jednostavan način za početnike i profesionalce da stvaraju uređaje koji interaguju sa svojom okolinom koristeći senzore i aktuatore. Uobičajeni primeri takvih uređaja namenjeni su početnicima i hobistima, uključujući jednostavne robote, termostate i detektore pokreta.
 
 Zbog toga su njihovi proizvodi izabrani za firmware (odnosno hardverski "najniži" sloj projekta, najbliži metalu), jer olakšavaju značajne glavobolje sa kojima se početnici susreću pri ulasku u IoT ili robotiku.
+
 ### 2.3.2. Qt Framework
 
 <table><tr>
@@ -179,7 +187,8 @@ Zbog toga su njihovi proizvodi izabrani za firmware (odnosno hardverski "najniž
   **Qt** (eng. izgovor kao "cute" ili "Q-T"; takođe srp. "ku-te") predstavlja više-platformski (*cross-platform*) softver otvorenog tipa (*open source*) koji se koristi za razvoj grafičkog korisničkog interfejsa (*GUI*). Njegova glavna prednost je visok nivo performansi i ogromna širina platformi koje pokriva uz minimalne izmene u samomg programu - od svih mobilnih operativnih sistema, pa do desktop i čak *embedded* sistema.
 </td>
 <td style="border: none; padding: 0; width:45%">
-  ![Logo Qt](image-8.png)
+  
+  ![Logo Qt](/images/image-8.png)
 </td>
 </tr></table>
  
@@ -190,37 +199,39 @@ Qt je dosta širok framework, što znači da ima svoje "omotače" (*wrappers*) z
 Iz svih ovih razloga, procenjuje se da je broj developera koji koriste Qt prešao brojku od 1 miliona u 2017 godini - i zaslužan je za ogroman broj open-source programa danas. Moguće ga je koristiti i putem programskog jezika Python (PyQt6 ili PySide2)
 
 Na praksi sam koristio Qt5 za C++.
+
 # 3. Sadržaj projekta 
 Kao što je već pomenuto, projekat je bio obiman i sadržao više delova, koje ćemo pojedinačno razmotriti, kao i njihove interakcije. 
 ## 3.1. Šira slika projekta 
 Ono što je predstavljalo problem pri komuniciranju ovog projekta drugim ljudima (npr HR menadžerima) jeste to da iza njega nije stajala priča, problem koji rešava, razlog zašto on postoji (pored, očigledno obrazovnog). Nije bilo lakog i kratkog načina da ga svedem ili sumiram, odnosno nije bilo šire slike.
 
 Svaki opis njega je nužno prelazio u opisivanje tehničkih pojedinosti. Da bih taj problem prevazišao, za finalnu prezentaciju rezultata sam naveo par potencijalnih primera kako se on može koristiti.
-### 3.1.1. Primer primene, davanje konteksta (*use case*)
-### 3.1.2. Primena 1 - spoljno praćenje vremenskih prilika, prognoza
+### 3.1.1. Davanje konteksta - potencijalna primena (*use case*) 1
+*Spoljno* praćenje vremenskih prilika, prognoza
 Postoji više hipotetičkih razloga zašto bi se neko nalazio u situaciji da se ne može osloniti na meteorološke stanice u blizini:
 1. Nalazi se na izolovanom, slabo naseljenom području, tako da je najbliža meteorološka stanica prilično udaljena
 2. Nalazi se na području koje ima posebnu mikroklimu, na primer kotlina, vrh brda i sl; tj u džepu drugačijem od okolnih vremenskih prilika
 3. Želja da se lično uveri u podatke (lična znatiželja ili nepoverenje spram zvaničnih izvora)
 
-![Primer značajnih meteoroloških razlika na geografski malom području](image-9.png)
+![Primer značajnih meteoroloških razlika na geografski malom području](images/image-9.png)
 
 Postojeći sistem bi se lako mogao primeniti u ove svrhe. Sledeći logični korak bilo bi razviti sistem predviđanja vremenskih prilika tj prognoza na osnovu zabeleženih rezultata, najverovatnije na cloud platformi (mada bi potencijalno moglo i na Raspberry Pi).
 
 Ova primena bi bila relativno jednostavna, jer nije nužno potrebno imati više od po jednog aktera u sistemu.
-  
-### 3.1.3. Primena 2 - unutrašnje praćenje i regulacija osetljivih procesa
+
+### 3.1.2. Davanje konteksta - potencijalna primena (*use case*) 2
+*Unutrašnje* praćenje i regulacija osetljivih procesa
 Ukoliko se neko bavi skladištenjem osetljivih materija ili praćenjem osetljivih procesa:
 1. Skladištenje hrane, nestabilnih hemikalija itd
 2. Fermentacija, *dry aging*, dimljenje ili usoljavanje mesa, kuvanje i bilo koji drugi proces gde je bezbednost hrane važna, a u riziku
 3. Uzgajanje useva (pogotovo u plasteniku) koji su osetljivi ili izvan svoje sezone
 4. Naučni eksperimenti, posebno koji se tiču hidrostatike, gasova itd.
 
-![Mesara srednje veličine; vizualizacija razmere materijalne štete u slučaju nepovoljnih uslova](image-10.png)
+![Mesara srednje veličine; vizualizacija razmere materijalne štete u slučaju nepovoljnih uslova](images/image-10.png)
 
 Postojeći sistem bi se relativno lako mogao primeniti u ove svrhe. Ono što bi bilo neophodno je dodati i neke aktuatore ili elektromotore, koji na promene sa senzora mogu da reaguju i tako regulišu sve parametre unutar određenih raspona. Naravno, ovakav sistem bi bio manje efektan od komercijalnih proizvoda, ali je značajno jeftiniji i dovoljno dobar za mikropreduzeća, amatere i hobiste.
 
-![Digitalno praćenje i održavanje plastenika; pametna bašta](image-11.png)
+![Digitalno praćenje i održavanje plastenika; pametna bašta](images/image-11.png)
 
 Ovakve primene su nešto kompleksnije, ne samo jer zahtevaju ozbiljnije teorijsko znanje za oblast primene, već zato što bi najverovatnije zahtevalo više Arduino ploča (na primer po jednu u svakom silosu žita; ili po jednu na svakih 15 metara u velikoj sušari mesa) i više Raspberry Pi računara (svaki kao lokalni sakupljač podataka, unutar Bluetooth dometa od senzora). Komunikacija među uređajima je uvek predmet problematike i tačka spoticanja, tako da što je veći broj uređaja istovremeno - tu su problemi sa koordinisanjem tih zahteva, interferencija i verovatno potreba za većim dometom. 
 
@@ -230,22 +241,34 @@ Takva primena bi u potpunosti kvalitetno iskoristila potencijale ovakve arhitekt
 ### 3.2.1. Hardware
 Projekat je uključivao tri zasebne hardverske komponente, svaku sa pratećim softverom koji je bilo potrebno isprogramirati. Tu je bila i četvrta komponenta, odnosno *cloud platforma* kompanije WolkAbout.
 
-Sagledaćemo prvo redom šta je svaka od ovih hardverskih komponenti, a zatim ćemo istim redom proći kroz njihov prateći softver koji je razvijan na praksi.
+Sagledaćemo redom svaku od ovih komponenti, prvo iz harverske perspektive a zatim iz softverske.
 
-![Šema strukture projekta: tri hardverske komponente označene sivom bojom, uz njihove uzajamne veze prikazane na slici](image.png)
+![Šema strukture projekta: tri hardverske komponente označene sivom bojom, uz njihove uzajamne veze prikazane na slici](images/image.png)
 
 
 ### 3.2.2. Sofware
-Sva tri zasebna softvera uzajamno komuniciraju, tako da iako su zasebne jedinice, sačinjavaju jednu veću labavu celinu. Kao što je nagovešteno u [1.1. (*use case*)](#311-primer-primene-davanje-konteksta-use-case), moguće je imati više od jednog uređaja, za sva tri aspekta (iako smo u našem prototipu imali po tačno jedan iz svake kategorije). Više Arduino uređaja može da se poveže na jedan Raspberry Pi (ali ne i obrnuto), više Raspberry Pi može da se poveže na jedinu cloud platformu (ali ne i obrnuto) i konačno više korisnika može da se poveže na jedinu cloud platformu (ali ne i obrnuto).
+Sva tri zasebna softvera uzajamno komuniciraju, tako da iako su zasebne jedinice, sačinjavaju jednu veću labavu celinu. Kao što je nagovešteno u [1.1. (*use case*)](#311-primer-primene-davanje-konteksta-use-case), moguće je imati više od jednog uređaja, za sva tri aspekta (iako smo u našem prototipu imali po tačno jedan iz svake kategorije).
+
+Više Arduino uređaja može da se poveže na jedan Raspberry Pi (ali ne i obrnuto), više Raspberry Pi može da se poveže na jedinu cloud platformu (ali ne i obrnuto) i konačno više korisnika može da se poveže na jedinu cloud platformu (ali ne i obrnuto).
 
 
 Razvoj se obavljao na desktop računaru u Arduino IDE, nakon čega bi se firmware serijskom vezom (kablom, punjačem od telefona) prebacivao na Arduino ploču.
+
+### 3.2.3. GitHub repozitorijum
+
+Kao što je već pomenuto, kompletan napisan kod se nalazi na mom ličnom GitHub profilu: https://github.com/lcubrilo/IoT-Ambience
+
+![Screenshot sadržaja repozitorijuma](/images/repo_screenshot.png)
+
+Uprkos tome, VCS (*Version Control Software*) koji smo mi koristili prilikom obavljanja prakse bio je **GitLab**; odnosno njegova internalna kompanijska verzija. Svaka od tri softverske komponente bila je u zasebnom repozitorijumu (koje sam povezao u ovaj krovni repozitorijum, u kojim sam uključio i finalnu prezentaciju).
+
+Takođe smo organizovali raspodelu taskova, njihov status u stilu Kanban ploča, *pull request*ove i feedback na njih putem GitLaba u potpunosti simulirajući realne uslove rada i realne alate. U ovome sam posebno uživao, prepoznao važnost i nastavio na sličan način organizovati čak i samostalan programerski rad.
 
 ## 3.3. Arduino - prvi korak, detekcija
 ### 3.3.1. Hardware - Arduino Uno
 **Arduino Uno** je Open Source mikrokontrolerska ploča bazirana na Microchip ATmega328P, prvi put predstavljena 2010. godine. Ploča ima 14 digitalnih i 6 analognih I/O pinova i može se napajati putem USB kabla ili eksternog izvora napona između 7 i 20V.
 
-![Fotografija Arduino Uno razvojne ploče](image-1.png)
+![Fotografija Arduino Uno razvojne ploče](images/image-1.png)
 
 Uno koristi isti mikrokontroler kao Arduino Nano, a ima iste konektore kao Arduino Leonardo. Programira se pomoću Arduino IDE preko USB tipa A kabla. Raspored i proizvodni fajlovi su dostupni pod Creative Commons licencom.
 
@@ -254,9 +277,9 @@ Reč "Uno" je izabrana da označi značajnu preradu u Arduino seriji i ova ploč
 ### 3.3.2. Hardware - Shields i clicks
 Koristili smo jedan od mnogobrojnih dostupnih *shieldova* da bismo olakšali konekcije sa drugim uređajima (izbegaavamo lemljenje žica ili mukotrpno gledanje tzv *pinout* šema konekcija/pinova). 
 
-![Fotografija *Click shield* u primeni sa jednim click slotom popunjenim, a drugim praznim](image-4.png)
+![Fotografija *Click shield* u primeni sa jednim click slotom popunjenim, a drugim praznim](images/image-4.png)
 
-Izabrali smo **Click shield**, čija je glavna svha da omogućuje *click*-ove, odnosno male pločice sa individualnim senzorima koje imaju standardno oblfikovan i dimenzioniran raspored pinova, koji (slično shieldu) jednostavno ulaze u uređaj bez upotrebe žica.
+Izabrali smo **Click shield**, čija je glavna svha da omogućuje *click*-ove, odnosno male pločice sa individualnim senzorima koje imaju standardno oblikovan i dimenzioniran raspored pinova, koji (slično shieldu) jednostavno ulaze u uređaj bez upotrebe žica.
 
 Koristili smo 2 "klika" domaćeg preduzeća MikroEletronika:  
 1. Detektor temperature, vlage i pritiska vazduha. Takođe je bio prisutan i senzor zapaljivih organskih jedinjenja koji nismo koristili.   (***Environment click***)
@@ -264,27 +287,239 @@ Koristili smo 2 "klika" domaćeg preduzeća MikroEletronika:
 
 <table><tr>
   <td style="border: none; padding: 0;">
-    ![Fotografija environment click](image-5.png)
+
+  ![Fotografija environment click](images/image-5.png)
   </td>
   <td style="border: none; padding: 0;">
-    ![Fotografija BLE click](image-6.png)
+
+   ![Fotografija BLE click](images/image-6.png)
   </td>
 </tr></table>
 
 ### 3.3.3. Software - Arduino firmware
 Jednostavno povezivanje bilo kojeg eksternog uređaja, kao što su ovi klikovi, kako hardverski a tako i softverski je ključna odlika Arduino ekosistema. Da bismo iz firmwarea Arduino razvojne ploče slali komande u komponente, potrebno je jednostavno instalirati softverske pakete/ekstenzije namenjene za rad sa tim eksternim uređajem. Razlog zašto toliki dijapazon eksternih uređaja ima svoje paekte, leži u tome da je ceo ekosistem Open Source, te da mu bilo ko može doprinositi.
 
-Za senzore vazduha koristio sam C biblioteke razvijene od kompanije Adafruit, koja je dosta zastupljena i prepoznata u ovoj branši, i to:
-1. **Adafruit_BME680.h** - specijalizovan za Bosch-ov detektor BME680 korišćen na ovom *environment click*-u.
-2. **Adafruit_Sensor.h** - osnovna biblioteka za sve vrste senzora, na koju se specijalizovane biblioteke oslanjaju.
+Za senzore vazduha koristio sam C biblioteke razvijene od kompanije Adafruit, koja je dosta zastupljena i prepoznata u ovoj branši, i to:  
+
+1. **Adafruit_BME680.h** - specijalizovan za Bosch-ov detektor BME680 korišćen na ovom *environment click*-u.  
+2. **Adafruit_Sensor.h** - osnovna biblioteka za sve vrste senzora, na koju se specijalizovane biblioteke oslanjaju.  
 
 Pored toga korišćene su još dve biblioteke za ove senzore (bme680.h, bme680_defs.h) u razvojnom procesu, ali u krajnjoj verziji nisu imale značajan uticaj.
 
-Za Bluetooth komunikaciju niske energije (BLE - Bluetooth Low Energy) korišćena je biblioteka **BLEPerihperal.h**
+Za Bluetooth komunikaciju niske energije (BLE - Bluetooth Low Energy) korišćena je biblioteka **BLEPeripheral.h**
+
+Ovako se te biblioteke pozivaju u kodu:
+
+```cpp
+#include <BLEPeripheral.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME680.h>
+#include <bme680.h>
+#include <bme680_defs.h>
+```
+Tu se nalaze i definicije konstanti neophodnih za daljnje izvršavanje programa (broj karakteristika koje merimo senzorima (temperatura, pritisak, vlažnost), ID pinova itd)
+```cpp
+#define NO_OF_CHARS 3 
+#define PIN_REQ 46
+#define PIN_RDY 2
+#define PIN_RST  48
+```
+
+### 3.3.4. Arduino - Detaljna Analiza Koda
+#### 1. Šira slika i šema
+Pre dubljeg ulaženja u kod, sagledajmo ovu šemu radi šire slike.
+
+Na y osi se nalazi protok vremena, tj kako bi se inače i čitala šema jednog algoritma.
+
+Na x osi se nalazi tok podataka, odnosno kako prelaze iz senzora, u softver i nadalje na Bluetooth odašiljač.
+
+![Šematski prikaz algoritma Arduina](image-1.png)
+
+Zelenom bojom sam označio sve što se tiče senzora, a plavom sve što se tiče Bluetooth konekcije. Crvenom su označene pauze (kratke od 500ms u toku ciklusa između svakog merenja i duge od 5000ms između celih ciklusa)
+
+Pored toga, možemo jasno uočiti da gornji deo pripada početnom konfigurisanju stvari (`setup`) a donji deo pripada glavnoj petlji (`loop`) - što ujedno predstavlja osnovnu gradivnu jedincu svakog Arduino programa. 
+
+To nas prirodno vodi na analizu koda.
+
+#### 2. Prelazak u code
+U setupu pozivamo funkcije koje nam inicijalizuju i osposobljavaju ključne komponente - senzore i Bluetooth konekciju.
+```cpp
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Started the firmware.");
+  bluetoothLESetup();
+  atmosphereSensor.begin();
+}
+```
+
+`loop()` predstavlja petlju koja se neprekidno izvršava. Možda na prvi pogled izgleda neobično. Međutim njena jezgrovitost zavarava.
+```cpp
+bool ok;
+void loop() {
+  bluetoothLE.poll();
+  if(BLEconnected){
+    do
+      ok = sensor2cloud();
+    while(ok);
+  }
+}
+```
+Najprostije rečeno, u ¸petlji konstantno šaljemo podatke sa senzora na Raspberry Pi koristeći funkciju `sensor2cloud()`. Ona odmah vraća `false` ukoliko nije prošlo pet sekundi, koliko smo odredili da bude učestalost učitavanja, ni ne ulazivši u svoje izvršavanje i prekidajući `do while` petlju.
+
+Naravno, pre nego što to uopšte probamo, moramo proveriti da li imamo Bluetooth konekciju putem naše varijable `BLEconnected`, koja se menja u skladu u poremećajima ili ponovnom uspostavljanju komunikacije putem funkcija koje smo mi definisali, koje reaguju na *event*-ove koje *poll*-ujemo odnosno proveravamo/osvežavamo. 
+
+Pređimo u sledećem delu na hendlovanje eventova.
+
+
+#### 3. **Inicijalizacija i Podešavanje BLE**
+
+Prvo moramo definisati instancu klase `BLEPeripheral`.
+
+Nad njom se podešavaju osnovni parametri za BLE, uključujući imenovanje uređaja korišćenje pretprocesorskih konstanti za pinove definisanih iznad i hendlovanje događaja povezivanja ili prekida sa mojim funkcijama `connectToBLE()` i `disconnectFromBLE()` - o čemu će biti više reči.
+```cpp
+BLEPeripheral bluetoothLE = BLEPeripheral(PIN_REQ, PIN_RDY, PIN_RST);
+
+void bluetoothLESetup() { 
+  bluetoothLE.setLocalName("ARDuino3");
+  bluetoothLE.setEventHandler(BLEConnected, connectToBLE);
+  bluetoothLE.setEventHandler(BLEDisconnected, disconnectFromBLE);
+  
+  //...
+```
+Funkcija nastavlja dalje podešavanjem atributa (servis sa šifrom, karakteristika i deskriptor); na isti način za svako od tri merenja. Kada je sve spremno, objekat `bluetoothLE` konačno pokreće i ispisuje obaveštenje na serijsku vezu.
+```cpp
+  //...
+  bluetoothLE.setAdvertisedServiceUuid(ts.uuid());
+  bluetoothLE.addAttribute(ts);
+  bluetoothLE.addAttribute(tc);
+  bluetoothLE.addAttribute(td);
+
+  //...
+  // na istovetan način za pritisak i vazduh
+  //...
+
+  bluetoothLE.begin();
+  Serial.println("Finished setting up the BLE.");
+}
+```
+Hajde da objasnimo šta su `ts`, `tc` i `td` iz odlomka iznad.
+
+U ovom segmentu, BLE servis se inicijalizuje i konfiguriše za prenošenje podataka o temperaturi na adresi `CCC0`, zajedno sa karakteristikama i deskriptorom toga za šta je namenjen.
+
+```cpp
+BLEService ts = BLEService("CCC0");
+BLEIntCharacteristic tc = BLEIntCharacteristic("CCC1", BLERead | BLENotify);
+BLEDescriptor td = BLEDescriptor("2901", "Temperature; Degrees Celsius");
+```
+
+Na istovetan način se inicijalizacija i konfiguracija obavlja i za pritisak i za vlažnost vazduha, samo na drugim adresama i sa drugačijim deskriptorima.
+
+
+A ovde su i definicije funkcija koje hendluju konekcije:
+```cpp
+//BLE connectivity checks and callbacks
+bool BLEconnected = false;
+void connectToBLE() {
+  BLEconnected = true;
+  Serial.println("\nConnected.");
+}
+void disconnectFromBLE() {
+  BLEconnected = false;
+  Serial.println("Disconnected.");
+}
+```
+Sada shvatamo zašto se u `loop` koristila promenljiva `BLEconnected`, šta je njome upravljalo i koju je vezu imalo sa metodom `bluetoothLE.poll()`.
+
+#### 4. **Čitanje i Slanje Senzorskih Podataka**
+
+Pogledajmo glavnu funkciju koja se bavi učitavanjem podataka `sensor2cloud()`, koju smo videli u `loop()`.
+
+Krenućemo od samog kraja ove funkcije, gde objašnjavamo kako cikliramo kroz sve moguće karakteristike koje imamo (u našem slučaju - temperatura, pritisak, vlažnost). Kada to shvatimo, ostatak će imati smisla.
+
+Svaki put kada se ova funkcija obavi, iterator se pomera za jedan, a ako je dosegao maksimum vraća se na početak, kao i tajmer koji se resetuje.
+
+
+```cpp
+  //If we've went through all of them, it's time to start over
+  if(characteristicsIterator == NO_OF_CHARS){
+    previousMillis = currentMillis;
+    characteristicsIterator = 0;
+    Serial.println("---------");
+  }
+  
+  characteristicsIterator++;
+  return true;
+}
+```
+Sa tim u vidu, sada možemo krenuti od početka funkcije - figurativno govoreći "gledamo na štopericu" (tj. `milis()`) i gledamo koliko je prošlo otkako smo ušli u ovaj ciklus (vreme ubeleženo u `previousMillis`).
+
+Određeno je da pauza treba biti 5000ms, nakon čega ide učitavanje jedne karakteristike, pauza od 500ms, pa sledeća i tako redom do kraja.
+
+```cpp
+bool sensor2cloud()
+{
+  int currentMillis = millis();
+  //Burst of all options within 5 seconds, with 0.5 second pauses between options
+  if((currentMillis - previousMillis) < (5000 + (characteristicsIterator * 500)))
+    return false;
+
+  //If enough time has passed, get to work:
+  //...
+```
+Ukoliko nije prošlo dovoljno vremena, funkcija vraća `false` i ništa se dalje ne odvija. 
+
+Međutim, ako je prošlo dovoljno vremena, idemo dalje. Koristeći switch case "dekodiramo" naš indeks koji iterira - gde svako merenje ima svoj indeks. U skladu sa vrednoću ovog iteratora, učitavamo ili temperaturu ili pritisak ili vlažnost.
+```cpp
+  //...
+  
+  int Value;
+  
+  //getting from the proper sensor
+  switch(characteristicsIterator){ 
+    case 1: Value = int(atmosphereSensor.readTemperature()); Serial.print("Read temp: "); break;
+    case 2: Value = int(atmosphereSensor.readPressure()/100); Serial.print("Read pres: "); break;
+    case 3: Value = int(atmosphereSensor.readHumidity()); Serial.print("Read humi: "); break;
+  }
+
+  //...
+```
+Koja god od karakteristika da je učitana u vrednost, ispisujemo je na ekran (da bismo odmah videli šta se dešava bez čekanja).
+
+Tek posle toga pokušavamo da je pošaljemo na odgovarajuću Bluetooth karakteristiku (što potencijalno može poći po zlu, greškom u konekciji ali ne i senzoru).
+```cpp
+  //Printing the decimal value for humans, and the hex (since it is stored in hex)
+  Serial.print(Value);
+  Serial.print(" hex: ");
+  Serial.println(Value, HEX);
+  
+  //sending to the proper characteristic
+  switch(characteristicsIterator){
+    case 1: tc.setValue(Value); break;
+    case 2: pc.setValue(Value); break;
+    case 3: hc.setValue(Value); break;
+  }  
+}
+```
+
+I tako smo došli do kraja ove ključne funkcije, a time i do celokupnog firmware-a za Arduino.
+
+
+#### 5. Prostor za unapređenja u budućnosti
+
+Razmatrali smo sledeće mogućnosti za unapređenje, ukoliko bi projekat prešao u sledeću fazu:
+
+1. Omogućiti da i druge vrste klikova sakupljaju podatke
+2. Dodati LED lampe koje daju indikator o trenutnom stanju uređaja
+3. Dodati LCD koji bi mogao da ispisuje podatke koji su inače vidljivi samo preko serijske veze
+4. Da se uređaj bolje *advertizuje* tj jasnije i vidljivije prikazuje drugim uređajima
+5. Dodati fizičke prekidače kojima menjamo merne jedinice
+
 
 ## 3.4. Raspberry Pi - posrednik
 ### 3.4.1. Hardware - Raspberry Pi
 **Raspberry Pi** je serija malih računara na jednoj ploči (SBCs) razvijenih u Ujedinjenom Kraljevstvu od strane Fondacije Raspberry Pi u saradnji sa Broadcom-om. Originalni cilj Raspberry Pi projekta bio je promocija osnovnog računarskog obrazovanja u školama. Originalni model postao je popularniji nego što je bilo očekivano, prodavajući se izvan svoje ciljne tržišne niše za upotrebe kao što su robotika. Široko se koristi u mnogim oblastima, kao što su nadgledanje vremenskih uslova, zbog svoje niske cene, modularnosti i otvorenog dizajna. Obično ga koriste zaljubljenici u računare i elektroniku, zbog njegovog usvajanja HDMI i USB standarda.
+
+![Fotografija Raspberry Pi 3 Model B, poput onog korišćenog na praksi](images/image-12.png)
 
 Nakon izdavanja druge vrste ploče, Fondacija Raspberry Pi je osnovala novi entitet, nazvan Raspberry Pi Trading, i postavila Ebena Uptona za izvršnog direktora, sa odgovornošću za razvoj tehnologije. Fondacija je ponovo posvećena kao obrazovna dobrotvorna organizacija za promociju osnovnog računarskog obrazovanja u školama i  zemljama. Većina Pis-a se proizvodi u Sonijevoj fabrici u Pencoedu u Velsu, dok se drugi proizvode u Kini i Japanu.
 
@@ -299,22 +534,181 @@ Program se bavi prikupljanjem podataka sa BLE (Bluetooth Low Energy) konekcije s
 1. Gattlib++ za BLE komunikaciju
 2. Wolk.h za komunikaciju sa WolkAbout platformom (bazirano na MQTT protokolu)
 
-Početna Podešavanja
-Definisan je enum `AirCharacteristic` sa vrednostima `TEMP`, `HUMI`, i `PRES`.
-Napravljena je globalna instanca `wolk` klase `Wolk`.
-Inicijalizovana je centralna jedinica za BLE sa imenom `arduino`.
-Definovane su UUID-ove (Unique Universal Identifiers) za BLE uređaj, servise i karakteristike.
+### 3.4.3. Raspberry Pi - Detaljna Analiza Koda
 
-Funkcije za Obaveštenja
-`notificationCallback`: Ova funkcija se poziva svaki put kada stigne obaveštenje sa BLE uređaja. U zavisnosti od vrste karakteristike (TEMP, PRES, ili HUMI), podaci se dodaju u `wolk` instancu i ispisuju se na standardni izlaz.
-`tempCallback`, `presCallback`, `humiCallback`: Ovi pozivi su specijalizovani slučajevi notificationCallback-a za određene tipove podataka (temperatura, pritisak, vlažnost).
+#### 3.5.1. Šira slika i šema
 
-`main()` funkcija
-1. Wolk Setup: Kreira se Wolk uređaj sa određenim kredencijalima i uspostavlja se veza sa WolkAbout platformom.
-2. BLE Setup: Inicijalizuje se BLE i povezuje se na BLE uređaj.
-   - Ako je uspešno omogućena BLE veza, postavljaju se parametri veze i povezuje se sa BLE uređajem. Nakon toga,započinju se obaveštenja za odabrane servise i karakteristike.
-   - Ako povezivanje ne uspe, veza sa WolkAbout platformom se prekida i program se završava.
-3. Glavna Petlja: Kontinuirano se obrađuju asinhroni događaji sa BLE uređaja i program spava na kratko između iteracija.
+Slično kao i na prethodnoj šemi, i ovde x i y ose prikazuju vremensko-prostorno kretanje podataka kroz program. Takođe opet imamo inicijalno nameštanje veze sa ulazom i izlazom, i imamo petlju, gde asinhrono čekamo notifikacije sa Arduina.
+
+Podatke šaljemo MQTT protokolom na portove koje smo definisali kako u kodu ovde, tako i na WolkAbout platformi.
+
+![Šematski prikaz algoritma Raspberry Pi](image-2.png)
+
+
+Hajdemo sada da pređemo u precizniju implementaciju. 
+
+#### 3.5.2. Uključivanje Biblioteka
+Kod počinje sa uključivanjem potrebnih biblioteka:
+
+```cpp
+#include <Gattlibpp.h>
+#include <iostream>
+#include <unistd.h> // for usleep
+#include "Wolk.h"
+```
+
+- `Gattlibpp.h`: Za BLE (Bluetooth Low Energy) komunikaciju.
+- `iostream`: Za rad sa standardnim I/O streamovima.
+- `unistd.h`: Za funkciju `usleep` koja omogućava pauze između iteracija.
+- `Wolk.h`: Za komunikaciju sa WolkAbout platformom.
+
+#### 3.5.3. Definisanje Enumeracija i Globalnih Promenljivih
+
+Definišemo enumeracije, umesto direktnog rada sa integerima ovde. Takođe definišemo objekat `wolk` nad kojim radimo sve operacije.
+```cpp
+typedef enum airCharacteristics {TEMP, HUMI, PRES} AirCharacteristic;
+
+std::unique_ptr<wolkabout::Wolk> wolk;
+```
+
+- `airCharacteristics`: Enum koji definiše tipove karakteristika vazduha (TEMP, HUMI, PRES).
+- `wolk`: Globalna instanca Wolk klase za komunikaciju sa WolkAbout platformom.
+
+#### 3.5.4. Konfiguracija BLE (Bluetooth Low Energy)
+
+Drugi uređaj sa kojim naš posrednik komunicira je Arduino, i njegovu apstrakciju imamo pomoću Gattlib biblioteke.
+```cpp
+Gattlib::BLECentral* arduino = Gattlib::BLECentral::getInstance();	
+const std::string &BLEDeviceUUID = "F1:5D:35:C4:08:9F";
+std::string serviceUUIDs[] = {"0xCCC0", "0xDDD0", "0xEEE0"};
+std::string characteristicUUIDs[] = {"0xCCC1", "0xDDD1","0xEEE1"};
+```
+
+- `arduino`: Instanca BLE centralne jedinice.
+- `BLEDeviceUUID`: Jedinstveni identifikator uređaja na kojem sam radio.
+- `serviceUUIDs` i `characteristicUUIDs`: UUID-ovi za servise i karakteristike koje smo definisali u Arduino kodu.
+
+#### 3.5.5. Funkcije za Obaveštenja
+
+Ove funkcije obrađuju dolazne podatke sa BLE uređaja.
+
+`notificationCallback`: Opšta funkcija za obradu podataka. Dodaje podatke u `wolk` instancu i ispisuje ih.
+
+Prvo radimo operacije sa bitovima
+```cpp
+
+void notificationCallback(const Gattlib::BinaryBuffer &data, AirCharacteristic x){
+	Gattlib::BinaryBuffer::const_iterator i = data.begin();
+	
+	//We receive a 4 digit hexadecimal number, always split into 2 packages.
+	//First package represents last 2 digits and vice versa
+	//Sometimes the first 2 digits are zeros. We don't care about them.
+	int firstPacket = (int)*i++, secondPacket = (int)*i;
+	int value = (secondPacket << 8) + firstPacket;
+```
+Zatim kada smo obradili dve heksadecimalne vrednosti i isparsirali ih, možemo te podatke slati u zavisnosti od argumenta x:
+```cpp
+	switch(x){
+		case TEMP: wolk -> addSensorReading("T", value); std::cout << "Temp: " << value << std::endl; break;
+		case PRES: wolk -> addSensorReading("P", value); std::cout << "Pres: " << value << std::endl; break;
+		case HUMI: wolk -> addSensorReading("H", value); std::cout << "Humi: " << value << std::endl << "--------" << std::endl; break;
+	}
+	wolk -> publish();
+}
+```
+Radi kraćeg i lepšeg kucanja koda, napravili smo alijase koji pozivaju ovu opštu funkciju:
+```cpp
+void tempCallback(const Gattlib::BinaryBuffer &data) {
+	notificationCallback(data, TEMP);
+}
+void presCallback(const Gattlib::BinaryBuffer &data){
+	notificationCallback(data, PRES);
+}
+void humiCallback(const Gattlib::BinaryBuffer &data){
+	 notificationCallback(data, HUMI);
+}
+
+```
+
+#### 3.5.6. Glavna (`main`) Funkcija
+
+Ova funkcija inicijalizuje Wolk i BLE jedinice i upravlja njihovom interakcijom.
+
+#### Wolk Setup
+Povezivanje se na WolkAbout platformu:
+```cpp
+int main(int argc, char *argv[]) 
+{
+    wolkabout::Device WolkDeviceCredentials("471d6850-8bed-4eca-9e6e-97fd9300b117", "5B2OD76EC4");
+    wolk = wolkabout::Wolk::newBuilder(WolkDeviceCredentials).host("ssl://api-demo.wolkabout.com:8883").build();
+    wolk->connect();
+    std::cout << "Connected to Wolk." << std::endl;
+    //...
+```
+#### BLE Setup
+Povezuje se na BLE uređaj i omogućava obaveštenja za odabrane servise i karakteristike. Ovo je nešto kompleksnije zato što koristi lambda funkcije u C++. 
+
+Pokušava se `arduino -> enable()`, a ako je uspešan zatim i `arduino -> connect()`:
+```cpp
+//BLE setup	
+arduino -> enable([]() //succ enable
+{
+    std::cout << "Enabled BLE connection." << std::endl;
+    arduino -> connectionParameters().security = BT_SEC_LOW;
+    arduino -> connectionParameters().destinationType = Gattlib::Address::LE_PUBLIC;
+    
+    arduino -> connect(BLEDeviceUUID,[]() //succ connect
+    {
+        std::cout << "Connected to a BLE device." << std::endl;
+        arduino -> startNotification(BLEDeviceUUID, serviceUUIDs[TEMP], characteristicUUIDs[TEMP], tempCallback);
+        arduino -> startNotification(BLEDeviceUUID, serviceUUIDs[PRES], characteristicUUIDs[PRES], presCallback);
+        arduino -> startNotification(BLEDeviceUUID, serviceUUIDs[HUMI], characteristicUUIDs[HUMI], humiCallback);	
+    }
+//...
+```
+To je idealan scenario. Ukoliko connect ili enable ne uspeju, radimo identičnu stvar stvar:
+```cpp
+[]() //fail connect/enable
+{
+    std::cout << "Failed connect.";
+    wolk->disconnect();
+    std::terminate();
+}
+```
+
+Da sumiramo, šira slika ovakve ugnježdene lambda sintakse izgleda ovako:
+```cpp
+//BLE setup	
+arduino -> enable([]()
+{
+    // Prvi deo codea ako je enable uspeo, pa grananje
+    
+    arduino -> connect(BLEDeviceUUID,[]()//succ connect
+    {
+        // Code ako su i enable i connect uspeli	
+    }
+    ,[]()
+    {
+        // Code ako je enable uspeo, ali connect nije
+    });
+},[]()
+{
+    // Code ako enable nije uspeo
+    // (nismo ni mogli da probamo connect)
+}
+);
+```
+
+#### Glavna Petlja
+Nakon uspostavljanja cloud i ble konekcije, imamo jednostavnu petlju, gde program spava na 50 milisekundi (50.000 mikrosekundi) pa čita da li je išta stiglo sa Arduina. Na taj način kontinuirano obrađujemo asinhrone događaje.
+```cpp
+while (1) 
+{
+    arduino -> processAsync();
+    usleep(50000);
+}
+```
+
 
 ## 3.5. WolkAbout Cloud Platforma - centrala informacija
 ### 3.5.1. "Hardware" Cloud platforme?
@@ -323,6 +717,8 @@ Kao što je pomenuto u [1.3. Cloud computing - računarstvo u oblaku](#213-cloud
 ### 3.5.2. Software - konfigurisanje, povezivanje, monitoring
 **WolkAbout Cloud** platforma je gotov proizvod koji se minimalno programira, već jednostavno koristi putem GUI-ja. Potrebno je ulogovati se sa svojim kredencijalima (koji se dobijaju onda kada se korišćenje njihovih usluga plati, i svako korišćenje se prebrojava i sabira).
 
+
+
 U njoj je bilo potrebno da okvirno opišem kakve uređaje imam, kakvim podacima barataju. Bilo je moguće dizajnirati tzv *dashboard* putem kojeg se može vizualno pratiti promet podataka (i tako proveriti da li isprogramirane komponente ispravno rade svoj posao).
 
 ## 3.6. Krajnji korisnik
@@ -330,7 +726,7 @@ U njoj je bilo potrebno da okvirno opišem kakve uređaje imam, kakvim podacima 
 Kao što je pomenuto u odeljku [3.2. Qt Framework](#232-qt-framework), glavna prednost je u tome da jedan razvojni proces može da se jednostavno prebaci u paket za bilo koju platformu. Budući da sam softver za krajnjeg korisnika razvijao na Windows desktopu (u drugom mesecu), najjednostavnije mi je bilo da ga za tu platformu i razvijem. Veoma prosto bi se prebacio i na Linux (na kojem sam razvijao u prvom mesecu), macOS, Android i iOS. Jedino je za mobilne platforme potrebno malo pažnje za dizajn, povodom ograničenijeg prostora na ekranu.
 
 
-### 3.6.2. Software - Cross-platform GUI Data Visualizer //TODO
+### 3.6.2. Software - Cross-platform GUI Data Visualizer
 #### 3.6.2.1. MainWindow klasa
 
 Glavna klasa u kojoj je smeštena većina logike je `MainWindow`. Ova klasa upravlja svim elementima korisničkog interfejsa 
@@ -389,7 +785,8 @@ Grafički interfejs je kreiran koristeći Qt Designer, a elementi su povezani sa
 ```
 
 Grafički interfejs izgleda ovako:
-![Screenshot korisničkog interfejsa](GUI.png)
+
+![Screenshot korisničkog interfejsa](images/GUI.png)
 
 #### 3.6.2.5. Korisnička priča
 Sa leve strane se unose email i password za povezivanje sa WolkAbout-ovom platformom čiji API koristimo. Klikom na log-in se pokušava uspostaviti konekcija, a ukoliko uspe otključava se leva polovina ekrana.
@@ -407,7 +804,7 @@ Nakon odrađene finalne prezentacije, dobio sam povratne informacije svih uklju�
 
 Iznenadilo me je kada su objasnili da nije bilo namenjeno da stignem sva tri aspekta u projektu u zadatom vremenskom okviru (da su natrpali i malo više da ne ponestane taskova), i da su zaista zadovoljni uloženim naporom, vremenom i efikasnošću multitaskovanja. 
 
-![Skenirani izveštaji sa ukupno dva meseca prakse](izvestaji_prakse.png)
+![Skenirani izveštaji sa ukupno dva meseca prakse](images/izvestaji_prakse.png)
 
 Iako sam bio takmičar iz programiranja, i bavio se njime godinama, bio sam svestan da zapravo nemam pojma šta znači pravi rad u firmi, i da se ta dva nikako ne mogu porediti. To me je zabrinjavalo, smatrao sam da je prerizično tek tako se upustiti i strogo karijerno opredeliti za programiranje, ako ne znam šta me čeka, samo na osnovu školskog iskustva ili nahvaljenosti profesije. To je ujedno bila moja glavna motivacija za praksu, i sa zadovoljstvom mogu reći da je to u potpunosti uspelo. Samo prvih mesec dana prakse su mi u potpunosti odagnali sva pitanja, nedoumice i strahove i totalno premostili jaz u percepciji. Potvrdile su mi se neke percepcije i saznanja, te sam se mogao samouverenije upustiti u odabir karijere.
 

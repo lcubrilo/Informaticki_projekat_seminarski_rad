@@ -31,28 +31,36 @@ echo [Debug] output_folder = %output_folder%
 echo Available CSS files in "%css_folder%" folder:
 set "css_list="
 for %%f in ("%css_folder%\*.css") do (
-    echo %%~nxf
+    ::echo %%~nxf
     set "css_list=!css_list! %%~nxf"
 )
 
 :: Use gum to choose a CSS file or set a default
 set "chosen_css="
-for /f %%a in ('gum choose %css_list% "Use default styles.css"') do set "chosen_css=%%a"
+:: for /f %%a in ('gum choose %css_list% "Use default styles.css"') do set "chosen_css=%%a"
 
 :: If no CSS file was chosen, use the default "styles.css"
 if "%chosen_css%"=="" set "chosen_css=styles.css"
+set "chosen_css=splendor.css" 
+:: for testing, return gum choose later
 
 :: Add LaTeX-esque image captions to all imgs
-::python build_utils\convert_images.py "%project_path%\%filename%" "%output_folder%"
+python build_utils\convert_images.py "%project_path%\%filename%" "%output_folder%" || exit /b 1
 
 echo off
-pandoc "%output_folder%\%basename_mod%.md" --css="%css_folder%\%chosen_css%" -o "%output_folder%\%basename_mod%.html" >nul 2>&1
+pandoc "%output_folder%\%basename_mod%.md" --css="%css_folder%\%chosen_css%" --highlight-style=pygments -o "%output_folder%\%basename_mod%.html" >nul 2>&1
 echo on
 echo [Debug] Converted Markdown to HTML
 
+:: Fix table of contents in HTML (broken due to variance in size)
+::echo off
+::python build_utils\fix_html_toc.py "%output_folder%\%basename_mod%.html"  || exit /b 1
+::echo on
+::echo [Debug] Fixed HTML ToC
+
 :: Import HTML contents from iframes
 echo off
-python build_utils\convert_iframes.py "%output_folder%\%basename_mod%.html" "../build_utils/themes/%chosen_css%"
+python build_utils\convert_iframes.py "%output_folder%\%basename_mod%.html" "../build_utils/themes/%chosen_css%" || exit /b 1
 echo on
 echo [Debug] Converted iframes in HTML
 
